@@ -15,7 +15,4 @@ layout: default
 - 项目1：简短描述
 - 项目2：简短描述
 
-## 联系方式
-
-- Email: your.email@example.com
-- GitHub: [Your GitHub Username](https://github.com/yourusername)
+建议更改你的网站内容谢谢
