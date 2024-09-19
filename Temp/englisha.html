@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Guardian view on the power of live performance: all together now</title>
+    <style>
+    :root {
+        --text-color:#333;
+        --summary-color: #000;
+        --bg-color: white;
+        --block-bg-color: #c3c3c3;
+        --block-left-border-color: #868686;
+        --block-border-radius: 5px;
+        --outter-padding: 1em;
+    }
+
+    @media (max-width: 1920px) {
+        :root { --outter-padding: 4em; }
+    }
+    @media (max-width: 1200px) {
+        :root { --outter-padding: 3em; }
+    }
+    @media (max-width: 900px) {
+        :root { --outter-padding: 2em; }
+    }
+    @media (max-width: 600px) {
+        :root { --outter-padding: 1em; }
+    }
+
+    body {
+        margin: 0;
+        padding: 0;
+        background-color: var(--bg-color);
+        line-height: 28px;
+        font-size: 16px;
+        font-family: 'PingFang SC', 'Source Han Serif SC', 'Microsoft YaHei', 'Noto Sans CJK SC', 'Source Han Sans CN', 'Noto Sans SC', 'sans-serif';
+        text-align: justify;
+    }
+
+    h1 { font-size: 2em; line-height: 1.15em; }
+    h2 { font-size: 1.5em; line-height: 1.1em; }
+    h3 { font-size: 1.5em; line-height: 1.15em; }
+    h4 { line-height: 1em; }
+    h5 { font-size: 0.83em; line-height: 1.4em; }
+    h6 { font-size: 0.67em; line-height: 1.4em; }
+
+    p {
+        margin: 1em 0;
+        padding: 0;
+        overflow-x: auto;
+        /* 在 line-height 小于 1.4x 的时候，p 标签的高度比起内部文本的高度小几个像素，
+        * 导致出现细微滚动，此时按对应的段落滚动时，会阻碍整个页面的滚动。
+        * DIV 标签似乎不会有此问题
+        */
+        overflow-y: hidden; 
+    }
+
+    pre {
+        overflow-x: auto;
+        border-radius: var(--block-border-radius);
+        padding: 18px;
+        letter-spacing: 0;
+    }
+
+    code {
+        border-radius: var(--block-border-radius);
+        padding: 1px 5px;
+        letter-spacing: 0;
+        word-break: break-all;
+    }
+
+    /* 代码 */
+    pre code {
+        background: none!important;
+    }
+
+    pre, code, blockquote {
+        background-color: var(--block-bg-color);
+    }
+
+    blockquote {
+        border-left: 10px solid var(--block-left-border-color);
+
+        border-radius: var(--block-border-radius);
+        background-color: var(--block-bg-color);
+        padding: 0.5em 10px;
+        quotes: "\201C""\201D""\2018""\2019";
+        margin: 10px 0;
+    }
+    blockquote:before {
+        color: var(--block-left-border-color);
+
+        content: open-quote;
+        font-size: 4em;
+        line-height: 0.1em;
+        margin-right: 0.1em;
+        margin-left: -0.3em;
+        vertical-align: -0.4em;
+    }
+
+    figcaption {
+        margin-top: 8px;
+    }
+
+    blockquote, figcaption, li, h1, h2, h3, h4, h5, h6 {
+        text-indent: 0px;
+    }
+
+    table {
+        overflow-x: auto;
+        border-collapse: collapse;
+    }
+    table, table tr th, table tr td {
+        border: 1px solid #bbbbbb;
+    }
+    td {
+        padding: 0 3px;
+    }
+    td p {
+        margin: 0;
+        padding: 0;
+    }
+
+    mdmark { padding: 0 1px; border-radius: 3px; color: #fff; }mdmark.mdm-yellow {
+  background-color: #7a6d0aff;
+}mdmark.mdm-red {
+  background-color: #c9210eff;
+}mdmark.mdm-qianniuzi {
+  background-color: #8b2b72ff;
+}mdmark.mdm-mantianxingzi {
+  background-color: #464aa6ff;
+}
+
+    #mandu-title {
+        padding: 0.5em var(--outter-padding);
+    }
+    #mandu-summary {
+        color: var(--summary-color);
+        font-weight: bold;
+        background-color: #f3f3f3;
+        padding: 1em var(--outter-padding);
+    }
+
+    #mandu-content {
+        padding: 1em var(--outter-padding);
+        font-size: 16px;
+        letter-spacing: 1px;;
+    }
+
+    a {
+        color: #59a4d0;
+        text-decoration: none;
+    }
+
+    img.mandu-emoji {
+        display: inline;
+        line-height: 1rem;
+        height: 1rem;
+        margin: 0;
+    }
+
+    img, video {
+        width: 100%;
+        height: 100%;
+        border: none;
+        padding: 0;
+        margin: 0;
+        max-width: 100%;
+        margin: 15px auto;
+        display: block;
+    }
+
+    figure img {
+        margin: 0 auto;
+    }
+
+    figure {
+        margin: 40px 0;
+        display: block;
+        max-width: 100%;
+        overflow-x: auto;
+    }
+
+    .clearfix:after {
+        content: "";
+        display: block;
+        clear: both;
+    }
+    </style>
+</head>
+<body>
+    <h2 id="mandu-title">The Guardian view on the power of live performance: all together now</h2>
+    <summary id="mandu-summary" style="display: none;">
+        <div>本文摘要：</div>
+        
+    </summary>
+    <article id="mandu-content">
+        <div><p><span><span>J</span></span>udging the mood of live audiences is not a science, let alone an exact one. Every performance is different. This makes it tricky to assert with confidence that there is a special atmosphere in theatres at the moment. And yet the fact of long absence from auditoriums inevitably adds an extra charge to the experience of being back in them. This applies to actors, dancers, singers, musicians, front-of-house and backstage staff as well as ticket-holders. After two years during which so much of life was lived through screens, or via headphones, sharing an artistic experience with a group of other people in the same physical space feels more intense.</p><p><a href="https://www.theguardian.com/lifeandstyle/2021/jul/23/ladies-and-gentlemen-put-your-hands-together-for-the-standing-ovation">Standing ovations</a> were becoming more common anyway, as audiences realised that there is more fun to be had from getting up and cheering than clapping politely. Last June, audiences at London’s Coliseum were so delighted by <a href="https://www.theguardian.com/stage/2021/jun/30/hairspray-review-unstoppably-joyous-musical-lights-up-the-west-end">Marisha Wallace in Hairspray</a> that they rose to their feet and applauded one of her solo numbers halfway through the show. But now there is an additional incentive for such outpourings: the wish to show appreciation not just for what has just taken place on stage, but for the effort involved in stewarding theatres through the pandemic. From the Bush in west London, celebrating its 50th anniversary with a sold-out run of Tyrell Williams’s new three-hander, <a href="https://www.theguardian.com/stage/2022/feb/23/red-pitch-review-bush-theatre-london">Red Pitch</a>, to the many opera houses and concert halls where orchestras have played the Ukrainian national anthem over recent weeks, there is a palpably heightened sense of occasion.</p><p>This is not to deny or minimise the toll that Covid has taken on many arts organisations. Northern Ballet’s Pinocchio opened at Hartlepool’s Town Hall Theatre over the weekend amid <a href="https://www.thestage.co.uk/news/hartlepool-theatre-reopens-post-lockdown-amid-fears-for-future">warnings about the venue’s long-term future.</a> Last year, the orchestra for the West End production of Phantom of the Opera was <a href="https://www.classicfm.com/composers/lloyd-webber/west-end-phantom-of-the-opera-cuts-orchestra-in-half/">cut from 27 musicians to just 14</a> – with missing instruments replaced by keyboard effects. For <a href="https://www.theguardian.com/commentisfree/2020/oct/14/the-guardian-view-on-saving-the-arts-what-about-the-artists">freelance artists</a> who did not qualify for government support, the past couple of years have been punishing.</p><p>But the worst fears when buildings closed their doors have not been realised. Audiences are returning, with full houses for first nights in regional theatres as well as the West End. Streaming services may have reaped the <a href="https://www.theguardian.com/media/2022/feb/19/investors-alarmed-as-streaming-services-lose-their-magic-touch">rewards of lockdowns</a>, when home entertainment was the only option, but they have not replaced the visceral draw of live action. The prospect of watching performers act, sing or dance in the flesh can still lure people away from their screens.</p><p>Some theatres are playing safe, putting on revivals rather than new plays, while a parade of A-list stars will boost receipts. Paul Bettany, <a href="https://www.theguardian.com/stage/gallery/2021/dec/10/willkommen-cabaret-with-eddie-redmayne-and-jessie-buckley-in-pictures">Jessie Buckley</a>, <a href="https://www.theguardian.com/stage/2021/dec/13/cabaret-review-eddie-redmayne-playhouse-theatre">Eddie Redmayne</a> and <a href="https://www.theguardian.com/stage/2022/mar/03/henry-v-review-donmar-warehouse-london-kit-harington">Kit Harington</a> have all been on London stages this year, with Amy Adams and Jodie Comer to follow. But new talent is also on show. The choir in <a href="https://www.theguardian.com/stage/2022/feb/13/maria-friedman-sondheim-was-a-kind-man-but-he-could-be-very-direct-legacy-menier-chocolate-factory-interview">Maria Friedman’s hugely enjoyable Legacy</a> features students from the Royal Academy of Music as well as her son.</p><p>The pandemic reduced the opportunities for real-life interactions of all kinds. The buzz that surrounds theatres is a heartening reminder that there is nothing, to borrow a phrase from Lin-Manuel Miranda, like being “in the room where it happens”.</p></div>
+    </article>
+</body>
+</html>

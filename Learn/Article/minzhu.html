@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>什么是民主，怎样实践民主，民主解决什么问题</title>
+    <style>
+    :root {
+        --text-color:#333;
+        --summary-color: #000;
+        --bg-color: white;
+        --block-bg-color: #c3c3c3;
+        --block-left-border-color: #868686;
+        --block-border-radius: 5px;
+        --outter-padding: 1em;
+    }
+
+    @media (max-width: 1920px) {
+        :root { --outter-padding: 4em; }
+    }
+    @media (max-width: 1200px) {
+        :root { --outter-padding: 3em; }
+    }
+    @media (max-width: 900px) {
+        :root { --outter-padding: 2em; }
+    }
+    @media (max-width: 600px) {
+        :root { --outter-padding: 1em; }
+    }
+
+    body {
+        margin: 0;
+        padding: 0;
+        background-color: var(--bg-color);
+        line-height: 28px;
+        font-size: 16px;
+        font-family: 'PingFang SC', 'Source Han Serif SC', 'Microsoft YaHei', 'Noto Sans CJK SC', 'Source Han Sans CN', 'Noto Sans SC', 'sans-serif';
+        text-align: justify;
+    }
+
+    h1 { font-size: 2em; line-height: 1.15em; }
+    h2 { font-size: 1.5em; line-height: 1.1em; }
+    h3 { font-size: 1.5em; line-height: 1.15em; }
+    h4 { line-height: 1em; }
+    h5 { font-size: 0.83em; line-height: 1.4em; }
+    h6 { font-size: 0.67em; line-height: 1.4em; }
+
+    p {
+        margin: 1em 0;
+        padding: 0;
+        overflow-x: auto;
+        /* 在 line-height 小于 1.4x 的时候，p 标签的高度比起内部文本的高度小几个像素，
+        * 导致出现细微滚动，此时按对应的段落滚动时，会阻碍整个页面的滚动。
+        * DIV 标签似乎不会有此问题
+        */
+        overflow-y: hidden; 
+    }
+
+    pre {
+        overflow-x: auto;
+        border-radius: var(--block-border-radius);
+        padding: 18px;
+        letter-spacing: 0;
+    }
+
+    code {
+        border-radius: var(--block-border-radius);
+        padding: 1px 5px;
+        letter-spacing: 0;
+        word-break: break-all;
+    }
+
+    /* 代码 */
+    pre code {
+        background: none!important;
+    }
+
+    pre, code, blockquote {
+        background-color: var(--block-bg-color);
+    }
+
+    blockquote {
+        border-left: 10px solid var(--block-left-border-color);
+
+        border-radius: var(--block-border-radius);
+        background-color: var(--block-bg-color);
+        padding: 0.5em 10px;
+        quotes: "\201C""\201D""\2018""\2019";
+        margin: 10px 0;
+    }
+    blockquote:before {
+        color: var(--block-left-border-color);
+
+        content: open-quote;
+        font-size: 4em;
+        line-height: 0.1em;
+        margin-right: 0.1em;
+        margin-left: -0.3em;
+        vertical-align: -0.4em;
+    }
+
+    figcaption {
+        margin-top: 8px;
+    }
+
+    blockquote, figcaption, li, h1, h2, h3, h4, h5, h6 {
+        text-indent: 0px;
+    }
+
+    table {
+        overflow-x: auto;
+        border-collapse: collapse;
+    }
+    table, table tr th, table tr td {
+        border: 1px solid #bbbbbb;
+    }
+    td {
+        padding: 0 3px;
+    }
+    td p {
+        margin: 0;
+        padding: 0;
+    }
+
+    mdmark { padding: 0 1px; border-radius: 3px; color: #fff; }mdmark.mdm-yellow {
+  background-color: #cbb200bd;
+}mdmark.mdm-red {
+  background-color: #f92a15bd;
+}mdmark.mdm-qianniuzi {
+  background-color: #681752bd;
+}mdmark.mdm-mantianxingzi {
+  background-color: #2e317cbd;
+}
+
+    #mandu-title {
+        padding: 0.5em var(--outter-padding);
+    }
+    #mandu-summary {
+        color: var(--summary-color);
+        font-weight: bold;
+        background-color: #f3f3f3;
+        padding: 1em var(--outter-padding);
+    }
+
+    #mandu-content {
+        padding: 1em var(--outter-padding);
+        font-size: 16px;
+        letter-spacing: 1px;;
+    }
+
+    a {
+        color: #59a4d0;
+        text-decoration: none;
+    }
+
+    img.mandu-emoji {
+        display: inline;
+        line-height: 1rem;
+        height: 1rem;
+        margin: 0;
+    }
+
+    img, video {
+        width: 100%;
+        height: 100%;
+        border: none;
+        padding: 0;
+        margin: 0;
+        max-width: 100%;
+        margin: 15px auto;
+        display: block;
+    }
+
+    figure img {
+        margin: 0 auto;
+    }
+
+    figure {
+        margin: 40px 0;
+        display: block;
+        max-width: 100%;
+        overflow-x: auto;
+    }
+
+    .clearfix:after {
+        content: "";
+        display: block;
+        clear: both;
+    }
+    </style>
+</head>
+<body>
+    <h2 id="mandu-title">什么是民主，怎样实践民主，民主解决什么问题</h2>
+    <summary id="mandu-summary" style="display: block;">
+        <div>本文摘要：</div>
+        1，首先，很难会有一个不站在任何立场上的民主概念。
+2，民主解决民主能解决的问题，问题是如何应对伤害他人以及社会公共利益的情况，并不是每一个人都会对自己的言行负责，在这方面法律有时也无能为力，道德更是如此。没有一个放之四海而皆准的道德标准。
+    </summary>
+    <article id="mandu-content">
+        <div id="postmessage_38481999" class="postmessage"><span>
+                                        </span><p><font>&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;&nbsp;这是一个话题，两种性质截然不同的三个方面。<mdmark mdm-id="567a0404-df69-4538-98e7-7c5a6a29b390" class="mdm-yellow">什么是民主，指的是内容；怎样实践民主，指的是形式，民主解决什么问题，指的是目的</mdmark>。换句话说，这是内容与形式，手段与目的的区别，很多人看似懂得内容，可是往往忽略内容而大谈形式，甚至把形式等同于内容，看似懂得手段，可是往往把手段当成了目的，也就是把怎样实践民主与什么是民主混为一谈，把民主解决什么问题与什么是民主混为一谈，显现出思维的混乱。</font></p><p><font>&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;&nbsp;什么是民主，<mdmark mdm-id="2948c121-e9cb-49f6-8044-3aa7ea369872" class="mdm-yellow">民主就是国民在自由表达意愿基础上，自主个人的私人事务和集体的公共事务</mdmark>。有人说，民主就是“人民当家作主”，这话没错，不过太过粗糙，也存在漏洞，还得明确什么是人民。在中国大陆，这个“人民”是特指部分群体，甚至是指某个特定的阶级，而不是全体国民，这又要进一步明确，谁有权利，又根据什么在全体国民中会有一部分人被首先排除在行使主人权利的行列之外。正确的认识是，民主的民是指全体国民，搞部分人或部分群体做主，另部分人或群体则沦为二等公民或政治贱民，那一定是假民主。</font></p><p><font>&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;&nbsp;怎样实践民主，也就是在什么条件下国民才可以真正的得以作为主人进行自主。首先是，没有了靠暴力夺得王位的君王，或没有了靠暴力夺得政权的统治集团在向全体国民发号司令，掌控国民的经济民生和生杀大权。</font></p><p><font>&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;&nbsp;其次，<mdmark mdm-id="cb4ed87f-d51d-4e54-aa7b-9b8fa80768cd" class="mdm-yellow">国民因此可以根据自己的意愿、目标或爱好兴趣自由结社，只要没有妨碍他人</mdmark>，想成立什么组织就成立什么组织，不受地域、职业、民族或文化等条件的任何限制。</font></p><p><font>&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;&nbsp;再其次，<mdmark mdm-id="ae7bd29b-25b4-497e-b68d-d72a2130a977" class="mdm-yellow">国民因此可以自由出版，只要不是针对自然人的生理或信仰进行污辱和侵犯，任何国民都可以公开发表自己的思想和看法</mdmark>，出版书籍，办报刊或媒体，不受限制条件同上。</font></p><p><font>&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;&nbsp;再次，因<mdmark mdm-id="45ecc4db-bf27-430e-bd39-11e00dfde87d" class="mdm-yellow">国土辽阔，人口众多，个人精力有限，国家事务不得不通过代理人来处理，这也是一种社会分工。</mdmark>这样，<mdmark mdm-id="823b262f-518b-42f1-81d0-4d82ae8dd1dd" class="mdm-yellow">国民作为权利平等的主人，主人之间就必然产生代理人的推举，形成一种选举制度，任何国民只要符合年龄和国籍等一般要求，均可成为选举人和被选举人。</mdmark>那些专司选举事务的社团组织也就被人们称作政治组织或政党了，换句话说，民主社会的政党组织就一个任务，仅仅是负责推举政务代理人而已，此外无他。</font></p><p><font>&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;&nbsp;值得一提的是，这些政治组织或政党有多少，是根据国民的志趣和意向自然形成的，从来不存在一个所谓的“一党制，两党制或多党制”这样的法律事前规定，而且政党从来都属于民间组织，不拿国库一分钱的经费和靠纳税人的钱来养活。</font></p><p><font>&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;&nbsp;因此，代理人的选举，作为举办一项活动，当然要花钱。但是，这些选举金费几乎都来自于竞选人或竞选组织在民间的募捐和筹措，且这些资金仅仅是用于竞选人的宣传而已，政府只是为了平衡，根据选举规则对竞选经费处于弱势一方的竞选人才会拿出一部分金费进行适当补助。</font></p><p><font>&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;&nbsp;有人说，民主选举是有钱人的游戏，会花费巨额资金。这话没错，花钱不少，但需要指出的是，花钱多的民主国家国民大多数人都有钱，<mdmark mdm-id="351ee930-0ce7-4712-b7be-90add2c8abd5" class="mdm-yellow">各式各样的财团多的是，且选举经费基本都来自于民间，大家愿意掏钱出来举办一项活动</mdmark>，正如逢年过节一样，大家乐意大把撒钱，过个“选举节”，这有何非议呢？</font></p><p><font>&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;&nbsp;有人说，民主就是“钱主”，有钱才能当选，无钱只能靠边。这种说法想表达两层意思，一是说有钱了别人才能选你，二是说你没钱，尽管你被选上了，你也是有钱人的代理人，今后就得为有钱人说话办事。对于第一种说法，看看美国历史上的总统，是不是没钱就当不上总统呢？答案看事实就行，在此不赘述。钱只代表广告，不等于选票，钱再多也是一人一票。如果钱多就当选，那么大家就拿出自己的家产比较就行了，还何必多此一举的搞选举干什么？对于第二种说法，选民中有钱人多的是，就算你想帮，张三李四王五你帮得了谁呢？每个人或群体的代表多的是，最后任何议案都不得不在这些不同利益群体的代表中靠票数来解决。所以，所谓的“钱主”实际是一个不堪一驳，彻头彻尾的谎言。</font></p><p><font>&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;&nbsp;有人说，<mdmark mdm-id="e2ba6dfa-5835-4ea9-9c58-b154312ad954" class="mdm-yellow">只要权力管理者来自于无产阶级或穷人，就代表民主了，民不民主，要不要选举都不重要，只要来源代表无产和贫穷就行。</mdmark>这种思维的定式是贫穷就代表天然正义，所以民主只能存在于贫穷群体。事实上，贫穷群体不乏打砸抢烧杀的流氓匪徒，皇帝还当过乞丐，贫穷并不天然就是好人。因此，<mdmark mdm-id="f9195e15-b9d8-4fad-9be8-07354dfb9c8c" class="mdm-yellow">贫穷并不是正义的必要条件，同理，为富也不是不仁的必要条件。</mdmark>那种自命“正义”，自命“先进”，不过是自命不凡，自吹自擂罢了，于是实际无关，与事实无关。</font></p><p><font>&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;&nbsp;推翻了王朝统治，只是完成民主的第一步，建立什么样的政权组织才是实践民主的保障。既然，国家的政务是通过推举代理人来处理的，也因此国民与这些代理人所行使权力的政权组织建立的是一种委托代理关系，这些代理人之所以能够具有和行使治理国家事务的权力，是因为权力是国民授予的，也标明了权力的来源。谁授权，谁为谁服务，谁领导谁，已经十分清楚了，国民才是真正的主人，代理人只能是听命的公仆或马仔而已。</font></p><p><font>&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;&nbsp;<mdmark mdm-id="49a435d6-d2d2-493d-b83f-7b422ea2174c" class="mdm-yellow">国家事务包括立法、行政和司法，基本涵盖了社会所有事务的主要方面，也因此形成了三个方面的权力。</mdmark>实践中，这三权如果不明确各自的领域或界限，就会引发越权事件，造成混乱而因此侵害到国民。所以这三权必须明确自己的职责范围，同时因没有之上的权力了，就必须靠它们之间进行互相监督，相互制衡，以保证国民的权利不受侵害，而且对于受侵害的可以有更正、申诉和补过的地方。因此，在一个民主国家，<mdmark mdm-id="4f8a55ae-58a9-4ee8-a36f-b99b55d76e9a" class="mdm-yellow">实行三权分立是实践民主，保障国民权利的必然，而不是什么某某的那一套，存在地域人种有别的说辞。</mdmark>换句话说，三权分立是民主制度的专利，而非哪个国家的专利。</font></p><p><font>&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;&nbsp;为了民主政权的稳定，政权机关的人员通常实行事务官和政务官的公务员制度。事务官通过公开考试择优录取，且实行职业终身化，不受政务官的更换而改行。此外，事务官不得参与任何政治组织，保持公务员队伍的中立化，且不得参选政务官，除非事前辞职。政务官则通过普选产生，当选后要接受任内质询和弹劾，且规定定期更换。</font></p><p><font>&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;&nbsp;军队国家化，是全体国民的卫队或国防军，严禁任何私人或社团组织拥有武装，以防止任何个人或组织企图用暴力建立独裁统治，奴役国民。</font></p><p><font>&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;&nbsp;经济上，生产资料属于自然人或法人的财产，且私有财产不可侵犯。生产活动是平等公民之间开展的民事活动，民事活动产生的纠纷只能在法律法规的框架内解决，由司法裁定。若对法律法规条款有意修改的，只能通过其代理人在立法机关内进行。民主国家也存在公有生产组织，由政府经营，但公有生产组织基本上都是一种“拾遗补缺”，对于私人不愿生产的，微利的，产品又是国民需要的，才采取国营方式。因此，民主国家公有生产组织的目的不是在与民争利，而是作为一种补足和调剂。公有生产组织的负责人由政府任命，其薪金由政府规定，因为政府是受立法机关监督的，所以逻辑上公有生产组织的负责人和其收入也是由立法机关进行间接的监管。这些公有生产组织作为法人和经营者，其地位和待遇与私人生产组织毫无区别，一视同仁，不存在谁比谁更高人一筹。</font></p><p><font>&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;&nbsp;民主国家的公有生产组织是经立法机关同意，才由政府去实施的。立法机关代表了民意，那么这些生产组织的生产资料公有则表示是建立在国民自愿基础上进行的，而非像非民主国家那样，理论上是大家“自愿公有”，实际上国民根本没有自由表达意愿的权利，是在“被公有”而已。因此，某些人为了鱼目混珠，也以民主国家存在公有企业为由，大力吹捧公有，这些人实际上属于知其表，不知其里，不仅混淆了“公有”和“被公有”的实质区别，也同时掩盖了两种国度民主与非民主的本质区别。</font></p><font><font><font>&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;&nbsp;民主解决什么问题，现实中很多人都不能正确认识，通常把民主与经济联系起来，似乎谁的经济发展好，谁就代表民主，这实际上对民主要解决的问题做了偷梁换柱。<mdmark mdm-id="0c7eff42-5e35-48f6-be34-42e75a72dab1" class="mdm-yellow">民主解决的是国民的尊严和权利，与经济发展没有必然的联系。</mdmark>换句话说，民主了就代表你是国家的主人，具有主人的尊严，平等而不可辱，可以行使主人的各项权利，自由结社，自由出版和自由选举。至于你作为主人，经济能不能搞好，那就看自己的能力和才华，以及所在地的地理环境和条件，也可能搞得很，也可能搞得差。相反，非民主政权也可以通过搜刮民脂民膏，“集中力量办大事”，用老百姓的血汗和白骨创造某种经济奇迹和急速上升的</font></font>GDP<font><font>，如二战时期的德国和日本，以及某“特色”国家。这些现象充分说明，民主不是用来解决经济问题的，不会包你发财，只是为你奠定一个可以自主的基础，经济搞得好不好，通俗讲要看你的造化。反过来也是，民主的问题只能靠解决民主的办法和途径，而不是靠发展经济来代替，否则孙文当年为什么要搞辛亥革命，而不是跟慈禧太太开展劳动竞赛，拼经济呢？因此，对非民主政体实施以经济促政改，事实已经证明，此路早已不通。但发达的民主国家帮助贫穷的非民主国家发展民生经济，对将来的政改或转变会以较之以前更文明、更平稳、代价更低的方式进行，这倒是无疑的。</font></font></font><span>                                        
+                                    </span></div>
+    </article>
+</body>
+</html>

@@ -1,0 +1,74 @@
+body {
+    
+    background-color: #f8f9fa;/* 使用颜色代码 */
+    /* 或者 */
+    background-image: url(''); /* 使用背景图片 */
+    background-size: cover; /* 确保图片覆盖整个页面 */
+    background-repeat: no-repeat; /* 防止图片重复 */
+    background-attachment: fixed; /* 使背景固定，不随页面滚动 */
+
+    font-family: 'PingFang SC', 'Source Han Serif SC', 'Microsoft YaHei', 'Noto Sans CJK SC', 'Source Han Sans CN', 'Noto Sans SC', 'sans-serif';
+}
+
+.article-container {
+    background-color: white;
+    box-shadow: 0 0 15px rgba(0,0,0,0.1);
+    border-radius: 8px;
+    padding: 40px 10px;
+    margin-bottom: 30px;
+}
+
+.artistic-brand {
+    font-family: "鍗庢枃琛屾シ", "妤蜂綋", "STKaiti", "STSong", "SimSun", "瀹嬩綋", serif;
+    font-size: 24px;
+    color: #FF8C20;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+}
+
+.article-title {
+    font-family:"STSong", serif;
+    font-size: 24px;
+    border-bottom: 2px solid #007bff;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+}
+
+.article-body {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 0 1%;
+}
+
+.article-content {
+    font-family:"STSong",“Open Sans”，Lato，Arial ，Merriweather ，PT Serif ；
+    font-size: 1.0rem;
+    line-height: 1.8;
+    text-align: justify;
+    text-justify: inter-character;
+}
+
+.article-content p {
+    margin-bottom: 1.5rem;
+}
+
+.article-content p:last-child {
+    margin-bottom: 0;
+}
+
+.highlight {
+    background-color: #ffff00;
+}
+
+.note {
+    background-color: #f0f0f0;
+    border-left: 4px solid #007bff;
+    padding: 10px;
+    margin: 1.5rem 0;
+    font-style: italic;
+}
+
+.highlight {
+    background-color: #fffacd;
+    padding: 2px 4px;
+    border-radius: 3px;
+}

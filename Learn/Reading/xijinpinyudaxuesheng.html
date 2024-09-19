@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>习近平与大学生朋友们</title>
+    <style>
+    :root {
+        --text-color:#333;
+        --summary-color: #000;
+        --bg-color: white;
+        --block-bg-color: #c3c3c3;
+        --block-left-border-color: #868686;
+        --block-border-radius: 5px;
+        --outter-padding: 1em;
+    }
+
+    @media (max-width: 1920px) {
+        :root { --outter-padding: 4em; }
+    }
+    @media (max-width: 1200px) {
+        :root { --outter-padding: 3em; }
+    }
+    @media (max-width: 900px) {
+        :root { --outter-padding: 2em; }
+    }
+    @media (max-width: 600px) {
+        :root { --outter-padding: 1em; }
+    }
+
+    body {
+	margin: 0;
+	padding: 0;
+	background-color: var(--bg-color);
+	line-height: 28px;
+	font-size: 1em;
+	font-family: 'PingFang SC', 'Source Han Serif SC', 'Microsoft YaHei', 'Noto Sans CJK SC', 'Source Han Sans CN', 'Noto Sans SC', 'sans-serif';
+	text-align: justify;
+    }
+
+    h1 { font-size: 2em; line-height: 1.15em; }
+    h2 { font-size: 1.5em; line-height: 1.1em; }
+    h3 { font-size: 1.5em; line-height: 1.15em; }
+    h4 { line-height: 1em; }
+    h5 { font-size: 0.83em; line-height: 1.4em; }
+    h6 { font-size: 0.67em; line-height: 1.4em; }
+
+    p {
+        margin: 1em 0;
+        padding: 0;
+        overflow-x: auto;
+        /* 在 line-height 小于 1.4x 的时候，p 标签的高度比起内部文本的高度小几个像素，
+        * 导致出现细微滚动，此时按对应的段落滚动时，会阻碍整个页面的滚动。
+        * DIV 标签似乎不会有此问题
+        */
+        overflow-y: hidden; 
+    }
+
+    pre {
+        overflow-x: auto;
+        border-radius: var(--block-border-radius);
+        padding: 18px;
+        letter-spacing: 0;
+    }
+
+    code {
+        border-radius: var(--block-border-radius);
+        padding: 1px 5px;
+        letter-spacing: 0;
+        word-break: break-all;
+    }
+
+    /* 代码 */
+    pre code {
+        background: none!important;
+    }
+
+    pre, code, blockquote {
+        background-color: var(--block-bg-color);
+    }
+
+    blockquote {
+        border-left: 10px solid var(--block-left-border-color);
+
+        border-radius: var(--block-border-radius);
+        background-color: var(--block-bg-color);
+        padding: 0.5em 10px;
+        quotes: "\201C""\201D""\2018""\2019";
+        margin: 10px 0;
+    }
+    blockquote:before {
+        color: var(--block-left-border-color);
+
+        content: open-quote;
+        font-size: 4em;
+        line-height: 0.1em;
+        margin-right: 0.1em;
+        margin-left: -0.3em;
+        vertical-align: -0.4em;
+    }
+
+    figcaption {
+        margin-top: 8px;
+    }
+
+    blockquote, figcaption, li, h1, h2, h3, h4, h5, h6 {
+        text-indent: 0px;
+    }
+
+    table {
+        overflow-x: auto;
+        border-collapse: collapse;
+    }
+    table, table tr th, table tr td {
+	border: thin inset #bbbbbb;
+    }
+    td {
+        padding: 0 3px;
+    }
+    td p {
+        margin: 0;
+        padding: 0;
+    }
+
+    mdmark { padding: 0 1px; border-radius: 3px; color: #fff; }mdmark.mdm-yellow {
+  background-color: #cbb200bd;
+}mdmark.mdm-red {
+  background-color: #f92a15bd;
+}mdmark.mdm-qianniuzi {
+  background-color: #681752bd;
+}mdmark.mdm-mantianxingzi {
+  background-color: #2e317cbd;
+}
+
+    #mandu-title {
+        padding: 0.5em var(--outter-padding);
+    }
+    #mandu-summary {
+        color: var(--summary-color);
+        font-weight: bold;
+        background-color: #f3f3f3;
+        padding: 1em var(--outter-padding);
+    }
+
+    #mandu-content {
+        padding: 1em var(--outter-padding);
+        font-size: 16px;
+        letter-spacing: 1px;;
+    }
+
+    a {
+        color: #59a4d0;
+        text-decoration: none;
+    }
+
+    img.mandu-emoji {
+        display: inline;
+        line-height: 1rem;
+        height: 1rem;
+        margin: 0;
+    }
+
+    img, video {
+        width: 100%;
+        height: 100%;
+        border: none;
+        padding: 0;
+        margin: 0;
+        max-width: 100%;
+        margin: 15px auto;
+        display: block;
+    }
+
+    figure img {
+        margin: 0 auto;
+    }
+
+    figure {
+        margin: 40px 0;
+        display: block;
+        max-width: 100%;
+        overflow-x: auto;
+    }
+
+    .clearfix:after {
+        content: "";
+        display: block;
+        clear: both;
+    }
+    </style>
+</head>
+<body>
+<h1 align="center" id="《习近平与大学生朋友们》">《习近平与大学生朋友们》</h1>
+<div>
+<article id="mandu-content"> 
+<ul>
+
+<li>他举例说，不要小看了一粒化肥，化肥的用量、离根的远近、播种的深浅、用肥的时候浇不浇水，化肥的效果都是不一样的。通过调研发现的问题，对我们正定的发展有作用，对你们自身的提高更有作用。</li>
+<li>习书记有个爱好就是骑自行车。</li>
+<li>习书记就和我们说：“别人不欢迎你，你让别人欢迎了，这也是长本事。”</li>
+<li><strong>调研中必要时甚至要掀开锅看看</strong>一一人口有多少，锅有多大，吃的是什么，要对调研的家庭进行全面了解。调研期间，我们有时要到老乡家搭伙，习书记说，“<mark><ins>你们吃人家的饭，一定要付钱”，“你们不能嫌弃人家的饭不好吃，因为他们就是那样吃的</ins></mark>”。他们家的饭好坏，实际上与他们家养的鸡、兔是密切关联的，与他们家的收入是关联的，饭不好肯定收入少。</li>
+<li><strong>这也是我学术生涯的第一份调研报告</strong>——《正定养鸡养免产业调查报告》。现在看来，这份报告对正定县的发展==<strong>未必</strong>==有多大作用，<ins><strong>但对于我</strong>却是一个里程碑式的提升</ins>。习书记独到的视野、方法和分析问题的思维方式，对待下属和他眼中的“人才”所表达的<strong>格局与情怀，让我受用终生</strong>。</li>
+<li><strong><mark>他看了之后挺高兴</mark></strong>，就正定的农牧业发展与他们进行了讨论。</li>
+<li>第一感受是“实”。看实实在在的效果。他是一个要“干货”的人。第二个感受是“韧”。我们当时就从习近平身上感受到了一种内在的韧劲和坚持。第三个感受是习书记善于做青年学生的工作。启发式动员。后来我当了老师，越发感到他的启发的宝贵。第四个感受是习书记很有战略眼光和科学精神。</li>
+<li>调研的方法、思考的逻辑都有提升。</li>
+<li>做事要实。你说得再好，你技术再高，有这个奖那个奖的，放到企业去，牛不长肉，企业就不会用。</li>
+<li>谁都不会认为你是大博士、大教授。（这句话讲的是习近平穿凉鞋下地同学生一起干，当地农民说的。）</li>
+<li>听说当时习书记收到信就很晚了，但是他连夜就赶到了石家庄去找武宝信。（备注“韧”）</li>
+<li>习书记说：“不行，今天必须找到武宝信。我从南往北喊，你从东往西喊。”</li>
+<li>如果回去的话，解决果树不结果的问题不是一件难事，但是这却是乡亲们面临的一个大难题。社会实践对大家的思想触动比较大，同学们认识到农村需要知识，需要人才，认识到应该到最需要我们的地方去，<strong>去实现我们农业大学生的价值</strong>。</li>
+<li>那几届河北农大的正定籍同学返回家乡工作的比例非常高。</li>
+<li>他对农村工作有感情，大机关虽然工作条件好，但要真正做点儿实事，要充实自己的生活，实现自己的价值，还是要到第一线，从基层干起。</li>
+<li>干好基层工作四点：一是要有兴趣、有热情，这是基础。二是要有韧性、有耐力。三是要有一点儿组织能力，这种能力主要靠后天锻炼出来。四是要有一股豁出去的干劲儿，不但每天要花大量时间工作，而且要敢于负责，大胆创新，不要怕丢官。</li>
+<li>谈到怎样打开工作局面时，他说，首先对一般性的问题不要随意表态，而是要多听多看，宁愿让人家暂时认为你是“笨蛋”。即使办一件小事，也要看准，办一件成一件。几个月后，心里有数了，工作就好办了，人们的评价自然就会改变。</li>
+<li>面对这种情况，就需要依靠一个人的直觉力。他还说，这种直觉力虽然有“与生俱来”的因素，但主要还是靠“后天养成”。（批注：经历）</li>
+<li>据说班子里的成员连着三个月没有怎么见到他，其实在这三个月里，他跑遍了正定的各乡各村，进村入户进行调研。在调研的过程中，他真正了解到县里的很多问题。在这三个月里，<strong>他默默地</strong>调研，<mark><strong>不表态</strong></mark>，调研回来之后召开县委会。在会上，他提出了一系列设想和计划，县委通过之后形成决策再去实施。</li>
+<li>当时正定县农业一直走在全国的前列，是全国粮食生产第一个“跨长江”“过黄河”的县，但是<mark>经济结构很单一</mark>。他调查之后顶着压力提出加快农业结构转变，鼓励多种经营，当时有很多人是不同意的。（批注：<mark><strong><a href="http://lawview.net/UploadFiles/2015-02/admin/2015021813401844883.pdf">参考习近平博士论文</a></strong></mark>）</li>
+<li>我个人认为，习近平总书记关于“三农”工作的重要论述的形成，在正定的试验和实践是很重要的。</li>
+<li>信是这样写的—— ............ 我住在图强路2号楼301室，进城时可以碰碰。........顺颂  学安</li>
+<li>就这样，开学后我就带着这封信回校，没敢寄也不敢直接去送。</li>
+<li>压根儿没想到会收到他的亲笔回信。</li>
+<li>连这封信的信封都是他亲自写的。</li>
+<li>“这小子，要么不写，要么就写这么厚！”</li>
+<li>我先简单说几点，你记录，帮我先回个信转达一下，有时间我再正式回信。</li>
+<li>他说，他们那个时代的大学生都是有过社会实践经历的，而八十年代的大学生不一样，都是**<mark>校门对校门</mark>**，基础知识比较牢，但缺乏社会实践锻炼，</li>
+<li>但这个活他干的最多，每次都是第一个主动跳下去抢着干。</li>
+<li>劳动关是最关键的一部。他说，只要跨过了劳动关，树立了“自找苦吃”的想法，才能砥砺思想，让你的思想更加靠近老百姓，也让老百姓更加信赖你。</li>
+<li>然后问我家每个月寄多少生活费，都有哪些花费？</li>
+<li>他接着说，我在下乡的时候就通读过三遍《资本论》，也记了很多本笔记。我读过几个译本的《资本论》，最喜欢的是郭大力、王亚南的译本，内心也很敬佩王亚南先生!因为他不但是翻译家、教育家，还是经济学家，对《资本论》的理解很通透。不只是翻译《资本论》，王亚南先生还以马克思主义为指导，对旧中国经济形态进行了深刻剖析，发表过一系列很有影响的著作，包括《中国经济原论》《中国地主经济封建制度论纲》《中国官僚政治研究》等，我也都读过。</li>
+<li>这是我<strong>亲眼见证</strong>的习近平同志抓扶贫的实例。调研中，他说，我们国家扶贫的任务还很艰巨，一定要关心群众疾苦，扶贫工作要因地制宜，靠山吃山，靠海吃海，靠岛吃岛。村里要发展有本地民俗特色的乡土农家住宿和渔家餐饮，比如全鱼宴。还可以开展对金门岛的观光旅游，让我们的渔民开着渔船，带着游客，到金门岛附近，来一个近距离的金门岛观岛游，回来后再吃上一顿当地风味的渔家宴，住上一晚农家院，游客一定很多。摆脱贫困要长期抓下去，才能见到效果，不解决贫困人口的基本生活问题是++<mark><strong>无法向老百姓交代</strong></mark>++的。</li>
+<li>快放寒假的时候我去看他，告诉他我准备回老家开展社会实践。习近平同志**<mark><ins>很高兴</ins></mark><strong>地对我说，好啊，我支持。他说，旅游业作为正定县第三产业的一个重要组成部分，在我调走的时候才刚刚起步。旅游基础设施初始投入比较大，投资回收期较长，但方向肯定是正确的，你回去专门就正定旅游业的发展搞个调研，++</strong><mark>回来跟</mark>**++我说说，看看还需要我做哪些工作。</li>
+<li>我一眼就能辨认出那些稿子都是习近平同志亲自起草的，字体方正、遒劲刚毅、一笔一画、力透纸背...........文稿思路非常清晰，可以看出习近平同志在抓好眼前工作的同时，也长远谋划正定几十年之后的发展。</li>
+<li>我的大学毕业论文，从选题方向到题目、结论都得到习近平同志的指导甚至亲自修改。</li>
+<li>他说，根据他在正定和厦门工作的情况看，<mark><ins>农业集约化是农业机械化的前提，是农业现代化的必经之路。</ins></mark>（批注：！）</li>
+<li>他指出，在现有的土地所有制、承包制和户籍制度下，如何促进土地集中，<mark><ins>这不是简单的课题</ins></mark>，不能脱离实际想当然，不能一蹴而就靠理论。所以，你这个论文的题目应该改为“从土地集中**‘难’谈起”<strong>为好，提出一些解决土地集中难的分步</strong>办法**。</li>
+<li>1993年3月，习近平同志到河北考察，他把我叫到他住的酒店，让我陪他一起回了趟正定。</li>
+<li>**我在梁家河的七年，正好是你们上高中、上大学加在一起的时间。**我上的是梁家河的高中、梁家河的大学。上了这个高中和大学，对老百姓才会有很深的感情。</li>
+<li>他拿起平时用的圆珠笔，题写下了“<mark>志存高远 行偱自然</mark>”八个字，签上了他的名字和时间。.......... 写完之后，他又拿过我的笔记本，在上面写了十几个同志的名字和电话，让我回石家庄后代他去看望........</li>
+<li><mark>他基本上都是天天走路或骑自行车上下班</mark>。</li>
+<li>记得那天家里还有他的弟弟习远平.........习近平严肃地对我们说：“宏樑毕业后好好去基层锻炼，别想马上去什么大公司发财的事；++<mark>远平干公司就好好干，别想回政府机关，做生意也别想跟着政府掺和。</mark>++总的一句话，想发财就别想当官，想当官就别想发财，别想两全其美，鱼和熊掌不可得兼，两个都想得，那是不可能的，那会害了你们自己。”</li>
+<li>他说，在军委工作时，<mark><ins>首长下午要去一个地方，我对北京路熟，也知道怎么好走，但仍然要利用中午休息时间请司机跟我跑一趟，怕修路或改路了，耽误首长时间</ins></mark>，亲自跑一趟才放心，这是细节。你做人做事都得有这个细节意识。</li>
+<li>还有一件事让我印象深刻。1986年中秋节前的一天<mark>习近平同志骑着自行车，带着两盒月饼到厦大学生宿舍</mark>芙蓉(二)号楼找我，说是单位发的，一个人也吃不了，请同学们吃月饼，一起过节。</li>
+<li>接受你们的采访，回忆起很多三十年前的珍贵往事，<ins><mark>对我自己的灵魂也是一次洗礼</mark></ins>。</li>
+<li>1981年起，全国涌现出一批<mark>职业大学</mark>，其中就包括闽江职业大学。1990年，<mark><ins>习近平同志兼任闽江职业大学校长</ins></mark>。</li>
+<li>年轻、帅气、沉稳、亲切，是我们对他的最初印象。</li>
+</ul>
+</article>
+</div>
+</body>
+</html>
+

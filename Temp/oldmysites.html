@@ -1,0 +1,294 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>我的常用网站</title>
+        <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <link rel="stylesheet" href="styles.css">
+    <style>
+    :root {
+        --text-color:#333;
+        --summary-color: #000;
+        --bg-color: white;
+        --block-bg-color: #c3c3c3;
+        --block-left-border-color: #868686;
+        --block-border-radius: 5px;
+        --outter-padding: 1em;
+    }
+
+    @media (max-width: 1920px) {
+        :root { --outter-padding: 4em; }
+    }
+    @media (max-width: 1200px) {
+        :root { --outter-padding: 3em; }
+    }
+    @media (max-width: 900px) {
+        :root { --outter-padding: 2em; }
+    }
+    @media (max-width: 600px) {
+        :root { --outter-padding: 1em; }
+    }
+
+    body {
+	margin: 0;
+	padding: 0;
+	background-color: var(--bg-color);
+	line-height: 40px;
+	font-size: 1em;
+	font-family: 'PingFang SC', 'Source Han Serif SC', 'Microsoft YaHei', 'Noto Sans CJK SC', 'Source Han Sans CN', 'Noto Sans SC', 'sans-serif';
+	text-align: justify;
+    }
+
+    h1 { font-size: 2em; line-height: 1.15em; }
+    h2 { font-size: 1.5em; line-height: 1.1em; }
+    h3 { font-size: 1.5em; line-height: 1.15em; }
+    h4 { line-height: 1em; }
+    h5 { font-size: 0.83em; line-height: 1.4em; }
+    h6 { font-size: 0.67em; line-height: 1.4em; }
+
+    p {
+        margin: 1em 0;
+        padding: 0;
+        overflow-x: auto;
+        /* 在 line-height 小于 1.4x 的时候，p 标签的高度比起内部文本的高度小几个像素，
+        * 导致出现细微滚动，此时按对应的段落滚动时，会阻碍整个页面的滚动。
+        * DIV 标签似乎不会有此问题
+        */
+        overflow-y: hidden; 
+    }
+
+    pre {
+        overflow-x: auto;
+        border-radius: var(--block-border-radius);
+        padding: 18px;
+        letter-spacing: 0;
+    }
+
+    code {
+        border-radius: var(--block-border-radius);
+        padding: 1px 5px;
+        letter-spacing: 0;
+        word-break: break-all;
+    }
+
+    /* 代码 */
+    pre code {
+        background: none!important;
+    }
+
+    pre, code, blockquote {
+        background-color: var(--block-bg-color);
+    }
+
+    blockquote {
+        border-left: 10px solid var(--block-left-border-color);
+
+        border-radius: var(--block-border-radius);
+        background-color: var(--block-bg-color);
+        padding: 0.5em 10px;
+        quotes: "\201C""\201D""\2018""\2019";
+        margin: 10px 0;
+    }
+    blockquote:before {
+        color: var(--block-left-border-color);
+
+        content: open-quote;
+        font-size: 4em;
+        line-height: 0.1em;
+        margin-right: 0.1em;
+        margin-left: -0.3em;
+        vertical-align: -0.4em;
+    }
+
+    figcaption {
+        margin-top: 8px;
+    }
+
+    blockquote, figcaption, li, h1, h2, h3, h4, h5, h6 {
+        text-indent: 0px;
+    }
+
+    table {
+        overflow-x: auto;
+        border-collapse: collapse;
+    }
+    table, table tr th, table tr td {
+	border: thin none #bbbbbb;
+    }
+    td {
+        padding: 0 3px;
+    }
+    td p {
+        margin: 0;
+        padding: 0;
+    }
+
+    mdmark { padding: 0 1px; border-radius: 3px; color: #fff; }mdmark.mdm-yellow {
+  background-color: #cbb200bd;
+}mdmark.mdm-red {
+  background-color: #f92a15bd;
+}mdmark.mdm-qianniuzi {
+  background-color: #681752bd;
+}mdmark.mdm-mantianxingzi {
+  background-color: #2e317cbd;
+}
+
+    #mandu-title {
+        padding: 0.5em var(--outter-padding);
+    }
+    #mandu-summary {
+        color: var(--summary-color);
+        font-weight: bold;
+        background-color: #f3f3f3;
+        padding: 1em var(--outter-padding);
+    }
+
+    #mandu-content {
+        padding: 1em var(--outter-padding);
+        font-size: 16px;
+        letter-spacing: 1px;;
+    }
+
+    a {
+        color: #59a4d0;
+        text-decoration: none;
+    }
+
+    img.mandu-emoji {
+        display: inline;
+        line-height: 1rem;
+        height: 1rem;
+        margin: 0;
+    }
+
+    img, video {
+        width: 100%;
+        height: 100%;
+        border: none;
+        padding: 0;
+        margin: 0;
+        max-width: 100%;
+        margin: 15px auto;
+        display: block;
+    }
+
+    figure img {
+        margin: 0 auto;
+    }
+
+    figure {
+        margin: 40px 0;
+        display: block;
+        max-width: 100%;
+        overflow-x: auto;
+    }
+
+    .clearfix:after {
+        content: "";
+        display: block;
+        clear: both;
+    }
+    </style>
+</head>
+
+<body class="home-page">
+<body>
+    <nav  class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
+        <a class="navbar-brand" href="#">阳光满心路</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+        </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+        <a class="nav-link active" href="http://www.dt2023.cn/">首页</a>
+        </li>
+        <li class="nav-item"><a class="nav-link" href="#about">正心</a></li>
+                <li class="nav-item"><a class="nav-link" href="#portfolio">格致</a></li>
+                <li class="nav-item"><a class="nav-link" href="#contact">生活</a></li>
+                <li class="nav-item"><a class="nav-link" href="#contact">逐梦</a></li>
+                <li class="nav-item"><a class="nav-link" href="http://dt2023.cn/temp/mysites.html">链接</a></li>
+            </ul>
+        </div>
+    </nav>
+<h1 align="center">我的常用网站
+</h1>
+<article id="mandu-content"></article>
+<div align="center">
+  <table width="90%" border="0">
+    <tr>
+      <td><div align="center"><a href="http://www.lightin2023.cn/" target="_blank">向光而行</a></div></td>
+      <td><div align="center"><a href="https://pan.baidu.com/" target="_blank">百度网盘</a></div></td>
+      <td><div align="center"><a href="https://pan.quark.cn/" target="_blank">夸克网盘</a></div></td>
+      <td><div align="center"><a href="https://www.bilibili.com/" target="_blank">哔哩哔哩</a></div></td>
+    </tr>
+    <tr>
+      <td><div align="center"><a href="https://tv.cctv.com/lm/xwlb/" target="_blank">新闻联播</a></div></td>
+      <td><div align="center"></div></td>
+      <td><div align="center"><a href="https://mytan.maiseed.com.cn/" target="_blank">MyTan</a></div></td>
+      <td><div align="center"><a href="https://s.weibo.com/top/summary?cate=realtimehot" target="_blank">微博热搜</a></div></td>
+    </tr>
+    <tr>
+      <td><div align="center"><a href="https://flk.npc.gov.cn/" target="_blank">国家法律数据库</a></div></td>
+      <td><div align="center"><a href="https://wenshu.court.gov.cn/" target="_blank">中国裁判文书网</a></div></td>
+      <td><div align="center"><a href="https://ydzk.chineselaw.com/case" target="_blank">元典法律智库</a></div></td>
+      <td><div align="center"><a href="https://xueshu.baidu.com/" target="_blank">百度学术</a></div></td>
+    </tr>
+    <tr>
+      <td><div align="center"><a href="http://www.ucdrs.superlib.net/" target="_blank">图书咨询</a></div></td>
+      <td><div align="center"><a href="https://mail.163.com/" target="_blank">163邮箱</a></div></td>
+      <td><div align="center"><a href="https://wx.mail.qq.com/" target="_blank">QQ邮箱</a></div></td>
+      <td><div align="center"><a href="https://mail.alumni.sjtu.edu.cn/" target="_blank">交大邮箱</a></div></td>
+    </tr>
+    <tr>
+      <td><div align="center"><a href="http://www.stats.gov.cn/sj/" target="_blank">国家统计局</a><a target="_blank"></a></div></td>
+      <td><div align="center"><a href="http://www.jgjcndrc.org.cn/" target="_blank">价格监测</a></div></td>
+      <td><div align="center"><a href="http://24mail.chacuo.net/" target="_blank">临时邮箱</a></div></td>
+      <td><div align="center"><a href="http://km2000.us/" target="_blank">引光之家</a></div></td>
+    </tr>
+    <tr>
+      <td><div align="center"><a href="http://yougedu.com/" target="_blank">有个度微言</a></div></td>
+      <td><div align="center"><a href="https://app.diagrams.net/" target="_blank">流程图制作</a></div></td>
+      <td><div align="center"><a href="https://axutongxue.com/" target="_blank">阿虚同学</a></div></td>
+      <td><div align="center"><a href="https://adzhp.vip/" target="_blank">爱达杂货铺</a></div></td>
+    </tr>
+    <tr>
+      <td><div align="center"><a href="http://www.jsons.cn/editor/" target="_blank">HTML在线编辑</a><a target="_blank"></a></div></td>
+      <td><div align="center"><a href="https://cli.im/url/" target="_blank">二维码制作</a></div></td>
+      <td><div align="center"><a href="https://mp.weixin.qq.com/" target="_blank">微信公众平台</a></div></td>
+      <td><div align="center"><a href="https://www.notion.so/" target="_blank">Notion</a></div></td>
+    </tr>
+    <tr>
+      <td><div align="center"><a href="http://www.ewebeditor.net/demogch/">Word2Html</a></div></td>
+      <td><div align="center"></div></td>
+      <td><div align="center"><a href="https://xiumi.us/" target="_blank">秀米</a></div></td>
+      <td><div align="center"><a href="https://zenpen.io/" target="_blank">Zenpen</a></div></td>
+    </tr>
+    <tr>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+    </tr>
+    <tr>
+      <td><a target="_blank"></a></td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+    </tr>
+        <tr>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+    </tr>
+  </table>
+</div>
+  </body>
+</html>

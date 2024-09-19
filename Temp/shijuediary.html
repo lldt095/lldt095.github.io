@@ -1,0 +1,930 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <style>
+    :root {
+        --text-color:#333;
+        --summary-color: #000;
+        --bg-color: white;
+        --block-bg-color: #c3c3c3;
+        --block-left-border-color: #868686;
+        --block-border-radius: 5px;
+        --outter-padding: 1em;
+    }
+
+    @media (max-width: 1920px) {
+        :root { --outter-padding: 4em; }
+    }
+    @media (max-width: 1200px) {
+        :root { --outter-padding: 3em; }
+    }
+    @media (max-width: 900px) {
+        :root { --outter-padding: 2em; }
+    }
+    @media (max-width: 600px) {
+        :root { --outter-padding: 1em; }
+    }
+
+    body {
+        margin: 0;
+        padding: 0;
+        background-color: var(--bg-color);
+        line-height: 28px;
+        font-size: 16px;
+        font-family: 'PingFang SC', 'Source Han Serif SC', 'Microsoft YaHei', 'Noto Sans CJK SC', 'Source Han Sans CN', 'Noto Sans SC', 'sans-serif';
+        text-align: justify;
+    }
+
+    h1 { font-size: 2em; line-height: 1.15em; }
+    h2 { font-size: 1.5em; line-height: 1.1em; }
+    h3 { font-size: 1.5em; line-height: 1.15em; }
+    h4 { line-height: 1em; }
+    h5 { font-size: 0.83em; line-height: 1.4em; }
+    h6 { font-size: 0.67em; line-height: 1.4em; }
+
+    p {
+        margin: 1em 0;
+        padding: 0;
+        overflow-x: auto;
+        /* 在 line-height 小于 1.4x 的时候，p 标签的高度比起内部文本的高度小几个像素，
+        * 导致出现细微滚动，此时按对应的段落滚动时，会阻碍整个页面的滚动。
+        * DIV 标签似乎不会有此问题
+        */
+        overflow-y: hidden; 
+    }
+
+    pre {
+        overflow-x: auto;
+        border-radius: var(--block-border-radius);
+        padding: 18px;
+        letter-spacing: 0;
+    }
+
+    code {
+        border-radius: var(--block-border-radius);
+        padding: 1px 5px;
+        letter-spacing: 0;
+        word-break: break-all;
+    }
+
+    /* 代码 */
+    pre code {
+        background: none!important;
+    }
+
+    pre, code, blockquote {
+        background-color: var(--block-bg-color);
+    }
+
+    blockquote {
+        border-left: 10px solid var(--block-left-border-color);
+
+        border-radius: var(--block-border-radius);
+        background-color: var(--block-bg-color);
+        padding: 0.5em 10px;
+        quotes: "\201C""\201D""\2018""\2019";
+        margin: 10px 0;
+    }
+    blockquote:before {
+        color: var(--block-left-border-color);
+
+        content: open-quote;
+        font-size: 4em;
+        line-height: 0.1em;
+        margin-right: 0.1em;
+        margin-left: -0.3em;
+        vertical-align: -0.4em;
+    }
+
+    figcaption {
+        margin-top: 8px;
+    }
+
+    blockquote, figcaption, li, h1, h2, h3, h4, h5, h6 {
+        text-indent: 0px;
+    }
+
+    table {
+        overflow-x: auto;
+        border-collapse: collapse;
+    }
+    table, table tr th, table tr td {
+        border: 1px solid #bbbbbb;
+    }
+    td {
+        padding: 0 3px;
+    }
+    td p {
+        margin: 0;
+        padding: 0;
+    }
+
+    mdmark { padding: 0 1px; border-radius: 3px; color: #fff; }mdmark.mdm-yellow {
+  background-color: #cbb200bd;
+}mdmark.mdm-red {
+  background-color: #f92a15bd;
+}mdmark.mdm-qianniuzi {
+  background-color: #681752bd;
+}mdmark.mdm-mantianxingzi {
+  background-color: #2e317cbd;
+}
+
+    #mandu-title {
+        padding: 0.5em var(--outter-padding);
+    }
+    #mandu-summary {
+        color: var(--summary-color);
+        font-weight: bold;
+        background-color: #f3f3f3;
+        padding: 1em var(--outter-padding);
+    }
+
+    #mandu-content {
+        padding: 1em var(--outter-padding);
+        font-size: 16px;
+        letter-spacing: 1px;;
+    }
+
+    a {
+        color: #59a4d0;
+        text-decoration: none;
+    }
+
+    img.mandu-emoji {
+        display: inline;
+        line-height: 1rem;
+        height: 1rem;
+        margin: 0;
+    }
+
+    img, video {
+        width: 100%;
+        height: 100%;
+        border: none;
+        padding: 0;
+        margin: 0;
+        max-width: 100%;
+        margin: 15px auto;
+        display: block;
+    }
+
+    figure img {
+        margin: 0 auto;
+    }
+
+    figure {
+        margin: 40px 0;
+        display: block;
+        max-width: 100%;
+        overflow-x: auto;
+    }
+
+    .clearfix:after {
+        content: "";
+        display: block;
+        clear: both;
+    }
+    </style>
+</head>
+<body>
+    <h2 id="mandu-title"></h2>
+    <summary id="mandu-summary" style="display: none;">
+        <div>本文摘要：</div>
+        
+    </summary>
+    <article id="mandu-content">
+        <div><span>
+
+</span><p><span>一、<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span>前言</span></p><span>
+
+</span><p><span>关于这本笔记本的说明，本笔记本创建于</span><span>2023</span><span>年</span><span>1</span><span>月</span><span>14</span><span>日星期六</span><span>，将作为日常电子版笔记本，与实体笔记本相互协作构成笔记体系，主要用于知识输出、日常管理等方面。随时可以进行增添修订。</span></p><span>
+
+</span><span>
+
+</span><p><span>二、<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span>说明</span></p><span>
+
+</span><p><span>本日记按照时间顺序进行，具体内容没有限制。</span></p><span>
+
+</span><p><span>2019</span><span>年</span><span>1</span><span>月</span><span>19</span><span>日星期六修订，增加一个要求，不只是写笔记，包括说话、写文章用语尽量简洁明了，不要太过复杂繁琐。</span></p><span>
+
+</span><span>
+
+</span><span>
+
+</span><p><span>三、<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span>正文</span></p><span>
+
+</span><p><b><span>2023/1/14</span></b><span> </span><span>&nbsp;</span><b><span>星期四</span></b></p><span>
+
+</span><p><span>目前已初步掌握的技能有</span><span>office2016</span><span>中的</span><span>Word</span><span>软件的基本操作，</span><span>Mind Manager2016</span><span>的使用，打字初阶，系统重装，资源搜索，速读初阶，视力初阶，笔记初阶，英语学习方法初阶，思维导图初阶，多阶思维初级，本体意识初阶，记忆方法初阶。以及第一步的进展完成了第一项：作息时间合理化初步完成。</span></p><span>
+
+</span><p><span>接下来要专注的是英语的学习</span><span>(</span><span>饱和英语学习法的落实</span><span>)</span><span>，键盘打字练习应用，笔记应用，速读的进阶，记忆的应用，锻炼体系的突破与完善。</span></p><span>
+
+</span><p><b><span>21</span></b><b><span>时</span></b><b><span>45</span></b><b><span>分</span></b><b><span>&nbsp; </span></b><b><span>撰写《法治中国》读书笔记</span></b><b><span> </span></b><span>&nbsp;</span></p><span>
+
+</span><p><span>第一步</span><span> </span><span>查阅资料</span><span> <span><a href="http://www.xuexila.com/dushubiji/18618_2.html"><span><span>读书笔记</span></span><span><span>如何写</span></span></a>
+&nbsp;</span></span></p><span>
+
+</span><p><span>读书笔记的写法主要有：符号式读书笔记写法、摘录式读书笔记写法、剪切式读书笔记写法（我个人用的比较少）、感想式读书笔记写法（也叫读后感，重在训练理解和表达能力，一定要选自己感触最大体会最深的一点来写，突出重点，切忌面面俱到，依照原文内容和精神结合自己的思想和生活）</span></p><span>
+
+</span><p><span>读书笔记主要形式有：摘要式读书笔记、评注式读书笔记（书头评注、提纲、提要、评注读书笔记、补充原文读书笔记）</span></p><span>
+
+</span><p><b><span>21</span></b><b><span>时</span></b><b><span>45</span></b><b><span>分</span></b><b><span>&nbsp; </span></b><b><span>饱和法的学习与应用</span></b></p><span>
+
+</span><p><span>阅读了</span><span>A
+Child's History of England </span><span>第一章节，单词录入</span><span>103</span><span>个，句子录入</span><span>17</span><span>个。阅读一期计划半个月完成。</span><span><br></span></p><span>
+
+</span><p><b><span>2018/4/6
+</span></b><b><span>星期五</span></b></p><span>
+
+</span><p><span>今天要做的就是完成《法治中国》读书笔记的撰写，继续英语饱和法的练习，阅读书籍</span><span>NLP</span><span>，笔记阅读法的进一步应用。</span></p><span>
+
+</span><p><b><span>14</span></b><b><span>时</span></b><b><span>46</span></b><b><span>分</span></b><b><span> </span></b><b><span>《法治中国》读书笔记完成</span></b><b><span> </span></b><b><span>开始学习英语吧</span></b><b><span><br></span></b></p><span>
+
+</span><p><b><span>2018/4/8
+</span></b><b><span>星期日</span></b></p><span>
+
+</span><p><span>今天要做的就是回顾与复习，整理看过的书籍、学过的技能、收藏过的知识，开始构建自己的学习系统。</span></p><span>
+
+</span><p><span>首先了解的是陈华伟，从学渣到学霸，靠学习系统的升级。大一时的经历很相似，兴趣庞杂，对专业没有太大兴趣，存在可能找不到学习的意义的情况，他最后自然是自我崩溃，他内心知道，自己一直都是热爱知识，热爱学习的。他回忆说，他这段经历非常珍贵，花了很长时间去咀嚼痛苦、反思。他认识到<b>对学习光凭兴趣和一腔热情是不够的</b>，如果不形成一套自己的学习系统，整理出<b><span>分配精力、保持专注、输入</span></b></span><b><span>-</span></b><b><span>吸收</span></b><b><span>-</span></b><b><span>输出</span></b><span>的完整流程，学习只会事倍功半。这些年他一直在建造自己的学习系统，他想利用印象笔记这样的现代化工具，构建一套适合各个领域的通用学习流程，实现碎片化时代的高效学习。在跨行、准备各种考试的过程中，他也一直在不停运用和完善这一套流程。</span></p><span>
+
+</span><p><span>人与人之间最大的差别就是认知，<b>技能的差别是可以量化的</b>，技能再多累加，也就是熟练工种。<b>而认知的差别是本质的，是不可量化的</b>。</span></p><span>
+
+</span><p><span>如果一个人，不断地<b>想学习</b>，<b>想了解</b>，<b>去反思</b>；<b>空杯心态</b>，<b>放下恐惧</b>，<b>不拒绝改变</b>。<b>认知升级</b>，其实也就是捅破那层窗户纸。成长如是。</span></p><span>
+
+</span><p><b><span>16</span></b><b><span>时</span></b><b><span>57</span></b><b><span>分</span></b><b><span> &nbsp;</span></b><b><span>开始整理看过的书籍</span></b></p><span>
+
+</span><p><span>以下是阅读过的书籍：《当下的力量》、《元认知》、《如何有效阅读一本书：超实用的笔记读书法》、《西游八十一案》、《刑警手记之异案现场》、《明朝那些事儿》、《守望》、《快速阅读训练法》、《超级记忆力训练法》、《秘密》、《谜语：如何用爱认识自己》、《少年啊，前路漫漫》、《时间管理：如何充分运用你的</span><span>24</span><span>小时》、《森林里的小火车》、《福尔摩斯探案集》、《心灵回收站》、《我的第一本思维导图入门书》、《将夜》、《大学生生涯发展与规划》、《</span><span>12</span><span>周摘掉眼镜恢复视力》、《大唐悬疑录》、《贤能政治》、《摆渡人》、《用系统来工作》</span></p><span>
+
+</span><p><b><span>17</span></b><b><span>时</span></b><b><span>28</span></b><b><span>分</span></b><b><span> &nbsp;</span></b><b><span>接下来是要构建自己的学习系统</span></b></p><span>
+
+</span><p><span>构建自己的学习系统，首先是“它山之石，可以攻玉</span><span>”</span><span>。参考一下网页搜索结果、问答社区的案例、相关书籍。</span></p><span>
+
+</span><p><span><a href="http://blog.sina.com.cn/s/blog_66310d0b0100xx8u.html"><span><span>来自新浪博客的回答</span></span></a></span><span>：该答案主题为如何建立一个新的知识体系（更侧重于阅读笔记、知识框架、资料补充）。</span></p><span>
+
+</span><p><span><a href="https://www.jianshu.com/p/cb78a81004f9"><span><span>来自简书的回答</span></span></a></span><span>：较有代表性和普遍性的知识体系构建方法和模板，但是有其局限性，在上一个回答的基础上更近一层了。</span></p><span>
+
+</span><p><span><a href="https://www.iplaysoft.com/build-your-own-knowledge-system.html"><span><span>来自其他网页的回答</span></span></a></span><span>：更偏向于信息获取与知识管理。</span></p><span>
+
+</span><p><span>来自知乎的回答：笔记系统居多，有待分析选择</span></p><span>
+
+</span><p><span>以上是网页搜索及问答社区的结果，接下来要做两件事，第一阅读相关书籍，第二整理收集到的信息，做出决策。</span></p><span>
+
+</span><p><b><span>22</span></b><b><span>时</span></b><b><span>3</span></b><b><span>分</span></b><b><span> &nbsp;</span></b><b><span>今天看了场电影</span></b><span><a href="https://movie.douban.com/subject/4920389/reviews?source=qihu"><b><span><span>《头号玩家》</span></span></b></a><span><b><br></b></span></span></p><span>
+
+</span><p><b><span>2018/4/9
+</span></b><b><span>星期一</span></b><b><span> &nbsp;</span></b><b><span>今天继续昨天未完成的任务，同时处理关于跑步锻炼的问题</span></b></p><span>
+
+</span><p><span>早上跑步还是晚上跑步好：</span><span><a href="https://www.zhihu.com/question/21817830"><span><span>来自知乎的答案</span></span></a>&nbsp;&nbsp;
+<a href="https://www.douban.com/note/582183883/"><span><span>来自豆瓣的答案</span></span></a></span></p><span>
+
+</span><p><span>对于最终的答案，其实没有定论，赞同早晨和赞同晚上的都有，暂时根据自己的具体情况酌定。周六周日晨跑，周二周三周四周五夜跑，周一休息。</span></p><span>
+
+</span><p><b><span>9</span></b><b><span>时</span></b><b><span>36</span></b><b><span>分</span></b><b><span> &nbsp;</span></b><b><span>继续昨天的任务</span></b></p><span>
+
+</span><p><b><span>16</span></b><b><span>时</span></b><b><span>15</span></b><b><span>分</span></b><b><span> &nbsp;</span></b><b><span>阅读和构建学习系统的书籍</span></b><b><span> </span></b></p><span>
+
+</span><p><span>我似乎找到了一个问题的答案</span></p><span>
+
+</span><span>
+
+</span><p><b><span>2018/4/13
+</span></b><b><span>星期五</span></b><b><span> &nbsp;</span></b><b><span>今天的主要任务，回顾与整理，总结与完善</span></b></p><span>
+
+</span><p><b><span>20</span></b><b><span>时</span></b><b><span>55</span></b><b><span>分</span></b><b><span> </span></b><b><span>回复短信和邮件</span></b></p><span>
+
+</span><span>
+
+</span><p><b><span>2018/4/14
+</span></b><b><span>星期六</span></b><b><span> </span></b><b><span>完成对系统的构建，继续阅读书籍，最后汇总整理</span></b></p><span>
+
+</span><p><b><span>15</span></b><b><span>时</span></b><b><span>2</span></b><b><span>分</span></b><b><span> </span></b><b><span>阅读完《用系统来工作》，可以开始构建自己的系统</span></b></p><span>
+
+</span><p><b><span>15</span></b><b><span>时</span></b><b><span>28</span></b><b><span>分</span></b><b><span> </span></b><b><span>制作《用系统来工作》的思维导图</span></b></p><span>
+
+</span><p><b><span>19</span></b><b><span>时</span></b><b><span>0</span></b><b><span>分</span></b><b><span> </span></b><b><span>完成导图制作，开始应用系统来工作</span></b></p><span>
+
+</span><p><span>目前已经确定了“战略目标”和“经营原则”，接下来对其进行不断的完善，稍后制定工作程序。</span></p><span>
+
+</span><p><span>开始应用系统思维解决问题：我未来三天内要做的事情呈线性排列，将其视为一个完整的系统，首先确定系统的各个要素，学长分配的关于天线的仿真任务，将任务结果写进</span><span>PPT</span><span>，创新思维与现代设计的</span><span>PPT</span><span>展示，物理学导论的作业，周二</span><span>UTJS</span><span>的演讲，英语作业。</span></p><span>
+
+</span><p><span>再远一些的任务有英语</span><span>quiz</span><span>，军理考试，英语四级考试，交大菜单小程序制作，刑法、物权法、法理学的复习与考试，思修课程的作业。</span></p><span>
+
+</span><p><span>按照系统的线性逻辑，将未来三天内的任务排布如下：物理学导论的作业、天线的仿真任务、仿真的</span><span>PPT</span><span>制作、</span><span>PPT</span><span>讲稿的撰写、创新思维与现代设计</span><span>PPT</span><span>制作、</span><span>PPT</span><span>讲稿的撰写、演讲体系的构建。</span><span> </span></p><span>
+
+</span><p><span>开始进行系统化处理。根据基本原则，将生活视为一个实时运行的大系统，将其显现，并进行检查，然后调整，维护。</span></p><span>
+
+</span><p><span>第一波系统处理目标，将《当下的力量》、《元认知》、《如何有效阅读一本书：超实用的笔记读书法》整合到认知系统中。元认知加入到思维分析系统中，当下的力量加入到注意力系统中，笔记读书法插入到阅读系统中。</span></p><span>
+
+</span><p><b><span>21</span></b><b><span>时</span></b><b><span>35</span></b><b><span>分</span></b><b><span> </span></b><b><span>开始尝试完成天线仿真的任务</span></b><b><span><br></span></b></p><span>
+
+</span><p><b><span>2018/4/15
+</span></b><b><span>星期日</span></b><b><span> </span></b><b><span>天线仿真任务需要学习和请教</span></b></p><span>
+
+</span><p><b><span>11</span></b><b><span>时</span></b><b><span>27</span></b><b><span>分</span></b><b><span> </span></b><b><span>开始探索深度构建学习系统</span></b></p><span>
+
+</span><p><span>首先要做的是信息获取阶段的系统优化，正常情况下，获取信息时都是无意识的状态，能做的事情是选择接受或者不接受，但是一直以来都是被动的接受，凡是没有经过记录的基本被自动过滤掉，留下的是一些基本技能型的东西，例如公众号推送排版、</span><span>HFSS</span><span>数据分析、资源搜索等等。至于为什么会留下这些呢？在</span><span>office</span><span>的学习这个系统中，工作流程为：阅读信息（信息单位量为</span><span>1</span><span>）→实际操作（信息单位量超过</span><span>1</span><span>后出现遗忘，重新阅读信息），这是针对操作类书籍的系统分析，在这个过程中，要解决的问题是信息单位量超过</span><span>1</span><span>后出现遗忘的问题，这就存在如何提高信息单位量的记忆效率了，效率取决于速度和质量，如何提高速度和质量呢，我们先让这个过程中的各个系统显现，然后拿到面前来检查，然后调整、记录、维护。</span></p><span>
+
+</span><p><b><span>21</span></b><b><span>时</span></b><b><span>14</span></b><b><span>分</span></b><b><span> </span></b><b><span>开始将</span></b><b><span>PRP</span></b><b><span>小组会议中的</span></b><b><span>IPO </span></b><b><span>和问题的可操作性纳入系统中</span></b></p><span>
+
+</span><p><span>Ÿ<span>&nbsp; </span></span><b><span>文献调研</span></b><b><span> &nbsp;</span></b><b><span>关键词</span></b></p><span>
+
+</span><p><span>Ÿ<span>&nbsp; </span></span><b><span>无线传感器的集成天线</span></b><b><span> &nbsp;</span></b><b><span>设计</span></b><b><span> </span></b><b><span>仿真</span></b><b><span> </span></b><b><span>制造</span></b><b><span> </span></b><b><span>表征</span></b></p><span>
+
+</span><p><span>Ÿ<span>&nbsp; </span></span><b><span>234 2P</span></b><b><span>工程学目标</span></b><b><span> <span>product&nbsp;&nbsp;&nbsp;
+problem</span></span></b></p><span>
+
+</span><p><b><span>3I&nbsp;&nbsp;
+input&nbsp;&nbsp; process&nbsp;&nbsp; output</span></b></p><span>
+
+</span><p><span>Ÿ<span>&nbsp; </span></span><b><span>Internal property&nbsp;
+&nbsp;A Model&nbsp;&nbsp;&nbsp; A New product</span></b></p><span>
+
+</span><p><span>Ÿ<span>&nbsp; </span></span><b><span>External
+property&nbsp;&nbsp; A System&nbsp;&nbsp; To solve a problem</span></b></p><span>
+
+</span><p><span>Ÿ<span>&nbsp; </span></span><b><span>一个科学曲线就是一个</span></b><b><span>IPO&nbsp;&nbsp;
+</span></b><b><span>集成天线</span></b><b><span>IPO</span></b></p><span>
+
+</span><p><span>Ÿ<span>&nbsp; </span></span><b><span>问题的可操纵性</span></b><b><span> <span>&nbsp;&nbsp;</span></span></b><b><span>问好问题</span></b></p><span>
+
+</span><p><span>开始针对上述知识点纳入系统之中，写进经营原则中。</span></p><span>
+
+</span><span>
+
+</span><p><b><span>2018/4/16
+&nbsp;</span></b><b><span>星期一</span></b><b><span> &nbsp;</span></b><b><span>整理江学长的演讲课程，构建演讲系统</span></b></p><span>
+
+</span><p><span>Â<span>&nbsp; </span></span><b><span>七字法——心、眼、听、说、步、身、手</span></b></p><span>
+
+</span><p><b><span>1.<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span></b><b><span>心法</span></b><b><span> </span></b></p><span>
+
+</span><p><b><span>首善</span></b><b><span>~&nbsp;
+</span></b><b><span>充分准备</span></b><b><span> </span></b><b><span>及时改善</span></b></p><span>
+
+</span><p><b><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></b><b><span>前夜重准备</span></b><b><span> </span></b><b><span>前刻重启动</span></b></p><span>
+
+</span><p><b><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;</span></b><b><span>声声高</span></b><b><span> 1-2-3&nbsp;
+2-2-4&nbsp; 3-3-5</span></b></p><span>
+
+</span><p><b><span>乐从</span></b><b><span>~&nbsp;
+</span></b><b><span>有道理</span></b></p><span>
+
+</span><p><b><span>对接</span></b><b><span>~&nbsp;
+</span></b><b><span>我发现</span></b><b><span> &nbsp;</span></b><b><span>随时</span></b><b><span> </span></b><b><span>抓现场、现象、现行</span></b></p><span>
+
+</span><p><b><span>区分</span></b><b><span>~&nbsp;
+</span></b><b><span>是这样</span></b><b><span> &nbsp;</span></b><b><span>去伪存真</span></b><b><span> &nbsp;</span></b><b><span>先破后立</span></b></p><span>
+
+</span><p><b><span>感召</span></b><b><span>~&nbsp;
+</span></b><b><span>来</span></b></p><span>
+
+</span><p><b><span>分享</span></b><b><span>~&nbsp;
+</span></b><b><span>让我们一起</span></b></p><span>
+
+</span><p><b><span>2.<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span></b><b><span>眼法</span></b></p><span>
+
+</span><p><b><span>睁眼为触</span></b><b><span> </span></b><b><span>眯眼为罩</span></b><b><span> </span></b><b><span>环眼为贴</span></b><b><span> &nbsp;</span></b><b><span>对视注视三角区</span></b></p><span>
+
+</span><p><b><span>出神入化</span></b><b><span> </span></b><b><span>入木三分</span></b></p><span>
+
+</span><p><b><span>一人一眼</span></b><b><span> </span></b><b><span>有应必反</span></b></p><span>
+
+</span><p><b><span>左右夹中间</span></b><b><span> </span></b><b><span>后面压前面</span></b></p><span>
+
+</span><p><b><span>3.<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span></b><b><span>听法</span></b></p><span>
+
+</span><p><b><span>道听途说</span></b><b><span> </span></b><b><span>贴近听远</span></b></p><span>
+
+</span><p><b><span>听话听音</span></b><b><span> </span></b><b><span>关注学员</span></b></p><span>
+
+</span><p><b><span>忌充耳不闻</span></b><b><span> </span></b><b><span>宜积极回应</span></b></p><span>
+
+</span><p><b><span>4.<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span></b><b><span>说法</span></b></p><span>
+
+</span><p><b><span>宁断不乱</span></b><b><span> </span></b><b><span>宁少不草</span></b></p><span>
+
+</span><p><b><span>忌滔滔不绝</span></b><b><span> </span></b><b><span>但实实在在</span></b></p><span>
+
+</span><p><b><span>三五成群</span></b><b><span> </span></b><b><span>断断续续</span></b></p><span>
+
+</span><p><b><span>吐归</span></b><b><span> </span></b><b><span>吐声母</span></b><b><span> </span></b><b><span>归韵母</span></b></p><span>
+
+</span><p><b><span>抑扬</span></b><b><span> </span></b><b><span>抑思考</span></b><b><span> </span></b><b><span>扬强调</span></b></p><span>
+
+</span><p><b><span>含咬</span></b><b><span> </span></b><b><span>含干脆</span></b><b><span> </span></b><b><span>咬延长</span></b></p><span>
+
+</span><p><b><span>缓急</span></b><b><span> </span></b><b><span>缓想象</span></b><b><span> </span></b><b><span>急强调</span></b></p><span>
+
+</span><p><b><span>断连</span></b><b><span> </span></b><b><span>语气断</span></b><b><span> </span></b><b><span>意相连</span></b></p><span>
+
+</span><p><b><span>轻重</span></b><b><span> </span></b><b><span>亲亲切</span></b><b><span> </span></b><b><span>重严厉</span></b></p><span>
+
+</span><p><b><span>5.<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span></b><b><span>步法</span></b></p><span>
+
+</span><p><b><span>规行矩步</span></b><b><span> </span></b><b><span>移动有向</span></b></p><span>
+
+</span><p><b><span>三步一停</span></b><b><span> </span></b><b><span>步步为营</span></b></p><span>
+
+</span><p><b><span>忌快速移动</span></b><b><span> </span></b><b><span>可原地调整</span></b></p><span>
+
+</span><p><b><span>6.<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span></b><b><span>身法</span></b></p><span>
+
+</span><p><b><span>上挺下压</span></b><b><span> </span></b><b><span>正面示人</span></b></p><span>
+
+</span><p><b><span>上场不匆忙</span></b><b><span> </span></b><b><span>下场不仓皇</span></b></p><span>
+
+</span><p><b><span>7.<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span></b><b><span>手法</span></b></p><span>
+
+</span><p><b><span>大开大合</span></b><b><span> </span></b><b><span>动静皆宜</span></b></p><span>
+
+</span><p><b><span>出手不收手</span></b><b><span> </span></b><b><span>贴词不贴句</span></b></p><span>
+
+</span><p><b><span>上下不交叉（腰上肩下）</span></b><b><span> </span></b><b><span>左右不越界</span></b></p><span>
+
+</span><p><span>Â<span>&nbsp; </span></span><b><span>要点</span></b></p><span>
+
+</span><p><b><span>&nbsp;&nbsp;&nbsp;
+</span></b><b><span>内容终于形式</span></b><b><span> </span></b><b><span>形式多于内容</span></b></p><span>
+
+</span><p><b><span>主线不散（时间配比</span></b><b><span> &nbsp;</span></b><b><span>不三不四）</span></b><b><span> &nbsp;</span></b><b><span>辅线丰富</span></b></p><span>
+
+</span><p><b><span>局部整体</span></b><b><span> &nbsp;</span></b><b><span>宁少一村</span></b><b><span> &nbsp;</span></b><b><span>不落一户</span></b></p><span>
+
+</span><p><b><span>固定灵活</span></b><b><span> </span></b><b><span>做厚讲薄</span></b></p><span>
+
+</span><p><span>Â<span>&nbsp; </span></span><b><span>一句话</span></b></p><span>
+
+</span><p><b><span>初念浅</span></b><b><span> </span></b><b><span>转念深</span></b><b><span> <span>&nbsp;&nbsp;&nbsp;&nbsp;</span></span></b><b><span>徐行开</span></b><b><span> </span></b><b><span>速进阖</span></b></p><span>
+
+</span><span>
+
+</span><p><b><span>2018/4/18
+</span></b><b><span>星期三</span></b><b><span> </span></b><b><span>总结一下今天和昨天</span></b></p><span>
+
+</span><p><span>首先针对昨天的棒球课，练习打击的时候击不中球，这是一个需要解决的问题，其次针对周二晚上的演讲，手势、身体动作、停顿方面应该注意的几点。</span></p><span>
+
+</span><span>
+
+</span><p><b><span>2018/4/20
+</span></b><b><span>星期五</span></b><b><span> </span></b><b><span>日常性描述和总结</span></b></p><span>
+
+</span><p><span>首先呢，周三的一千米跑完之后，因为冷空气等导致鼻腔黏膜损伤，恢复时间至少为两天半以上，从这一方面来看，以后要将日常锻炼写进经营原则中。锻炼的时候遵循跑步</span><span>+</span><span>俯卧撑</span><span>+</span><span>引体向上的模式，了解锻炼时需要注意的地方。</span></p><span>
+
+</span><p><span>其次是周四的课程，物理学导论和大学化学都是有作业的，需要提前准备和学习。还有是针对创新思维与现代设计的</span><span>PPT</span><span>进行优化、撰写讲稿。</span></p><span>
+
+</span><p><span>Then </span><span>下周三的英语小测，需要提前进行复习。</span></p><span>
+
+</span><p><span>And </span><span>提前开始法理、刑法、物权法的整合。</span></p><span>
+
+</span><p><b><span>18</span></b><b><span>时</span></b><b><span>30</span></b><b><span>分</span></b><b><span> </span></b><b><span>了解了一下微信小程序开发的基础条件，完成初步评估，接下来从系统角度开始部署工作。</span></b></p><span>
+
+</span><span>
+
+</span><p><b><span>2018/4/21
+</span></b><b><span>星期六</span></b><b><span> </span></b><b><span>日常性描述和总结</span></b></p><span>
+
+</span><p><span>昨天初步了解了一下计算机的发展史，计算机语言的种类，初步了解了</span><span>HTML</span><span>的一些情况，大致有了一个简单的认识，对此比较有兴趣。今天继续构建我的系统。</span></p><span>
+
+</span><p><span>在此之前首先完成对创新思维与现代设计作业</span><span>PPT</span><span>的优化。</span><span>PPT</span><span>优化已完成，考虑一下</span><span>PPT</span><span>的讲稿问题。这个应该遵从逻辑顺序，从开始的问题发现→解决思路的来源→解决思路的借鉴与优化→价值所在→可实现性的具体探讨。</span></p><span>
+
+</span><p><span>构建系统，系统的本质是整体和部分的统一，在事物的发展过程中，整体居于主导地位</span><span>,</span><span>统率着部分</span><span>,</span><span>整体具有部分根本没有的功能</span><span>;</span><span>部分在事物的发展过程中处于被支配的地位</span><span>,</span><span>部分服从和服务于整体。整体与部分的关系：密不可分（苏轼论琴）、相互影响（哥伦比亚号）。</span></p><span>
+
+</span><p><span>部分和整体的关系，在一定意义上就是系统和要素的关系。系统是由相互联系和相互作用的诸要素构成的统一整体。要素是组成一个整体而相互作用的部分。</span></p><span>
+
+</span><p><span>系统的基本特征：</span><b><span>A</span></b><b><span>整体性</span></b><b><span> <span>B</span></span></b><b><span>有序性</span></b><b><span> <span>C</span></span></b><b><span>内部结构的优化趋向</span></b><span> <span>[</span></span><span>田忌赛马</span><span>] </span><span>初赛与再赛的区别，其中体现了系统优化的方法，<b><span>着眼整体性、遵循有序性、注重结构优化趋向</span></b>→整体功能大于部分功能之和。关于这句话的一个案例是“一个和尚挑水吃，两个和尚抬水吃，三个和尚没水吃”，导致这一结果的根本原因就在于人数虽然多了，但没有形成合理的结构，不是相互支持，相互促进，而是相互制肘、相互消磨，结果各要素的力量或作用被内耗了，出现了</span><span>1+1</span><span>＜</span><span>2</span><span>的效应。修正方案，参考三座庙的故事，第一座，分三段（整体与部分）；第二座，优秀者激励（严格的奖惩制度）；第三座，从根本上解决问题（主观能动性）。改造客观世界要想取得成功，就必须把尊重客观规律、利用客观条件和发挥主观能动性有机地结合起来。用综合的思维方式来认识事物，既要着眼于事物的整体，从整体出发认识事物和系统，又要把事物和系统的各个部分、各个要素联系起来进行考察，统筹考虑，优化组合，选择最佳方案，实现整体的最优目标。</span></p><span>
+
+</span><p><span>以上是对系统的进一步认识，了解了其三大基本特征，接下来构建日常系统。我的日常生活是一个系统，我的人生也是一个超级系统，过去的部分可以用于经验的汲取，未来的部分可以用来设计，当下的部分可以用来执行。针对我的生活系统，要将其做到有序性、整体性、内部结构优化。首先关于人生系统的设计，人生系统由战略目标、经营总则、工作程序构成，战略目标可以带来方向性，经营总则可以带来决策性，工作程序可以带来基础性。</span></p><span>
+
+</span><span>
+
+</span><p><b><span>2018/4/22
+</span></b><b><span>星期日</span></b><b><span> </span></b><b><span>进行系统构建</span></b></p><span>
+
+</span><p><span>今天上午了解了一下关于想象力的问题，同时关于打字问题的练习。接下来继续脑成像技术的研究，系统的构建。参考书籍：《当下的力量》、《简单生活》。</span></p><span>
+
+</span><p><span>暂且把个人状态分为两种，一种是思维状态，另一种为本体状态。<b><span>我在走前人没有走过的路。</span></b>思维状态是在解决具体的问题的时候使用，本体状态也是在解决具体的事情的时候使用。二者相辅相成，相互联系、相互影响。这是第一次没有把本体视作工具，将本体上升到人生层面。本体与思维不冲突，本体与系统也不冲突。当我将本体和其他方面类比到系统当中，本体就类似于基础环境，而思维则类似于在基础环境中运行的程序。本体的任务是为思维打造最好的运行环境，思维的任务是在本体的环境下更好的运行。我们可以在本体的运行环境上构建我们的系统。元认知可以划分到思维的层面上。</span></p><span>
+
+</span><p><span>什么叫快速学习，不是一味地提高速度，这样一直提下去是永无止境的，这里就要到度的问题了。就从学习英语这一方面来说，我觉得方法很重要，但是我又觉得努力很重要，我觉得饱和法是个好的方法，我又觉得英语思维很重要，但是两者互相摒弃，问题就出来了，我陷入了方法论的漩涡之中。总的花在英语上的时间不变，但是花在学英语的方法上的时间增多，花在英语的实质的学习上的时间减少了，很长的一段时间里我没有发现这是一个问题，但是我现在发现了它，根据系统的原理，现在对其进行优化。英语是作为一门语言存在的，想想外国人是如何学英语的吧，他们就是那样学的，我觉得饱和法说的没错，而英语思维是拿来用的，在不懂英语之前，并不适合去学，学会了英语，自然而然就会掌握英语思维，这一点从英文歌曲中就能体会得到，我听了一首英文版的《</span><span><a href="https://www.bilibili.com/video/av10689721?p=2"><span><span>晾晾</span></span></a></span><span>》，觉得很美，这个时候就是用英语思维去体会的时候了。所以先从饱和法开始吧，接下来的问题就是去做了，还有就是对英语学习的分配问题了。</span></p><span>
+
+</span><span>
+
+</span><p><b><span>2018/4/23&nbsp;
+</span></b><b><span>星期一</span></b><b><span> </span></b><b><span>今天下午尝试了一下在声音方面的训练</span></b></p><span>
+
+</span><p><span>首先，开始在语言逻辑方面进行重构造，进行基本的整合、改造、优化。</span></p><span>
+
+</span><span>
+
+</span><p><b><span>2018/4/24
+&nbsp;</span></b><b><span>星期二</span></b><b><span> </span></b><b><span>今天阅读了《逻辑学》的一部分</span></b></p><span>
+
+</span><p><span>未来一段时间内将注重逻辑性的加强，包括说话的逻辑、思考的逻辑等等。继续系统的构建。今天的体育课上得到的问题还是学习能力的问题，对知识的处理问题。以及晚上的演讲点评，都会涉及到信息形式多样性。面对声音方面的信息该如何获取和处理，面对文字信息又该如何处理，面对图像信息又该如何处理？</span></p><span>
+
+</span><p><span>我们从书上主要获取的是文字信息，当我们获取到这些文字信息之后，对其进行思考、模仿、操作，从而使其影响到我们的思想、技能等方面</span><span> </span></p><span>
+
+</span><span>
+
+</span><p><b><span>2018/4/25&nbsp;
+</span></b><b><span>星期三</span></b><b><span> </span></b><b><span>日常性行为总结</span></b></p><span>
+
+</span><p><span>今天经历了英语小测，给我的感受是：要开始努力学英语了。</span></p><span>
+
+</span><p><span>每个人都有最美的一面，都有最美的时刻。</span></p><span>
+
+</span><p><span>针对</span><span>NLP</span><span>提出学习的建议</span></p><span>
+
+</span><p><span>构建试炼场，在试炼场中进行更高阶级的模拟。</span></p><span>
+
+</span><p><span>针对专业课的教材进行具体的投入。</span></p><span>
+
+</span><p><span>将生活方式纳入体系中，每日总结当天发生的事情。</span></p><span>
+
+</span><span>
+
+</span><p><b><span>2018/4/26
+&nbsp;</span></b><b><span>星期四</span></b><b><span> </span></b><b><span>改变近在咫尺远在天边</span></b></p><span>
+
+</span><p><span>走上改变之路吧</span></p><span>
+
+</span><span>
+
+</span><p><b><span>2018/4/27&nbsp;
+</span></b><b><span>星期五</span></b><b><span> </span></b><b><span>日程设定，改变进行中</span></b></p><span>
+
+</span><p><span>无声思维，思维提速，阅读提速</span></p><span>
+
+</span><span>
+
+</span><p><b><span>2018/4/28&nbsp;
+</span></b><b><span>星期六</span></b><b><span> </span></b><b><span>视觉重定向，变速进行时</span></b></p><span>
+
+</span><p><span>身体是革命的本钱，健康强壮的身体、饱满的精神很重要。你还有很多事情要做，时间是神圣的，要认真对待！</span></p><span>
+
+</span><p><span>超级记忆法你已经学会了，现在缺的只是应用。应用在专业上，学习上，生活中。</span></p><span>
+
+</span><p><span>思维是人的心理活动过程中最复杂的心理现象之一，是人脑对于客观事物的加工处理，是对客观事物的本质属性及其内在规律的反映。所谓事物的本质属性，就是能决定事物主要特征的，某一类事物共同的不可缺少的根本特性。事物的内在规律，主要是指事物之间的因果关系和必然联系。据我们现在科学研究所发现或公认的，无论自然现象还是社会现象，以及几乎世界的一切事物的存在，都是“有序”的，这种有序性就是事物的内在的规律性。思维，就是人类专门去揭示事物的这种本质的属性和规律性的心理活动。在阅读中，人们通过对于书本上的文字表达，概念或概念组的加工，重新编排，找出其规律及属性（要表达的意义），变成自己头脑中的概念，这就是理解。由于思维的非直观和复杂性，目前为止，科学尚未彻底揭示的本质和内在规律。思维反映事物的本质属性和规律，具有其独特的明显特征，这就是思维的间接性、思维的概括性以及思维必须要借助于语言来实现其特性。思维的间接性，表现在思维必须要借助于一定的中间媒介物和相应的知识经验来达到对事物的本质属性和规律的了解与把握。如医生能通过病人的舌头、体温、脉搏、血压、脸色等，便可了解病人身体内部脏器的活动状态，我们通过阅读一句，甚至一段话的关键字，就可以知道这段文字的意义，等等。思维的间接性，使人的认知能力突破了时空的限制，从具体的一事一物的认知的局限性中摆脱出来，因此人类的认知能力远远超过动物的认知能力，即拥有智慧。人可以依据某一媒介物，便可上知亘古，下知未来。人类既可掌握那些没有直接经历感知过的或根本不可能经历感知到的事物，而且还可预见和推知事物发展的过程和结果。例如，我们看不到光的运动，但通过思维却可把握其</span><span> 30</span><span>万公里</span><span>/</span><span>秒的速度；再如可以了解上亿年前的自然环境等。思维的概括性，表现在思维对事物的本质的反映总是作全面的整体的反映。即思维总是把某个事物或某类事物的所有的共同的本质特征全部抽取出来加以综合地反映。思维的概括性不但表现在它反映事物的所有的本质属性以及反映某一类事物的共同的本质特性，还表现在它反映事物之间的内在联系和规律上。一切科学的概念、定理、规律、法则，都是思维概括的结果，都是人脑对客观事物的概括的反映。我们的快速阅读中的面式阅读法，运用的就是思维的这种概括能力。由于人类语言的产生，思维对客观事物的反映，总是借助语言进行的。语言是一种符号系统，由基本词汇、语法构造形成。每个民族都有自己的语言，因此语言是一种社会现象。人们应用语言进行思想交流的形式为言语。言语是个体对语言的一种具体应用，因此，言语是一种个体现象。个体的言语一般有三种形式：口头、书面、内部言语。</span></p><span>
+
+</span><span>
+
+</span><p><span>思维是大脑的一个重要功能，其实现需要一定的载体。发音的语言是我们常</span><span> </span><span>用的载体，但是其效率非常低。高效率的载体包括大脑内语言载体和右脑的形象</span><span> </span><span>载体，前者可以轻松实现，而后者需要进行长期训练才能实现。</span></p><span>
+
+</span><p><b><span>日常所出，必有所成</span></b><b><span>!</span></b></p><span>
+
+</span><p><b><span>20</span></b><b><span>时</span></b><b><span>3</span></b><b><span>分</span></b><b><span> </span></b><b><span>有必要进行知乎收藏夹的整理。</span></b></p><span>
+
+</span><p><span>Ÿ<span>&nbsp; </span></span><b><span>Windows10</span></b><b><span>操作技巧</span></b></p><span>
+
+</span><p><span>Ÿ<span>&nbsp; </span></span><b><span>之前听过一复旦管理学院老师的观点，很受启发。大意是</span></b><b><span>:</span></b><b><span>以行动改变结果，以良好的结果间接影响你的性格，而不是一门心思地要直接改变性格，因为直接改变性格的过程很痛苦，而且没有几个人能做到。</span></b></p><span>
+
+</span><p><span>Ÿ<span>&nbsp; </span></span><b><span>现在的问题还是没有搞清楚自己的真正目标是什么</span></b></p><span>
+
+</span><p><span>Ÿ<span>&nbsp; </span></span><b><span>目前所做的事情是以提高学习能力为主的，所以我还没有直接接触到目标正面。</span></b><b><span><br></span></b></p><span>
+
+</span><p><b><span>2018/4/29&nbsp;
+</span></b><b><span>星期日</span></b><b><span> </span></b><b><span>开始针对性建设性进行推进</span></b></p><span>
+
+</span><p><b><span>快速思维和速读：</span></b></p><span>
+
+</span><p><span>Ÿ<span>&nbsp; </span></span><b><span>思维的三特性：间接性、概括性、必须借助语言实现</span></b></p><span>
+
+</span><p><span>Ÿ<span>&nbsp; </span></span><b><span>个体语言的一般形式：口头、书面、内部语言</span></b></p><span>
+
+</span><p><span>Ÿ<span>&nbsp; </span></span><b><span>思维的载体：语言、图像、直觉和灵感</span></b></p><span>
+
+</span><p><span>Ÿ<span>&nbsp; </span></span><b><span>内部语言：无声性、快捷性、精确性、脆弱性</span></b></p><span>
+
+</span><p><span>Ÿ<span>&nbsp; </span></span><b><span>无声思维＆右脑思维：阅读、记忆、解决问题、</span></b><span>写作</span></p><span>
+
+</span><p><span>Ÿ<span> </span></span><b><span>音读切断</span></b></p><span>
+
+</span><p><b><span>无声阅读：</span></b><span>快速阅读中的基本概念学习快速阅读，就不可避免的要在练习中不断的参考其他的速读书籍。所以，经常要遇到一些速读中的概念。如果你对这些概念不明确，那么阅读起来可能有些困难。所以，这里我们把最常见的概念列出来，供大家参考：</span><span> 1.</span><span>无声阅读：无声阅读是指在阅读时大脑直接感知文字的含义，不必通过发音器官把文字转换成声音。也就是说，眼睛接触到文字，脑中就对文字的意义有了感知，而不需要再在脑海中把字读出来。无声阅读决不等同于默读。目前绝大多数人的默读虽然听不到声音，实际上是在心里自我听读，也就是大脑的言语运动中枢以及相关联的发音器官都是处于潜在的运动之中。用精密仪器可以测出它们的运动状况。这种内听现象在默读时广泛存在，是限制阅读速度提高的</span><span> </span><span>重要原因之一。普通阅读途径：眼睛看到文字</span><span>—</span><span>脑中发音</span><span>—</span><span>根据发音理解文字意义</span><span>-</span><span>综合整理实现理解。无声阅读途径：</span><span> </span><span>眼睛看到文字</span><span>—</span><span>脑中直接感知文字意义</span><span>—</span><span>综合整理实现理解。不要小看无声阅读仅仅去掉了脑中发音和根据发音理解这两个环节，正是这两个环节，是传统阅读缓慢而效率低下的原因所在。采</span><span> </span><span>用无声阅读法时，发音器官受到有效抑制，视觉不受逐字逐音的牵制而解放出来，而完全以大脑的内部语言进行理解，因而能使视觉范围扩大，便于以句，以行甚至以段，以页为单位来阅读。这时，由于完全排除了内听现象，大脑对文字的理解是由压缩的便于思维的内部语言来进行的。内部语言是人们在思维时所使用的内部心理语言，它针对的对象是自我，而不是别人，所以其特点是：</span><span>1.</span><span>前后不连贯的不完整性；</span><span>2.</span><span>不太受语法约束的无规则性；</span><span>3.</span><span>语句不太斟酌的随意性。正因为利用了它的以上特点，掌握了无声阅读法的人才能在阅读过程中利用关键性的词语，淘汰许多多余的，次要的信息，来准确的理解文意。无声阅读法是快速阅读法的基本要领之一，掌握了它的技能，至少可以使阅读速度提高三倍左右。</span></p><span>
+
+</span><p><b><span><br>2018/4/30&nbsp; </span></b><b><span>星期一</span></b><b><span> </span></b><b><span>开始涉猎无声思维和无声阅读</span></b></p><span>
+
+</span><p><span>现在的中心点比较明确：无声思维、无声阅读、逻辑、系统的构建、当下的力量、笔记读书法、视力、</span><span>NLP</span><span>。</span></p><span>
+
+</span><p><span>好的主题明确，任务清晰，火力全开吧。</span></p><span>
+
+</span><span>
+
+</span><p><b><span>2018/5/1&nbsp;
+</span></b><b><span>星期二</span></b><b><span> </span></b><b><span>今天阅读了小说《摆渡人》，用时三小时。</span></b></p><span>
+
+</span><p><span>我应该继续探索和前进的，包括</span><span>NLP</span><span>和视力。还需要重新界定一下时间管理。我想这是一个系统，这个系统需要优化。从日程的程序安排开始。</span></p><span>
+
+</span><p><span>我们把这个系统分为多个子系统，我的大脑要一直使用，所以要从大脑开始进行设计。首先呢，对于大脑的要求要有，一般状态下，要维持本体状态，这种状态就相当于一个主板，在这个状态之上展开一系列系统部署，信息输入系统、信息处理系统、信息输出系统。信息输入系统包括听、看、读、感受，信息处理系统包括记忆、重组、增添。通过意识来进行系统层面的改造。</span></p><span>
+
+</span><span>
+
+</span><p><b><span>2018/5/3&nbsp;
+</span></b><b><span>星期四</span></b><b><span> </span></b><b><span>常规例行性总结，焦点在于脑科学，再次处理当下的力量、系统的构建。</span></b></p><span>
+
+</span><span>
+
+</span><p><b><span>2018/5/4
+&nbsp;</span></b><b><span>星期五</span></b><b><span> </span></b><b><span>间歇性低谷已过，回到正轨。实战化操训。</span></b></p><span>
+
+</span><span>
+
+</span><p><b><span>2018/5/13&nbsp;
+</span></b><b><span>星期日</span></b><b><span> <span>Everything
+what you can do.</span></span></b></p><span>
+
+</span><span>
+
+</span><p><b><span>2018/5/14
+&nbsp;</span></b><b><span>星期一</span></b><b><span> </span></b><b><span>现阶段依托于“一次只做一件事”</span></b></p><span>
+
+</span><p><span>目前注重的是打字，将所学的打字法应用到实际当中，并进行实际系统处理。</span></p><span>
+
+</span><p><span>学习如何写影评，<b>第一步是明确自己现在对写影评的认知，第二步是通过阅读相关的书籍来学习，第三步是在学习完之后再一次明确自己的认知，并通过实践来修正。</b></span></p><span>
+
+</span><p><span>现在已经学习无声思维接近半个月了，是时候进行阶段性总结和检验了。</span></p><span>
+
+</span><p><span>首先，无声思维需要大脑的优良状态，只有保证充足且高质量的休息才行，然后在练习时要调整好最佳的状态（在这个过程中，目前主要采用的是呼吸调息、放松式情景想象），然后进入到主要的练习过程中。练习的过程也是一个改变行为习惯的过程，所以在练习时要格外的认真和投入。在具体的练习过程中，存在哪些问题呢？对于无声思维的原理比较认同，所以有了理论的支持，能够去实行。其次是现在做到随时起调大脑的高质量状态，所以必须要改变作息时间了，这是完成第一部分的必要条件。随后的一项工作就是进行无声思维的编码过程，不断积累编码，构建无声思维系统。编码时也应顺便考虑中英文同时编译，达到优化资源配置的目的。</span></p><span>
+
+</span><p><span>速度处理系统！！！</span></p><span>
+
+</span><p><span>提出编译要求！！！</span></p><span>
+
+</span><span>
+
+</span><p><b><span>2018/5/18&nbsp;
+</span></b><b><span>星期五</span></b><b><span> &nbsp;</span></b><b><span>集中式处理</span></b></p><span>
+
+</span><span>
+
+</span><p><b><span>2018/5/19
+&nbsp;</span></b><b><span>星期六</span></b><b><span> &nbsp;</span></b><b><span>第一问题的解决方案</span></b></p><span>
+
+</span><p><span>根据长期以来的经验与体会，发现视力问题是现在最紧要的问题，结合长期的经验来看，有必要制定完整、合理以及切实可行的解决方案。基于《</span><span>12</span><span>周摘掉眼镜</span><span> </span><span>恢复视力》这本书制定可行性计划。为什么是</span><span>12</span><span>周呢？我也不知道，书中有提到的时间是“几个月之后”，结果是“一定能得到改善甚至恢复”。至于结果到底如何，我目前认为这取决于个人对这本书提出的理念的认可程度以及是否进行有效的执行。首先对我个人当前的状态进行评估：首先确定近视，眼镜度数左右都为</span><span>400</span><span>度，对书中的理论较为认可（相信视力是可以恢复的，近视是可以改善的）。接下来根据本书来制定解决方案。在此之前，我们先对这本书做一个见到那的阅读处理。这本书是由美籍作家爱德华索夫所著，在书的一开始作者就说到不管是近视眼、远视眼、散光、斜视或老花眼，都是可以结束的，眼镜是可以摘掉的，你的视力也是可以恢复的。本书将介绍一些已经被证明非常有效的方法，帮助你改善和恢复自己的视力。书中介绍的方法是从十几年实践中总结出来的，不依赖任何医疗机械，没有昂贵费用，也不需要任何高深的理论，也不需要占用你过多时间，你可以在上班上学的路上，在晚饭前后的时间进行练习。它只需要戴眼镜的你有坚定的信心和恒心，几个月之后，你的视力一定能得到改善甚至恢复。书的前几章的大部分笔墨都是在分析“好的自然视力”需要怎样的性格，应当拥有怎样的心态，作者告诉我们，首先要从接受近视开始，接受近视的事实，坦然面对，心中要认可这个事实并且相信自然视力是可以改善并恢复的。接下来作者分析了近视眼的性格，然后如何去改变，改变成什么样的，在这个过程中，作者提供了一些带有灵性的冥想类方法（释放痛苦，制造平和）。然后话题转移到了为摘掉眼镜打基础，首先就是与模糊交朋友，让自己的心情放轻松，不再痛恨模糊，放松所带来最明显的效果就是打哈欠，这是个好事，不断的哈欠表示着你已经放松了，出生的哈欠则会更好，打哈欠有很多好处，然后按摩放松，像揉面一样按摩肩膀，再下来你可以尝试着向上动耳朵，或许对你来说这很难，那就给你的耳朵按摩吧，从前到后从上到下的圆周按摩。下一步要消除蹙眉、斜视和搓板状，这些是为了使你的眉头舒展开来，消除皱纹，放轻松，闭上你的眼睛，温柔的环形按摩几分钟，放松瓶颈，也就是你的脖子，这个时候又需要进行按摩一番了。接下来就要正式的步入改善视力的具体环节了，第一板块是通过运动来改善视力，第一个理论点是“飞快扫视”，其练习的具体方法就是“魔法铅笔”，在熟悉了魔法铅笔之后，就可以做抚慰而简单的铅笔游戏了，除了铅笔游戏，还有羽毛游戏，通过羽毛的垂直清晰，对羽毛游戏的扩展是“像鸟儿一样自由”，与此同时，了解一些视力语言也是很有必要的，积极向上的心态对应着灵动清晰的眼睛。第二板块是通过想象来改善视力，带有想象的观看“风格”，首先打下基础，准备运动场，用手掌使领地更加丰饶，然后要影像加上运动，让缺陷显现，接下来是什么呢？请为这个游戏准备一些特殊时间，然后剪辑掉消极影像。有机思维的编辑，通过想象来进行，在黑暗中旅行</span><span> </span></p><span>
+
+</span><span>
+
+</span><p><b><span>2018/5/20&nbsp;
+</span></b><b><span>星期日</span></b></p><span>
+
+</span><p><span>今天先进行对信息输入过程的细处理，有一个问题，小孩子是如何学会识字说话的，这一点在前面的语言那一块有讲过，其本质上是把发音、文字符号和实物对应起来，并建立习惯性的联系，形成神经刺激，从而实现一旦接触到三种形式信息的一种，便能产生其余两种的反馈，通过长期大量的反馈积累，则会产生抽象性概括，即易于发现众多反馈中的共同特新，从而形成概括性概念，与前期不同的是，这个概括性概念包含了语音和文字符号两种形式，没有对应的实物体，对于这个过程，不知道有没有人进行过专门的研究，</span></p><span>
+
+</span><span>
+
+</span><p><b><span>2018/6/2&nbsp;
+</span></b><b><span>星期六</span></b></p><span>
+
+</span><p><span>已经两个周没有进行视觉记录了，再一次发现写视觉日记的好处，可以记录想法、思考，亦可进行日程规划，进行日常总结、反思，以及进行知识输出。暂定以后每周六晚进行一次周总结。日常可进行日程规划，目前的规划目标是：使日常的学习生活向高三时的情况进行靠拢。接下来规定一下总结的相关事宜，总结现在不能依靠自由意志来进行，需要进行规制约束，现划分总结的周期，以每周的周日为起点，到下一周周六为结点，是为一个周期，每周六的晚上进行每周总结，总结的内容要求先行试点，在总结完之后可以制定每周目标，同时可进行实验性功能，正面激励机制。</span></p><span>
+
+</span><p><span>本周回忆完成，基本主线能够完成，根据经验，以往的几个周也是类似的这种模式，现在做出改变，进行模式上的改变，与以往的最大不同之处应在于目标和总结上，这才是一个认真的规划所要具备的要点。现在进行周意义性事件总结，第一件事情是周三的内训，热身项目“数字对对碰”，从中得到的经验是，第一点，在讲述规则时“然后”说的太多，其次作为一个培训师，应该问大家“我讲清楚了吗”，而不是“你们听懂了吗”。第二点，对于项目的选择，没有预见到的是“熟人效应”，再进行热身项目的设计选择时，考虑的应该更全面，想象中大家应该是谈的热火朝天，而实际中却是聊的有点尴尬，对于数字的范围也没有考虑（也就是没有思考大家会有哪些疑问）。第三点，在分享环节，需要再进行改进。</span><span> &nbsp;</span><span>第二件事情是阅读《大唐悬疑录》，从中获得的感受很复杂多样，感触很深，裴玄静、李长吉、崔淼，这三个人物给了我很大的启发。这就是本周的其它大事件！</span></p><span>
+
+</span><p><span>接下来进行目标性规划，第一件事，深化对《大唐悬疑录》的思考与感悟，目前人物有二：张敬、崔淼。第二件事，将现在的节奏向高三时期的状态靠拢（预通过计划书来实行）。第三件事，继续未完成的事情无声阅读（无声思维）和右脑形象。</span></p><span>
+
+</span><span>
+
+</span><p><b><span>2018/6/4&nbsp;
+</span></b><b><span>星期日</span></b></p><span>
+
+</span><p><span>今天进行了高中式偏移试验，可继续进行。目前关于人物的想法，开始尝试着建立体系，你所希望成为的，理想中的。现在的经验是，不能够保证百分之百达到，因为这不是单一决定性因素，还有很多变量，这些变量之间会相互作用，然后达到一个调和的模式。还有一件事，无声思维训练和右脑形象。</span></p><span>
+
+</span><span>
+
+</span><p><b><span>2018/6/4&nbsp;
+</span></b><b><span>星期一</span></b></p><span>
+
+</span><p><span>从今天开始，正式着手建立“</span><span>EXPECT24</span><span>”体系，该体系的建立暂定运用系统思维来进行，首先来复习一下系统思维。现在确定一点关于知识处理的一种基本思路：联系、联想、联结。进行一个简单的练习吧，现在阅读了一本书《用系统来工作》，书中讲述了一点，保持自我意识（外在且稍高的视角），从这里我们可以和《当下的力量》建立联结，这样能够使后者的主要思想得到应用，同时也能够贯彻到前者的实施，前者的作者对其所掌握的知识做了一个总结，然后再浓缩，再总结，最后呈现给我们的是比较简洁的要点，事实上其背后还有很多我们没有看见的内容，所以导致了我们对其要点的解读大多时候都是比较肤浅的。所幸先在认识到了这一点，以后能够在这方面改进。所谓的把大学当作高中来过是有一定道理的，现在为了不浪费时间，全面提升自己，所以改变作息时间，全力以赴，破釜沉舟。改变不是一蹴而就的，而是循序渐进的。我要做的就是记录下来每一天的细节就好。</span></p><span>
+
+</span><span>
+
+</span><p><b><span>2018/6/5&nbsp;
+</span></b><b><span>星期二</span></b></p><span>
+
+</span><p><span>今天进行了体育考试、主题征文、</span><span>UTJS</span><span>作业、物理学研究导论作业初步。明天要做的主要是物理论文、</span><span>PPT</span><span>展示的作业、思修的讲稿准备、物权法作业、大学化学作业、创新思维与现代设计作业。在明天的作业过程中，尝试应用关于知识处理的基本思路。</span></p><span>
+
+</span><span>
+
+</span><p><b><span>2018/6/9&nbsp;
+</span></b><b><span>星期六</span></b></p><span>
+
+</span><p><span>今天是周六，进行实验性总结。首先记录以下注意到的一个问题，表征为时间利用率极低。今天下午的四个小时，<b>时间利用率很低</b>，目测一个原因是状态问题。接下来进行周总结。本周起始日制定的计划并没有完全实现，不过在一定程度上达到了目的，表明<b>计划书式的规划安排有一定的效果</b>。本周一周二的记录如上，周三英语口试再次体现了英语口语能力极低，周三下午对时间的安排不到位，法理学作业没有及时加入到计划书中。周四的物理学研究导论</span><span>pre</span><span>没有准备好，这是一个比较严重的问题。周四的大学化学再次表明需要尽早展开复习，以及周五的物权法，这两个必须要及早展开复习，还有英语</span><span>quiz</span><span>。经验表明，计划书要及时更新。周三下午、周五下午以及周六的经历表明时间安排是一个重大的问题，提高效率以及时间利用率。而这些的物质条件在于当下的状态以及你的时间意识，那么问题来了，如何保证自己在学习和工作时有一个非常好的状态，如何提高自己的时间意识。这两个问题，我想在<b>《简单生活》</b>这本书中都能找到答案，另外关于冥想（</span><span>or</span><span>其他）的方式可以考虑。本次的总结恰逢高考结束，已经一年时间了，回顾这一年的经历，感慨系之矣。接下来还要提出一个改进项目：<b>每周总结的时候把情绪、心态纳入其中，并进行调整。</b></span></p><span>
+
+</span><p><span>接下来确定新的一周的安排，重点放在考试复习上，采取合理的复习策略，调整好的复习状态，充分合理的运用空闲时间。</span></p><span>
+
+</span><span>
+
+</span><p><b><span>2018/6/10&nbsp;
+</span></b><b><span>星期日</span></b></p><span>
+
+</span><p><span>今天是周日，今天的时间利用率有提高吗？上午并没有，上午集中于</span><span>PPT</span><span>的打印排版，收获有一点，</span><span>besides</span><span>，下午对于刑法复习有一定的帮助，接下来需要集中攻破，首先从法理开始吧</span></p><span>
+
+</span><span>
+
+</span><p><b><span>2018/6/11&nbsp;
+</span></b><b><span>星期一</span></b></p><span>
+
+</span><p><span>今天解决了几个问题，现在再次梳理一下，接下来的事情有英语</span><span>quiz</span><span>、法理学阅读、形势与政策考试、物理学研究导论</span><span>pre</span><span>、大学化学考试。先从物理学研究导论</span><span>PPT</span><span>开始，然后是法理作业。</span><span>Nice</span><span>，物理学研究导论</span><span>PPT</span><span>基本完成，接下来阅读法理学所要求的书籍。综合现在的情况来看，有必要提出新的提升要求。</span></p><span>
+
+</span><span>
+
+</span><p><b><span>2018/6/16&nbsp;
+</span></b><b><span>星期六</span></b></p><span>
+
+</span><p><span>本周进行了多场考试，多场</span><span>pre</span><span>，最忙的一周过去了，回顾这一周，有什么感受呢？有什么收获呢？后悔真的没有用吗？现在看来凡事都有存在的道理（价值观、世界观方面对此有影响），二者之间有一个平衡点，中庸之道。</span></p><span>
+
+</span><p><span>本周的反思主要关于：考试（大化、英语</span><span>quiz</span><span>＆口试、</span><span>CET4</span><span>）、平时上课（大化、物权法、刑法、法理）、</span><span>pre</span><span>（物理学研究导论、思修、创新思维与现代设计）这三方面。这里做重点记录，考试结束后结合新系统修订进行处理。</span></p><span>
+
+</span><p><span>接下来主要有四门考试，下周面临的是物权法、法理学考试，接下来重点复习这两门。</span></p><span>
+
+</span><p><span>刚刚看了下修业学分情况，按照目前的情形，能够在下学期结束时完成。</span></p><span>
+
+</span><span>
+
+</span><p><b><span>2018/6/21
+&nbsp;</span></b><b><span>星期四</span></b></p><span>
+
+</span><p><span>这一次留白。</span></p><span>
+
+</span><span>
+
+</span><p><b><span>2018/6/27
+&nbsp;</span></b><b><span>星期三</span></b></p><span>
+
+</span><p><span>上次周六因为考试，所以就没有做总结，现在考试完毕。进行一次大的总结，以及新的部署。</span></p><span>
+
+</span><span>
+
+</span><p><b><span>2018/6/28
+&nbsp;</span></b><b><span>星期四</span></b></p><span>
+
+</span><p><span>开始进行计划标新。</span></p><span>
+
+</span><p><span>这里插入一个</span><span>TIME
+PLAN</span><span>。</span></p><span>
+
+</span><p><span>根据</span><span>IPO</span><span>理论进行编排，需要处理的有两部分，</span><span>I</span><span>＆</span><span>P I</span><span>是计划的输入，即输入的内容，</span><span>P</span><span>是计划的处理方式</span><span> </span><span>首先要确定</span><span>I</span><span>这一部分，要确定</span><span>I</span><span>，首先要保证一个前提，就是通过对</span><span>I</span><span>部分的处理能够达到预期的目标，现在可以确定一个预期目标，但是该预期目标仅用来和</span><span>O</span><span>进行比对，去掉其他功能作用，取消对</span><span>O</span><span>的直接＆间接的影响。如此方可不必保证通过</span><span>I</span><span>的输入，经过</span><span>O</span><span>的处理，一定要达到预期目标。以前对这一点一直存在一个逻辑谬误，就是认为</span><span>I→P→</span><span>目标，现对此进行修正。</span><span> </span><span>从实践开始，调整</span><span>I</span><span>＆</span><span>P</span><span>，试验性进行。</span><span> NO.1
+P:</span><span>调整心态，心态是处理方式，例</span><span>:</span><span>积极乐观，目前能够直接进行调整，使自己的内心感受到舒畅、愉悦轻松。记录为</span><span>P-1</span><span>，接下来确定</span><span>I</span><span>，第一个试验性内容是一首歌曲《人面桃花》，需要进行的步骤就是保持舒畅愉悦的心情听一遍这首歌，然后确定结果</span><span>O</span><span>。现在来描述一下结果，首先是对于</span><span>P</span><span>这个过程，心情舒畅愉悦的程度不高，只能说是一般，试分析原因在于注意力基本都放在歌曲上了，没有更多的注意力来关照心情，但是有发现，歌曲（包括背景音乐、节奏和歌词都能够影响心情）。而我们的目标是听完这首歌能够把大部分记下来，希望能够学会哼这首歌。现在看来，最后的处理结果和过程是紧密相关的。假设我们想要学会哼这首歌，</span></p><span>
+
+</span><span>
+
+</span><p><b><span>2018/7/8&nbsp;
+</span></b><b><span>星期日</span></b><b><span> &nbsp;</span></b><b><span>回归</span></b><b><span> &nbsp;</span></b><b><span>系统、计划、制度设计、原理、实质、目标</span></b></p><span>
+
+</span><span>
+
+</span><p><b><span>2018/8/7&nbsp;
+</span></b><b><span>星期二</span></b><b><span> &nbsp;</span></b><b><span>归零</span></b><b><span> </span></b><b><span>一件事情的结束也是另一件事情的开始</span></b></p><span>
+
+</span><p><span>现在有些明白归零心态了，从零开始，空杯心态。这和一切从头再来还有区别，归零心态并不是真正的从零开始，而是把已经装满了的那部分吸收转化掉，再一次开始汲取。</span></p><span>
+
+</span><p><span>我经常会反思，我要的是什么，是一样具体的事物还是一种生活方式，还是其他形式的东西。</span></p><span>
+
+</span><p><span>从学英语到说话，再到专业课的学习，运动与锻炼身体。</span></p><span>
+
+</span><span>
+
+</span><p><b><span>2018/9/7&nbsp;
+</span></b><b><span>星期五</span></b><b><span> </span></b><b><span>《重新开始》</span></b></p><span>
+
+</span><p><span>在历时一个月之后，再次进行全面思考与整合。</span></p><span>
+
+</span><span>
+
+</span><p><b><span>2018/9/8&nbsp;
+</span></b><b><span>星期六</span></b><b><span> &nbsp;</span></b><b><span>较为激进的协议策略</span></b></p><span>
+
+</span><p><span>还是要以系统为基础，完成各个部分的激进式嵌入。</span></p><span>
+
+</span><p><span>设定激进式处理方式和保守式处理方式，一般状态采用保守式处理，特殊状态采用激进式处理。</span></p><span>
+
+</span><span>
+
+</span><p><b><span>2018/9/10&nbsp;
+</span></b><b><span>星期一</span></b><b><span>&nbsp; </span></b><b><span>全新的开始</span></b></p><span>
+
+</span><p><span>设定第一个新计划，期限五个月，简称“一五计划”。</span></p><span>
+
+</span><span>
+
+</span><p><b><span>2018/9/26&nbsp;
+</span></b><b><span>星期二</span></b><b><span> &nbsp;</span></b><b><span>重要的事情说三遍</span></b></p><span>
+
+</span><p><span>背单词！背单词！背单词！</span></p><span>
+
+</span><span>
+
+</span><p><b><span>2018/10/20&nbsp;
+</span></b><b><span>星期六</span></b><b><span> &nbsp;</span></b><b><span>大更新</span></b></p><span>
+
+</span><p><span>已经快有一个月没写视觉日记了，这次准备来一个重大更新，就像我们的民法典编撰一样，时机到了，是时候把各部分的法律规范集合再一起编纂成一部统一的民法典了。</span></p><span>
+
+</span><p><b><span>关于学习，关于生活，关于能力提升，关于目标与未来</span></b></p><span>
+
+</span><p><span>关于学习，首先明确的是大学要学什么，其次是怎么学。我认为大学在学习上的目的就是要“鱼渔双收”，不仅要得到“鱼”，更重要的是学会“打渔”，这是贯穿大学的思想。</span></p><span>
+
+</span><p><span>关于生活，首先明确自己的追求，简单生活，享受生活，幸福感！</span></p><span>
+
+</span><p><span>关于目标与未来，目前的考虑是考研，这一部分待书写。</span></p><span>
+
+</span><span>
+
+</span><p><b><span>2018/11/1&nbsp;
+</span></b><b><span>星期四</span></b><b><span> </span></b><b><span>重大更新</span></b></p><span>
+
+</span><p><span>很多时候重大更新并不代表重大更新，大更新也不一定有大更新的意义所在。有点名不副实。这些都代表了一种想法、一种期望。实际上做的如何并不大可能会得到这样的效果。本次就不以重大更新为主了，简简单单的总结一下这一两个周的感悟与收获吧。首先是关于阅读方面，《财富吸引力法则》的阅读；其次是和潘敏的交流；段老师的交流；英语课赵老师的提醒；专业内部。</span></p><span>
+
+</span><span>
+
+</span><p><b><span>2018/11/4&nbsp;
+</span></b><b><span>星期日</span></b><b><span> </span></b><b><span>日常</span></b><b><span> </span></b><b><span>总结</span></b></p><span>
+
+</span><p><b><span>Today</span></b><b><span>‘</span></b><b><span>s </span></b><span>收获很多，以后写东西注意一下语言的凝练。今天有所感悟的是江学长和体验式教育之间的故事、英语老师讲学英语的事情、马克思主义哲学原理教材的阅读感悟、刑事诉讼法＆英语单词带来的关于记忆的思考、侵权法课程。这些东西体现出来的目前最重要的两点：逻辑体系的建立、深入思考和处理。这两者当前来说其关系是相辅相成、相互促进的。不熬夜早期学习！</span></p><span>
+
+</span><span>
+
+</span><p><b><span>2019/1/19
+&nbsp;</span></b><b><span>星期六</span></b></p><span>
+
+</span><p><span>已经有两个多月没有写视觉日记了，现在想要把这本日记继续下去。最初设立的这本日记是作为电子笔记本设立的，目的是为了和实体笔记本相互协作，共同用于知识的管理以及输出，现在看来这个目的已经达到了一部分，考虑到知识处理方面发生的变化，现在对这本笔记本改进一下，不单纯的作为知识管理用，亦可作为人生修行的随笔或者日记。</span></p><span>
+
+</span><p><span>今天想要对之前的人生做一个简单的梳理工作，回顾过去，思考当下，展望未来。对于过去的知识进行分类实在是一件很难的事情，我在考虑要不要进行分类。如果不分类的话，我要从哪里开始呢？有三个点：讲道理、逻辑、系统。这三个点对我来说，目前是最为深刻的，所以就从讲道理出发，用逻辑来讲道理（逻辑这个东西，有涉及到左右脑之分，也有涉及到想象力的扼杀，以及线性思维等等问题，所以在开始的时候，要先对这个进行正名，什么是逻辑？如何讲逻辑？这是两个最关键的问题，我的理解就是逻辑是合乎目前常理的联系，严格一点的如逻辑三段论：大前提、小前提、结论，宽松一点的如：因为有理所以接受。宽松一点的也属于讲道理的部分。为什么要讲道理，因为这是</span><span>~~</span><span>，根据阴阳理论，不是一定要讲道理的，也可以有不讲道理的时候，所以讲道理可以对讲道理的人讲，对于不讲道理的人可以选择不讲道理，也可以讲非常道的道理，就是自己的道理。）</span></p><span>
+
+</span><span>
+
+</span><p><b><span>2019/1/20
+&nbsp;</span></b><b><span>星期日</span></b><span> </span></p><span>
+
+</span><p><span>接着昨天的继续，讲道理、用逻辑、成体系！逻辑三段论，可以复习一下关于逻辑方面的知识。然后是成体系，这一方面可以分为知识体系与价值体系，知识体系是面向学习的过程，这个是人修行过程中最主要的一点，学到老，活到老，其实人的修行在表象上表现的就是学习和体验，而在内在层次上则是价值体系，以什么样的心态对待生活和人生，后者也是通过前者而得以升华的。</span></p><span>
+
+</span><p><span>所以目前的要做的第一件事就是“坚持”和“开始”，要用到的是“当下”和“体验”。要坚持的事情有很多，包括英语、视力、专业、能力。其中有一个定理叫“</span><span>10000</span><span>小时定律”，简而言之就是</span><span>3612 842</span><span>，<b><span>不断地坚持</span></b>和<b><span>持续地投入</span></b>，所以从当下开始就好，每一分每一秒，体验的越投入即越认真，认真＋坚持，简单的成功秘诀。</span></p><span>
+
+</span><span>
+
+</span><p><b><span>2019/1/22
+&nbsp;</span></b><b><span>星期二</span></b></p><span>
+
+</span><p><span>今天写一些东西。对自己现在的情况进行全面的评估，然后制定总体的目标，剩下的就是坚持的去做就可以了。很简单的方法，现状＆目标，坚持＆投入，当下＆体验。很简单的一套方法，就这样去做吧，存在的一些特别的问题，再考虑就是了。有一些坚持是需要持续性的，但是终归都有一个目标，但是需不需要清楚这个目标当就事论事。对于英语来说，现在要做的就是坚持，不需要清楚具体的目标，照做就行了，每天都做，单词、听力、读力。</span></p><span>
+
+</span><p><b><span>此心在身重即为体验，此身在心中即为感悟。</span></b></p><span>
+
+</span><span>
+
+</span><p><b><span>2019/1/23
+&nbsp;</span></b><b><span>星期三</span></b></p><span>
+
+</span><p><span>昨天写了一些东西，结合几天前写的总结下来简单的几句话，当下的力量、体验的智慧、不断地坚持、持续地投入、心在身中。</span></p><span>
+
+</span><p><span>乔布斯的演讲。</span></p><span>
+
+</span><p><span>现在感受到了一种前所未有的感觉，这对我来说才是真正的困难，真正的大山，我必须要克服这个困难，避无可避。所以寒假做些什么？现在就有了，坚持也不能止步于简单的事情了，对于更难的事情也要开始尝试坚持了。比如说眼睛，这一点就要减少手机的使用，多注意用眼习惯，英语单词。专业课。</span></p><span>
+
+</span><span>
+
+</span><p><b><span>2019/1/24
+&nbsp;</span></b><b><span>星期四</span></b></p><span>
+
+</span><span>
+
+</span><span>
+
+</span><p><b><span>2019/1/27
+&nbsp;</span></b><b><span>星期日</span></b></p><span>
+
+</span><p><span>每日三省，早中晚。晚上悟，早上起得晚。早上悟，明天要准备</span><span>gift</span><span>！</span></p><span>
+
+</span><span>
+
+</span><span>
+
+</span><p><b><span>2019/8/10&nbsp;
+</span></b><b><span>星期六</span></b></p><span>
+
+</span><p><span>继续写视觉日记，之前的部分写了一些知识性的东西，接下来对内容有所调整。</span></p><span>
+
+</span><span>
+
+</span><span>
+
+</span><p><b><span>2019/9/22&nbsp;
+</span></b><b><span>星期日</span></b></p><span>
+
+</span><p><span>兴趣</span></p><span>
+
+</span><p><span>复习合同法</span></p><span>
+
+</span><span>
+
+</span><p><b><span>2021/1/12
+&nbsp;</span></b><b><span>星期二</span></b></p><span>
+
+</span><p><b><span>今日无话可说，明天开始好好写视觉日记吧。</span></b></p><span>
+
+</span></div>
+    </article>
+</body>
+</html>

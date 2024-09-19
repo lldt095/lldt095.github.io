@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>文化属性</title>
+    <style>
+    :root {
+        --text-color:#333;
+        --summary-color: #000;
+        --bg-color: white;
+        --block-bg-color: #c3c3c3;
+        --block-left-border-color: #868686;
+        --block-border-radius: 5px;
+        --outter-padding: 1em;
+    }
+
+    @media (max-width: 1920px) {
+        :root { --outter-padding: 4em; }
+    }
+    @media (max-width: 1200px) {
+        :root { --outter-padding: 3em; }
+    }
+    @media (max-width: 900px) {
+        :root { --outter-padding: 2em; }
+    }
+    @media (max-width: 600px) {
+        :root { --outter-padding: 1em; }
+    }
+
+    body {
+        margin: 0;
+        padding: 0;
+        background-color: var(--bg-color);
+        line-height: 28px;
+        font-size: 16px;
+        font-family: 'PingFang SC', 'Source Han Serif SC', 'Microsoft YaHei', 'Noto Sans CJK SC', 'Source Han Sans CN', 'Noto Sans SC', 'sans-serif';
+        text-align: justify;
+    }
+
+    h1 { font-size: 2em; line-height: 1.15em; }
+    h2 { font-size: 1.5em; line-height: 1.1em; }
+    h3 { font-size: 1.5em; line-height: 1.15em; }
+    h4 { line-height: 1em; }
+    h5 { font-size: 0.83em; line-height: 1.4em; }
+    h6 { font-size: 0.67em; line-height: 1.4em; }
+
+    p {
+        margin: 1em 0;
+        padding: 0;
+        overflow-x: auto;
+        /* 在 line-height 小于 1.4x 的时候，p 标签的高度比起内部文本的高度小几个像素，
+        * 导致出现细微滚动，此时按对应的段落滚动时，会阻碍整个页面的滚动。
+        * DIV 标签似乎不会有此问题
+        */
+        overflow-y: hidden; 
+    }
+
+    pre {
+        overflow-x: auto;
+        border-radius: var(--block-border-radius);
+        padding: 18px;
+        letter-spacing: 0;
+    }
+
+    code {
+        border-radius: var(--block-border-radius);
+        padding: 1px 5px;
+        letter-spacing: 0;
+        word-break: break-all;
+    }
+
+    /* 代码 */
+    pre code {
+        background: none!important;
+    }
+
+    pre, code, blockquote {
+        background-color: var(--block-bg-color);
+    }
+
+    blockquote {
+        border-left: 10px solid var(--block-left-border-color);
+
+        border-radius: var(--block-border-radius);
+        background-color: var(--block-bg-color);
+        padding: 0.5em 10px;
+        quotes: "\201C""\201D""\2018""\2019";
+        margin: 10px 0;
+    }
+    blockquote:before {
+        color: var(--block-left-border-color);
+
+        content: open-quote;
+        font-size: 4em;
+        line-height: 0.1em;
+        margin-right: 0.1em;
+        margin-left: -0.3em;
+        vertical-align: -0.4em;
+    }
+
+    figcaption {
+        margin-top: 8px;
+    }
+
+    blockquote, figcaption, li, h1, h2, h3, h4, h5, h6 {
+        text-indent: 0px;
+    }
+
+    table {
+        overflow-x: auto;
+        border-collapse: collapse;
+    }
+    table, table tr th, table tr td {
+        border: 1px solid #bbbbbb;
+    }
+    td {
+        padding: 0 3px;
+    }
+    td p {
+        margin: 0;
+        padding: 0;
+    }
+
+    mdmark { padding: 0 1px; border-radius: 3px; color: #fff; }mdmark.mdm-yellow {
+  background-color: #cbb200bd;
+}mdmark.mdm-red {
+  background-color: #f92a15bd;
+}mdmark.mdm-qianniuzi {
+  background-color: #681752bd;
+}mdmark.mdm-mantianxingzi {
+  background-color: #2e317cbd;
+}
+
+    #mandu-title {
+        padding: 0.5em var(--outter-padding);
+    }
+    #mandu-summary {
+        color: var(--summary-color);
+        font-weight: bold;
+        background-color: #f3f3f3;
+        padding: 1em var(--outter-padding);
+    }
+
+    #mandu-content {
+        padding: 1em var(--outter-padding);
+        font-size: 16px;
+        letter-spacing: 1px;;
+    }
+
+    a {
+        color: #59a4d0;
+        text-decoration: none;
+    }
+
+    img.mandu-emoji {
+        display: inline;
+        line-height: 1rem;
+        height: 1rem;
+        margin: 0;
+    }
+
+    img, video {
+        width: 100%;
+        height: 100%;
+        border: none;
+        padding: 0;
+        margin: 0;
+        max-width: 100%;
+        margin: 15px auto;
+        display: block;
+    }
+
+    figure img {
+        margin: 0 auto;
+    }
+
+    figure {
+        margin: 40px 0;
+        display: block;
+        max-width: 100%;
+        overflow-x: auto;
+    }
+
+    .clearfix:after {
+        content: "";
+        display: block;
+        clear: both;
+    }
+    </style>
+</head>
+<body>
+    <h2 id="mandu-title">文化属性</h2>
+    <summary id="mandu-summary" style="display: block;">
+        <div>本文摘要：</div>
+        1、这篇的内容讲的很浅，照猫画虎，自己走的还是照本宣科的路子。只能作为思考的缘起。
+2、所谓客观规律，就是不以人的意志为转移，就是以时间、地点、条件为转移，这就是别人的成功不可复制的原因。也与格物致知有关系，能否做到实事求是，也即见路不走，格物致知的能力是一个很大的因素，多个角度分辨问题的能力，见缝插针，角度越多、见缝越细，就越可能接近辩证逻辑。
+3、对于强势文化和弱势文化，对该篇说的有不同的理解。符合客观规律的文化是强势文化，这没有问题。但文化是一个多元多要素的东西。
+    </summary>
+    <article id="mandu-content">
+        <div class="RichText ztext Post-RichText"><p><b>神即道：神不存在，所谓的神，是人们理解的不可抗拒的命运，而命运实际上是客观规律。</b></p><p>     公元1046年，范仲淹“庆历新政”改革失败，又因得罪了宰相吕夷简，被贬放河南邓州，在邓州期间，范仲淹写下了《岳阳楼记》。其中的点睛部分莫过于此段：“不以物喜，不以己悲。居庙堂之高则忧其民，处江湖之远则忧其君。是进亦忧，退亦忧。然则何时而乐耶？其必曰：先天下之忧而忧，后天下之乐而乐欤！”。这段话作者需对中国文化十分自信才写的出，而文化自信是强势文化的根本前提，由此拉开了本文关于强势文化和弱势文化的讨论。</p><p>     <mdmark mdm-id="ae7d2cef-24ca-4adf-89e9-1cd1c06f7b3e" class="mdm-mantianxingzi">强势文化是真理真相的文化，是遵循事物规律的文化，是以客观规律为判断准绳的文化。</mdmark>强势文化造就强者，其生存哲学是：能人所不能，忍人所不忍，拼的是比对方多一口气。</p><p>     弱势文化是愚昧无知的文化，是违背事物规律的文化，是以皇天在上为先决条件的文化。弱势文化造就弱者，其生存哲学是：依赖强者的道德，期望破格获取。</p><p>     <mdmark mdm-id="14de097f-fdcc-47f7-8787-14bb39d12af9" class="mdm-mantianxingzi">如果一个人信仰的是无所不在的不以人的意志为转移的客观规律，那么他一定是一个独立自主的适应客观环境的人，也就是一个强者。</mdmark>比如范仲淹的不以物喜不以己悲，一个由强者组成的群体就会形成强势文化，这样的强势文化也必然造就这样的强者。也就是《易经》中的“天行健，君子以自强不息”。</p><p>      我们先来看一张图</p><figure><img src="https://pic3.zhimg.com/v2-fed186f05375466288d117c1bb86a4ee_r.jpg" width="54%" height="61%" class="origin_image zh-lightbox-thumb lazy"></figure><p>    上图是著名的邓宁-克鲁格效应</p><p>    知道自己知道、不知道自己知道属于强势文化范畴。</p><p>    知道自己不知道、不知道自己不知道属于弱势文化范畴。</p><p><b> 1</b></p><p>   客观规律是什么，是不以人的意志为转移，自然就是不人为。而什么是不以人的意志为转移，宏观上来讲，是<mdmark mdm-id="a25f6a9a-14bb-45f4-a272-eaf2b981528f" class="mdm-mantianxingzi">时间、地点、条件</mdmark>，条件包括<mdmark mdm-id="27083b68-b8f3-4c35-aef7-aa4802da084c" class="mdm-mantianxingzi">自然条件和人文条件</mdmark>，人文条件可称为文化属性。自然条件包括地形<mdmark mdm-id="41f104a2-76fa-418c-965a-7e74967577c1" class="mdm-mantianxingzi">地貌、气候、能源、矿产、资源、农业、物产</mdmark>等。人文条件从人文环境产生，却不以人的意志为转移，看似矛盾，实则说明文化属性的特征：群体意识制约，历史传统制约，因而不变；因其不变，称为属性，简单的分类可以分为强势文化和弱势文化。</p><p>     电视剧《天道》第二集，韩楚风所在的正天集团老总裁重病住院，集团总裁一职空缺，两位副总裁对总裁一职虎视眈眈，但是董事会又有人提名他任总裁。韩楚风便问丁元英，这个总裁位置争还是不争，丁元英回答：“不争，让两位副总裁先过去，当两位副总裁斗的两败俱伤的时候，董事会就会知道谁是真正办事的人”。韩楚风反问到：“<mdmark mdm-id="9794bed3-a8be-4d39-81fb-a5503ee76030" class="mdm-mantianxingzi">如果他们不内斗呢?</mdmark>”.丁元英说：“<mdmark mdm-id="c124da3a-a653-4fff-9cc2-9df16d358d57" class="mdm-qianniuzi">这个不由他们，这是文化属性问题，不以他们的意志为转移</mdmark>”。</p><figure><img src="https://pic1.zhimg.com/v2-6d47dfc91b03864eb7343ff00b4f618c_r.jpg" width="55%" height="63%" class="origin_image zh-lightbox-thumb lazy"></figure><p>      不以人的意志为转移看似矛盾，实则说明了文化属性。</p><p>     中国是一个“官本位”的国家，“官本位”文化充斥社会生活的各个角落。有位历史学家说：中国五千年的文明史一不是封建主义，二不是资本主义，三不是社会主义，而是“官僚主义”。说法尽管有失偏颇，但官僚主义在中国确然是无时不在无处不存的。所谓“官本位”，是指<mdmark mdm-id="26de06d3-c7ab-41c4-8ff9-3525ca716ac4" class="mdm-mantianxingzi">这个国家的社会价值观是以“官”来定位的，官大的社会价值高，官小的身价自然小，与官不相干的职业则比照“官”来定位各自的价值</mdmark>。如工程师相当于正科级；教授则相当于正县级……       </p><p>      中国的“官本位”文化起源于秦王朝。王朝的创始人赢政为了削弱地方势力，把权力集中到中央，在全国废除王侯分封制，实行“郡县制”，由皇帝直接任命各级官吏来治理整个国家。自此“官吏”就是权力的象征，权力能够带来财富和地位，因此官吏成为社会最尊贵的阶层。</p><p>       中国最具戏剧性的景象是：平民百姓经常义愤填膺地骂官，可每个人的内心深处都希望成为官场的一员。他们骂官很少是出于正义感或忧国忧民，多半是情绪的喧泄和心理不平衡的表现。这是中国特有的怪现象，<mdmark mdm-id="c8b561ef-4a06-4053-b9b5-5f71d075fc2e" class="mdm-mantianxingzi">骂人者希望成为被骂者</mdmark>，也许只有“官本位”文化才会结出这样的果实。正经女人爱骂妓女，可她们都不希望自己成为妓女。只有“官”才是中国人又骂又恨又爱的角色。你别看某人骂官骂得有根有据头头是道，可如果让他来顶替被骂的官，他会兴奋得大大地跳起高来。</p><p>    《雍正王朝》我想大家也都看过，康熙晚年九子夺嫡，太子立了又废、废了又立，二月河老先生笔下塑造的智囊邬思道先生在胤禛问他皇位争还是不争的时候说到“不争，不争就是争”。皇帝的儿子衣食无忧为什么还反目成仇争的你死我活呢？因为皇位只有一个。皇帝象征上天之子，无上权力。这是文化属性，不以个人意志为转移。</p><p>     埋个伏笔，以后有机会再说，关于传统文化属性的问题。粟裕、林彪同年生人，又都在叶挺的独立团下任职，一个是学员班长，一个是见习排长。但三个人的命运却截然不同。若能参透这一现象说明你已懂得什么是中国传统文化。也不难，你们可以自己百度百科看看他们的官方履历，寿命最长的是粟裕。</p><p>      友情提示：1955年，授衔元帅、将军以“资历、威望、战功”为主要依据。毛泽东有意将粟裕封为元帅，但被粟裕推辞了，但毛泽东认为粟裕“大将”还是要当的，而且须为十大大将之首。粟裕对他的军衔问题看得很淡泊，并称：“评我大将，就是够高的了，要什么元帅呢？我只嫌高，不嫌低。”（来自百度百科）剩下的自己去查阅，悟道休言天命，修行勿取正经，悟到才是自己的。</p><p><b>                                                                   2</b></p><p>       透视社会依次有三个层面：技术、制度和文化。小到一个人，大到一个国家一个民族，任何一种命运，都是那种文化属性的产物。强势文化造就强者，弱势文化造就弱者。这是规律，也可以理解为天道。强势文化在武学里面称之为武林秘籍，弱势文化因为易学、易懂、易用而成为了流行品种。</p><figure><img src="https://pic4.zhimg.com/v2-a05b4dbb35333111fad171c7edddcc47_r.jpg" width="64%" height="73%" class="origin_image zh-lightbox-thumb lazy"></figure><p>       市井文化属于弱势文化，<mdmark mdm-id="5374b4d8-66c5-4868-83b5-74665642c7e5" class="mdm-mantianxingzi">市井文化是一种生活化、自然化、无序化的自然文化</mdmark>。产生于街区小巷、带有商业倾向、通俗浅近、充满变幻而杂乱无章的一种市民文化，它是一种“现象流”——“逝者如斯夫，不舍昼夜。”它<mdmark mdm-id="96c6f276-22ad-4f5f-85b4-9a4bc957a4b1" class="mdm-mantianxingzi">反映着市民真实的日常生活和心态，表现出浅近而表面化的喜怒哀乐</mdmark>。它自由闲散缺乏庄严，缺少深刻性和心灵冲击力，“没有现实与历史的深层次的忧患，更没有血与火的悲剧意识。”他们很少用客观规律去看待事物发展，只注重眼前利益，往窄了说就是小农意识。<br></p><p>     文化产业，文学影视是扒拉灵魂的艺术，如果文学影视的创作能够破解更高思维空间的文化密码，那它的功效就在于<mdmark mdm-id="c04f5fa7-ec71-4532-af54-8572f9ca6b60" class="mdm-mantianxingzi">启迪人的觉悟，震撼人的灵魂，这就是众生所需，就是功德、名利、市场</mdmark>。精神拯救的暴力和毒品麻醉的暴力完全等值，并且没有贩毒那样需要耍花招，没有心理成本也没有法律风险。</p><p>      在原始社会，弱势文化者被屠杀；在奴隶社会，弱势文化者做奴隶；在农业社会，弱势文化者做农民，被课税；在工业社会，弱势文化者失去土地成为工人；在信息时代，弱势文化者不断的被淘汰、失业。综合来看，对弱势文化者来说，农业时代是相对来讲最理想的时代了。那么我们还能不能回到农业时代呢？整个世界重回农业时代是不可能的，在信息时代的世界中处于农业时代的国家，或者在信息时代的中国处于农业时代的省份，都是极度痛苦的。比如处于工业时代的东北，现在叫做悬崖式崩塌，而在农业时代的省份那就完全是被碾压的人生。</p><p>       弱势文化还可以用传统观念里的字—“靠”来体现，在家靠父母，出门靠朋友，靠菩萨、靠皇恩、靠山吃山、靠水吃水......，总之靠什么都行，就是别靠自己。这是一个沉积了几千年的文化属性问题，非几次新文化运动就能开悟。</p><p>     前几年我回老家和一位长辈聊天，无意中谈起咱们县上一届的县委书记，他是去年全国优秀县委书记之一，去年年底被调到省里任职了，长辈最后说，不知道现在的县委书记是不是清官，能不能替老百姓办事，让咱们生活的更好。<br>在渴盼明君和指望清官的一代又一代中，他们一再地让我们失望，甚至绝望。又一再地点燃我们的希望，然后再熄灭。我们却似乎从未想过：除了喊几句皇帝圣明之外，还有什么其他的办法。即便如圣人孔子、亚圣孟子，其政治哲学范式也逃离不掉“好人执政”的理念。我们习惯了这种皇恩浩荡的文化。这是一种最简单、最稳妥的思维：听皇帝的话，接受皇帝的恩。 <br>时代在进步。然而其进步速度，却必须要和我们骨子里根深蒂固、面子上枝繁叶茂的皇恩文化相竞争。孰胜孰败？尚且未知。 </p><p><b>                                                                3</b></p><p>      如果按逻辑来分，强势文化属于辩证逻辑，弱势文化属于形式逻辑。</p><p>     辩证逻辑与形式逻辑两者都是研究思维的，但它们是从不同的侧面以不同的方式进行研究。形式逻辑主要从形式结构上研究思维的形式和规律。它是由<b>固定范畴</b>建立起来的科学体系，是对既成的、凝固的、间断的认识成果进行概括和总结，只是反映客观对象间最普通、最简单的关系。辩证逻辑并不纯粹研究思维的形式结构，而是从形式与内容的有机结合上，从表现在思维形式之中的认识内容、结合人类的认识过程来考察思维形式的联系、运动、发展和转化的规律。所以，辩证逻辑是以<b>流动范畴</b>建立起来的科学体系，是抽象和概括人类认识的发展、变化的连续方面，反映客观对象间的辩证联系，是以概念展开的方式实现其逻辑进程的。</p><p>     我借用一句话加深大家的理解：“女人是形式逻辑的典范，辩证逻辑的障碍”。</p><p>     从历史的角度来看，一个国家，自然科学领域越倾向于形式逻辑，人文社会领域越倾向于辩证逻辑，则这个国家越强大，越倾向于强势文化。就拿中国历史来说，东周春秋战国时各国普遍寻求辩证逻辑的治国理念，道家、法家、阴阳家理论盛行，《道德经》、《战国策》、《孙子兵法》等都是这个时期或反映这个时期的经典理论著作，特别是《道德经》及之前的《易经》是形式逻辑和辩证逻辑结合的最高理论形态。到了秦朝，秦国的农业、冶炼和军事等实现标准化，倾向于形式逻辑，商鞅出来后推行商鞅变法，倾向于辩证逻辑，以客观规律为准绳，军人有战功就可以晋升，平民犯了法严格治罪。后来秦国崛起统一中国。“及至始皇，奋六世之余烈，振长策而御宇内，吞二周而亡诸侯，履至尊而制六合，执敲扑而鞭笞天下，威振四海”。《过秦轮—贾谊》</p><p>     汉朝弃道家崇儒家，罢黜百家独尊儒术，人文政治领域从辩证逻辑过渡到形式逻辑，国力转衰；经隋唐，至明清，儒术发展为理学，佛教又与儒教结合，达到人文领域形式逻辑的巅峰，而自然科学领域则受各种条件制约，在形式逻辑上毫无发展，我们闭关锁国西方工业革命，国力渐次衰亡，清末时几千年封建制度一夕崩塌。</p><p>     从世界来看，古希腊开始，亚里士多德的形式逻辑就处于绝对优势地位，欧洲自然科学缓步发展，但因人文领域缺少辩证逻辑的火种而发展缓慢，在其漫长的奴隶社会和封建社会阶段都与中国差距甚大；到了近代，康德质疑形式逻辑，提出二律背反，发展出康德历史辩证逻辑学；黑格尔吸收康德思想，建立近代辩证逻辑学，即唯心辩证逻辑学；达尔文吸收康德思想，提出物种进化论；马克思吸收黑格尔思想，建立唯物辩证逻辑学，吸收康德思想，建立历史辩证逻辑学。在近代国际政治上，英国人吸收辩证逻辑思想，提出地缘政治学说，其代表为那句著名的“没有永恒的朋友，也没有永恒的敌人，只有永恒的利益”；德国由于哲学基础好，得天独厚，在自然科学领域大力发展形式逻辑，在人文领域大力发展辩证逻辑，成为欧洲大陆第一强国，在崛起过程中与老牌法国、英国争锋，引发一战、二战，但两次战败后又成为欧陆第一强国，运用辩证逻辑学也更为纯熟，通过建立欧盟的政治手段而非军事手段在形式上统一了欧洲；美国在二战后吸纳了不少犹太科学家，他们的辩证逻辑也深得厚黑学真谛，成为世界第一强国。</p><p>      强势文化者基于强大的预测能力和博弈计算，可以在趋势上顺势而为，在关键点上四两拨千斤，从而使胜率最大化、风险最小化。诸葛亮的空城计，不论是文学虚构还是史实都是险局，纵然是神来之笔，也是强势文化中的下乘。而弱势文化者连进入赌局的资格都没有，只能随波逐流而已，只能祈求上天垂怜，这就是救世主逻辑，救世主是弱势文化者的唯一选项，如同上文提到的皇恩文化。</p><p><b>                                                               结语</b></p><p> 任何一个人的命运都是文化属性的产物，出生无法选择，自然环境，人文环境亦无法选择，这是天道。</p><p> 弱势文化所追求低层次的是天上掉馅饼，例如做梦彩票中大奖的人、想一夜暴富的人。而它的最高层次就是破格获取。强盗的本质是破格获取，破格获取和直接获取是两个不同的概念，强盗的逻辑从本质上讲，是最懦弱的生存哲学。他们没有自信和强者在同一规则下公平竞争，这只能说明他们是弱者，而君子爱财取之有道。</p><p>   弱者要想成为强者，非经过蜕变甚至是涅槃方能成功。陈胜吴广在秦朝时属于被压迫阶级，为了蜕变改命，陈胜高喊：“苟富贵，勿相忘”，“燕雀安知鸿鹄之志哉”，“王侯将相宁有种乎？”，三句话流传千古。可结果如何，历史老师让我们做的笔记告诉我们，农民代表不了先进的科学技术生产力。</p><p>     那么对于普通人来说如何生存，我想丁元英对王庙村村民说的话值得借鉴。</p><figure><img src="https://pic4.zhimg.com/v2-78fce3ecffe0d8f3be05bf031459cdbb_r.jpg" class="origin_image zh-lightbox-thumb lazy"></figure><figure><img src="https://pic4.zhimg.com/v2-d7b86431071754882e9ce348f32e6583_r.jpg" class="origin_image zh-lightbox-thumb lazy"></figure><figure><img src="https://pic2.zhimg.com/v2-3377d721b88cc3ccd7af4b354ed97b09_r.jpg" class="origin_image zh-lightbox-thumb lazy"></figure><figure><img src="https://pic4.zhimg.com/v2-d20bf79254a15962021a924c3c7c9aab_r.jpg" class="origin_image zh-lightbox-thumb lazy"></figure><figure><img src="https://pic3.zhimg.com/v2-753a4085e2f69993feda0545525e86b2_r.jpg" class="origin_image zh-lightbox-thumb lazy"></figure><figure><img src="https://pic4.zhimg.com/v2-06fce9e8b87ca38b841a39130f555a0f_r.jpg" class="origin_image zh-lightbox-thumb lazy"></figure><figure><img src="https://pic2.zhimg.com/v2-972e0bf132218ea02a4d94b9d1285e31_r.jpg" class="origin_image zh-lightbox-thumb lazy"></figure></div>
+    </article>
+</body>
+</html>

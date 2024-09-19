@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <style>
+    :root {
+        --text-color:#333;
+        --summary-color: #000;
+        --bg-color: white;
+        --block-bg-color: #c3c3c3;
+        --block-left-border-color: #868686;
+        --block-border-radius: 5px;
+        --outter-padding: 1em;
+    }
+
+    @media (max-width: 1920px) {
+        :root { --outter-padding: 4em; }
+    }
+    @media (max-width: 1200px) {
+        :root { --outter-padding: 3em; }
+    }
+    @media (max-width: 900px) {
+        :root { --outter-padding: 2em; }
+    }
+    @media (max-width: 600px) {
+        :root { --outter-padding: 1em; }
+    }
+
+    body {
+        margin: 0;
+        padding: 0;
+        background-color: var(--bg-color);
+        line-height: 28px;
+        font-size: 16px;
+        font-family: 'PingFang SC', 'Source Han Serif SC', 'Microsoft YaHei', 'Noto Sans CJK SC', 'Source Han Sans CN', 'Noto Sans SC', 'sans-serif';
+        text-align: justify;
+    }
+
+    h1 { font-size: 2em; line-height: 1.15em; }
+    h2 { font-size: 1.5em; line-height: 1.1em; }
+    h3 { font-size: 1.5em; line-height: 1.15em; }
+    h4 { line-height: 1em; }
+    h5 { font-size: 0.83em; line-height: 1.4em; }
+    h6 { font-size: 0.67em; line-height: 1.4em; }
+
+    p {
+        margin: 1em 0;
+        padding: 0;
+        overflow-x: auto;
+        /* 在 line-height 小于 1.4x 的时候，p 标签的高度比起内部文本的高度小几个像素，
+        * 导致出现细微滚动，此时按对应的段落滚动时，会阻碍整个页面的滚动。
+        * DIV 标签似乎不会有此问题
+        */
+        overflow-y: hidden; 
+    }
+
+    pre {
+        overflow-x: auto;
+        border-radius: var(--block-border-radius);
+        padding: 18px;
+        letter-spacing: 0;
+    }
+
+    code {
+        border-radius: var(--block-border-radius);
+        padding: 1px 5px;
+        letter-spacing: 0;
+        word-break: break-all;
+    }
+
+    /* 代码 */
+    pre code {
+        background: none!important;
+    }
+
+    pre, code, blockquote {
+        background-color: var(--block-bg-color);
+    }
+
+    blockquote {
+        border-left: 10px solid var(--block-left-border-color);
+
+        border-radius: var(--block-border-radius);
+        background-color: var(--block-bg-color);
+        padding: 0.5em 10px;
+        quotes: "\201C""\201D""\2018""\2019";
+        margin: 10px 0;
+    }
+    blockquote:before {
+        color: var(--block-left-border-color);
+
+        content: open-quote;
+        font-size: 4em;
+        line-height: 0.1em;
+        margin-right: 0.1em;
+        margin-left: -0.3em;
+        vertical-align: -0.4em;
+    }
+
+    figcaption {
+        margin-top: 8px;
+    }
+
+    blockquote, figcaption, li, h1, h2, h3, h4, h5, h6 {
+        text-indent: 0px;
+    }
+
+    table {
+        overflow-x: auto;
+        border-collapse: collapse;
+    }
+    table, table tr th, table tr td {
+        border: 1px solid #bbbbbb;
+    }
+    td {
+        padding: 0 3px;
+    }
+    td p {
+        margin: 0;
+        padding: 0;
+    }
+
+    mdmark { padding: 0 1px; border-radius: 3px; color: #fff; }mdmark.mdm-yellow {
+  background-color: #cbb200bd;
+}mdmark.mdm-red {
+  background-color: #f92a15bd;
+}mdmark.mdm-qianniuzi {
+  background-color: #681752bd;
+}mdmark.mdm-mantianxingzi {
+  background-color: #2e317cbd;
+}
+
+    #mandu-title {
+        padding: 0.5em var(--outter-padding);
+    }
+    #mandu-summary {
+        color: var(--summary-color);
+        font-weight: bold;
+        background-color: #f3f3f3;
+        padding: 1em var(--outter-padding);
+    }
+
+    #mandu-content {
+        padding: 1em var(--outter-padding);
+        font-size: 16px;
+        letter-spacing: 1px;;
+    }
+
+    a {
+        color: #59a4d0;
+        text-decoration: none;
+    }
+
+    img.mandu-emoji {
+        display: inline;
+        line-height: 1rem;
+        height: 1rem;
+        margin: 0;
+    }
+
+    img, video {
+        width: 100%;
+        height: 100%;
+        border: none;
+        padding: 0;
+        margin: 0;
+        max-width: 100%;
+        margin: 15px auto;
+        display: block;
+    }
+
+    figure img {
+        margin: 0 auto;
+    }
+
+    figure {
+        margin: 40px 0;
+        display: block;
+        max-width: 100%;
+        overflow-x: auto;
+    }
+
+    .clearfix:after {
+        content: "";
+        display: block;
+        clear: both;
+    }
+    </style>
+</head>
+<body>
+    <h2 id="mandu-title"></h2>
+    <summary id="mandu-summary" style="display: block;">
+        <div>本文摘要：</div>
+        1、“道” - 举一反三，触类旁通 其实学习什么科目，都有一个基本的“道”，孙婧妍的这篇文章，实际上讲了这个“道”，以及触及这个“道”的方法及素质。请注意红线的部分，可以提醒你“道”。 其他学科，可以举一反三，触类旁通，相信你的悟性，你会的。
+2、这品文章适合精读！多读几遍：一是复习、二是感悟（为了举一反三，触类旁通），复习多读名著的意思，也在于此，“道”要常常复习！
+3、文章中讲的读书的方法相较具体，但是做起来有些难度。
+    </summary>
+    <article id="mandu-content">
+        <div>
+
+<ul>
+	<li><font>“道” - 举一反三，触类旁通 </font><font>其实学习什么科目，都有一个基本的“道”，孙婧妍的这篇文章，实际上讲了这个“道”，以及触及这个“道”的方法及素质。请注意红线的部分，可以提醒你“道”。 
+		其他学科，可以举一反三，触类旁通，相信你的悟性，你会的。</font></li>
+	<li>
+	<p><font>这品文章适合精读！多读几遍：一是复习、二是感悟（为了举一反三，触类旁通），复习多读名著的意思，也在于此，“道”要常常复习！</font></p>
+	</li>
+</ul>
+
+<table>
+	<tbody><tr>
+		<td></td>
+	</tr>
+</tbody></table>
+<p><span>
+<font>文章</font></span><span><font>来自孙婧妍，13年高考状元，现在清华大学</font></span></p>
+
+<p><span>【<span>A </span>开篇】</span></p>
+
+<p><span>我高考语文考了<span>148</span>分的消息传开后，我发现了一个很奇怪的现象：在所有学弟学妹、亲戚朋友的问话中，被问得最多的问题不是“你是不是很爱读书”，也不是“你是不是很爱写作”，而是，“你是不是做了很多题”。</span></p>
+
+<p><span>听了这样的问题，我很诧异，因为在我心中，</span><b><span><mdmark mdm-id="0ab937e8-041d-4d75-8438-63a7b58c2ad5" class="mdm-mantianxingzi">语文从来是一个有关素养、无关应试的学科</mdmark></span></b><span><mdmark mdm-id="0ab937e8-041d-4d75-8438-63a7b58c2ad5" class="mdm-mantianxingzi">。</mdmark></span></p>
+<p>
+<span>è<span> </span></span>
+<span>也不全面，也得应付考试</span></p>
+<blockquote>
+	<blockquote>
+		<blockquote>
+			<p><span>
+			<font>&nbsp;</font></span><font>【 注】这是一篇揭示语文本质的文章。<b>其所表达的好多观点固然只适合少数精英学生</b>，但是其中的好多观点却是只关注方法的学生应该知道的。<font><mdmark mdm-id="d0afaeff-321d-4cd1-af92-b30d7891e3a7" class="mdm-mantianxingzi">学方法是没有错误的，错误的是只研究方法而忽略语文的本质。</mdmark>本文作者极力排斥方法论是对这部分同学的有力鞭策和提醒，并没有完全否认方法的存在和作用。</font>但是，再好的方法也仅仅是方法，运用方法所需要的积累、能力、思考都需要我们踏实努力。<mdmark mdm-id="fe761eea-d60f-4df9-a2c8-000c9b8df039" class="mdm-mantianxingzi">任何妄图只靠方法的孩子，都该立即醒悟</mdmark></font></p>
+		</blockquote>
+	</blockquote>
+</blockquote>
+
+<p>
+<span>这就要回到开篇的两个问题：读书和写作。我认为一个有素养的学生，应该是会读书、会写作的学生。</span></p>
+
+<p><span>【<span>B </span>关于读书】</span></p>
+<p><span>&nbsp;</span><b><span>阅读，应当是人最早的本能动作之一。</span></b><span>阅读始于识字之初，甚至是识字之前，每个人在孩提时期都有指着街上的广告、商铺招牌一字字认读的经历，这就是阅读的雏形。而随着人渐渐长大，他认字的水平越来越高，已经开始不满足于正确地读出一个字时的成就感，而开始对阅读的内容产生好奇时，他就要开始读书。</span></p>
+
+<p>
+<span>è<span> </span></span>
+<span>所有学生都是读书的，<b>而<mdmark mdm-id="cede7464-c70a-412a-97ba-1da4aaff1c21" class="mdm-mantianxingzi">语文素养的区分，在于读什么、怎么读、能不能坚持</mdmark>。</b></span></p>
+<p>
+<span>è<span> </span></span>
+<b><span>读什么（选）、怎么读（全息、经常（定时））、能不能<u>坚持</u></span></b></p>
+
+<p><span>一个有素养的学生能够区分出一本书的时效。一本言情小说、一本参考书、一本名著，都是人类智力与体力的凝结，去读他们也都可以称为读书。一个有素养的学生应该能够区分出三者的区别：言情小说或许能够给人一时的愉悦，看过以后却什么都不会留在记忆里；参考书对升学固然有用，然而高考后也会迅速地被忘诸脑后；经典名著给人的教育则是永恒的、无法磨灭的，通过阅读名著得来的思考与精神洗礼，很可能将会伴随人的一生。如果能够清楚地分辨这些书籍的时效，那么我相信，每个人都能够做出选择。</span></p>
+
+<p><span>在选择了正确的书后，</span><b><span>阅读方法<span>(</span></span></b><b><span>怎么读<span>)</span></span></b><b><span>就成为了素养的又一标志。</span></b><span>再好的书如果只是利用挤公交的时间哗啦啦翻过去，那么从这本书中汲取的养分必然将会微少得近乎无。至少就我的阅读体验来看，<b><u>一本好书至少值得阅读两到三遍：</u></b>第一遍略读以满足自己的阅读兴趣并了解书的内容与结构，第二遍精读以摘抄、把握整本书的布局以及其中一些巧妙的铺垫与伏笔，如果还能再读一遍，我就会抽时间写一些类似专题研究的心得，比如对整本书思想的一个探讨，或者对书中某种表达的质疑。我认为，只有当你抱着学习的心态去品味、去研究、去思考甚至去质疑书本时，它于你才算得上有意义。</span></p>
+
+<p><span>-</span><span>》 </span>
+<span>除了阅读方法外，读书应当是一件精细而持续的事情。与填鸭般在假日里一天读十本书相比，培养细水长流的读书习惯无疑更为重要。</span><b><u><span><mdmark mdm-id="ee5a1edb-b774-46db-a802-eec99f69ea28" class="mdm-mantianxingzi">读书的目的不在快、不在多，而在于从书中汲取营养，在于通过整个阅读过程修养一颗宁静而富有感知力的心灵。</mdmark></span></u></b><span>我从在小学学会选择正确的书开始，阅读的动作在十年里从来没有一天间断过，我读名著、读国学经典、读诗歌、读历史、读哲学文学的理论、读时事。如果没有纸质书就用电脑、手机，每天短则二十分钟，长则十余个小时。在高考前的那个学期，为了保持语文学科的感觉，每天我至少要抽出一个小时来读书，教室后面的窗台堆满了我带到学校的各类书籍，有时候抽出一本会造成大规模的坍塌，尼采压在泉镜花上，紫式部淹没在赫胥黎、刘勰和纪伯伦里。</span></p>
+
+<p><b><u><span><mdmark mdm-id="55d822a1-ff3c-4342-8ecb-b8463b261113" class="mdm-mantianxingzi">阅读实在是一个太有益的习惯，即使是抱着功利的目的，如果能因此潜下心去读书，也是大大的好事情</mdmark>。</span></u></b><span>读书多了，就会培养出语感。语感一种玄之又玄的东西，你叫一个有语感的人去做卷子，他或许并不能清楚地告诉你那些字词的正确读音与写法，也没法给你讲出来阅读题的答案为什么该是这个，因为他做题目凭借的不是系统的训练与大量题目的积累，他<mdmark mdm-id="e46d981a-8fc7-4a25-83e5-aa7104358562" class="mdm-mantianxingzi">没有那种足以归纳成经验的东西</mdmark>。但是，他一定能做出最正确的答案。</span></p>
+
+<p><b><span>-</span></b><b><span>》</span></b><span>这就是<b>语感</b>。</span><b><span>(</span></b><b><span>既感觉<span>!)</span></span></b></p>
+
+<p><span>为什么说读书能够培养语感呢？这是因为世界上的任何一本经典都是时间沉淀下来的精华，它之中的字词语句都是最为准确、最为质量上乘的。当一个人见多了经典、熟悉了经典中语言的运用方式，他再回过头去做题时，很容易便可在密密麻麻的试卷上找到正确的东西，因为他一直以来都在阅读着那种语言的“正确”。学英文我们讲究读原著，是同样的道理。没有什么比读书更能培养语感，没有什么比语感更能保证分数，这就是阅读最为显性的益处。</span></p>
+
+<blockquote>
+	<blockquote>
+		<p><span><br>【注】中学生如何选择课外读物<br>人为什么要读书？<br>书是知识的载体，读书使人丰富。读什么样的书就会塑造什么样的人。物质层面说，读书可以教会我们一些生存的技能；精神层面说，读书可以丰富我们的精神世界。两者加起来，可以让我们感受生命的美好。<br>你为什么要<mdmark mdm-id="ff147af9-a84f-479a-9639-43460da4e744" class="mdm-qianniuzi">读书</mdmark>？<br>这是一个很值得研究的问题，是一个很个性化的问题。同学们自身的读书动机直接决定了接下来的读书方向和效果。<br>大概的读书动机<br>为了学好语文而读书。这个动机很朦胧，几乎无法推荐什么书。如果不明白语文怎样能学好，只是觉得看书能学好语文，建议先不要看书，先去弄懂语文怎么学能学好。<br>为了读书而读书。大家都说读书好，所以我也来读书。这是凑热闹。人家有动机的来读书，你连动机都没有你想干嘛？这种同志属于有的人活着他已经死了。需要先找高手唤醒自己的生命热情。对未来有渴望有期待的人才会认真读书。<br>为了完成任务而读书。读某本书是老师或者家长布置的作业，为了完成任务不得不读。这样一来读书不仅缺少收获，连最基本的读书乐趣都被杀掉了。为了完成任务而读书，建议还是算了。<br>为了与他人同步而读书。如果是这本书本身不对我们有吸引力，只是为了完成和他人同步，这个也还是算了。别人读什么书我就读什么书的同志缺少自我判断，只是随波逐流，容易陷入混乱的节奏。<br>为了丰富自己而读书。这种读书非常值得鼓励，懂得书籍是人的精神营养。或许自己读书看起来没用，但是随着自己的心灵日渐丰富，我们会逐步显示出读书积累的巨大力量。<br>你的动机只能是为了满足自身发展的需要更好地丰富自己，其他一切非这个动机的读书都容易导致我们丧失读书乐趣。<br>如何面对推荐书目<br>要选择适合自己的书，这是对自己的尊重。无论去做什么，适合自己最重要。我们的社会现实里是缺少对人的尊重的，大家多数尊重现实、尊重物质、尊重权利，但很少真正尊重一个人。这最起码体现在我们是否尊重自己。尊重自己的客观条件，尊重自己的成长规律，根据自身条件选择书籍才是合理的。<br>多数情况下人们尊重了权威和现实，而忘记自己本身的条件，选择了过于深奥艰涩难于读懂（如《易经》、《红楼梦》），或者在当下阶段并不合适接触的书籍（如厚黑学官场小说一类）。这类书并非不可接触，而是在选择过程中要建立起一种自我感知和自我尊重，懂得挑选适合自己的书籍。<br>中学生该读什么样的书<br>这得看中学生这个发展阶段所要实现的目标。同学们也要根据自身成长的需要为自己选择一些适合自己的书。<br>中学的培养目标在于拓宽学生知识面，建立正确的三观，为未来进入大学进行专业的自主学习打下基础。　　某些对我们未来的价值观人生观有深刻影响的书籍，在能力允许的前提下尽可能早接触。可以是纯理论的，也可以是小说类的。　　非常推崇同学们阅读伟人传记和世界名着。前者能够告诉大家许多人生要走的道路，后者能够告诉我们社会万象和应对的方法。此二者都可以帮助我们树立坚定而正确的三观，让我们进入社会之前已经练成了可以坚守的核心。<br>选书 选择健康的书籍<br>这个前提就是健康的书籍。健康的书籍不是指不讲负面内容的书籍，而是引导大家走向真善美的书籍。不健康的书籍往往引导人误入歧途，造就青少年扭曲的价值观和世界观，给学生带来一生的阴影。<br>负面内容可以写，但是优秀的书籍都是通过剖析其中的罪恶，借助真理来引导人们追求真善美的。一本书可以折射作者的人生观价值观，现在网络上有不少书籍价值观扭曲，纯粹靠狗血剧情来满足一部分人的阅读渴望，读多了只令人觉得空虚浮躁。<br>人间本有逆境顺境，但无论外界如何我们都该努力保持积极乐观的心态。<mdmark mdm-id="333d6490-1947-4a0e-ad99-f38b3d51dc1f" class="mdm-mantianxingzi">健康的书籍可以给予我们向上的力量，不健康的书籍则毁灭人向上的精神。</mdmark><br>纯粹的不健康的书籍并非完全不可以看，只是需要各位同学价值观成熟相对坚定的时候再看，那时候看不了几页，同学们自然会嗤之以鼻，可以反向增强自己的正确价值观。</span></p>
+	</blockquote>
+</blockquote>
+
+<p><span>【<span>C </span>关于写作】</span></p>
+<p><span>&nbsp;</span><span>说完阅读，接下来必然是写作。阅读与写作简直是玻璃的两面，无论你看着哪一面，都意味着你也正在凝视另一面。我喜欢写作也擅长写作，所以不管从哪个方面来讲，这个版块我都很有得写。</span></p>
+
+<p><b><span>-</span></b><b><span>》</span></b><span>对于高中写作，也就是以应试为目的的作文，我的建议只有六个字：</span><b><u><span><mdmark mdm-id="ccbf89d2-b447-47fb-bf08-0ce5e69cc399" class="mdm-mantianxingzi">多读、多仿、多写</mdmark></span></u></b><span><mdmark mdm-id="ccbf89d2-b447-47fb-bf08-0ce5e69cc399" class="mdm-mantianxingzi">。</mdmark></span></p>
+
+<p><span>从阅读与写作的关系上来看，读书多的人绝大部分是会写作的人，而一个能写出很好的作品的人更不可能不爱读书。这只因在看了足够数量的文化精品后，哪怕只是东家模仿一点、西家拼凑一点、再加上一点点自己的领悟与润色，最后拿出来的成品，也足以令许多人拍案叫好。</span></p>
+
+<p><span>我写作的一个特点是引用多。高三下学期语文老师的女儿为我们班的期中作文写点评，她数了我<span>54</span>分的作文里引例的数量，有接近二十个，有直接引用也有化用。这些引例都是平时我从阅读中积累下的东西，也就是说在一千一百字的篇幅中我每写五六十个字就会用到我的阅读成果。</span></p>
+
+<p><span>这里我想到一个很有趣的现象，一篇作文里同样是大量引用，有的人的作文会被评价为“丰富”，有的人则是“杂乱”、“堆砌”。为什么？我觉得这是对作文中所引用的内容理解程度的差异造成的。同样的东西，有的人是在阅读中看来、研究并思考过的，有的人是从类似《高中生议论文论点论据大全》中看来的；</span><b><u><span><mdmark mdm-id="3fb0b300-e04e-41f6-b962-d26ec5a70296" class="mdm-mantianxingzi">前者是深入理解，后者则只得了个皮毛</mdmark></span></u></b><b><u><span><mdmark mdm-id="3fb0b300-e04e-41f6-b962-d26ec5a70296" class="mdm-mantianxingzi">。</mdmark></span></u></b></p>
+<p><b><span>-</span></b><b><span><mdmark mdm-id="975eed82-f5b5-45d9-8ece-a333a24eb7cf" class="mdm-mantianxingzi">》文以载道，文章不是炫耀，而是为了表达</mdmark></span></b><b><u><span><mdmark mdm-id="975eed82-f5b5-45d9-8ece-a333a24eb7cf" class="mdm-mantianxingzi">“</mdmark></span></u></b><b><u><span><mdmark mdm-id="975eed82-f5b5-45d9-8ece-a333a24eb7cf" class="mdm-mantianxingzi">思想</mdmark></span></u></b><b><u><span><mdmark mdm-id="975eed82-f5b5-45d9-8ece-a333a24eb7cf" class="mdm-mantianxingzi">”</mdmark></span></u></b></p>
+
+<p><span>比方说，同样引用尼采，有的人写“尼采，这个伟大的哲学家教会我一种高贵的精神”；而有的人直接引用他的作品《苏鲁支语录（查拉图斯特拉如是说）》写道：“‘太阳！若无你所照耀之物，你的光辉为何？’，由是开始了苏鲁支的堕落，亦开始了尼采在这世间无止境的追求。他像苏鲁支一样为世界奉献着他的热爱与智慧，也像苏鲁支一样不断经受着世俗的冷笑与中伤。尼采，这个‘疯子’、这个智者，从来没有放弃，也没有停止过他的追寻。”</span></p>
+
+<p><span>孰优孰劣，不言而喻。</span></p>
+
+<p><span>阅读对于写作而言还有一个好处，那就是提供模仿的条件。</span></p>
+
+<p><b><span>我最早开始写东西，正是始于阅读中的模仿，不管是何种作家，只要我觉得好，我就会按他的风格仿写</span></b><span>。小学时我就开始有意识地在我的作文中学习一些冰心儿童文学奖获奖者的风格，后来读的书更多也更杂，我能记起来自己模仿过的作家有鲁迅、夏目漱石、郭敬明、村上春树、钱钟书、杜拉斯、三毛……还有一些恐怕是忘记了。我还自己写古典诗词，甚至模仿司马迁为自己写了一篇文言文小传，可惜没能保留下来。</span></p>
+
+<p><span>在模仿这些个性鲜明的作家的过程中，<b>我慢慢开始有了自己的风格。</b>我是怎么发现这一点的呢？这得归功于我的癖好，那就是写了点什么就想给人看。以前看过我写的东西，大家看完后会说“这次是模仿<span>XX</span>的吧”，后来，他们的评价逐渐转向了文字本身，直到某天我惊觉已经很长一段时间没有人对我说过我是在模仿某某作家。最后，一本文集里如果有我的作品，大家会说“一看就是孙婧妍写的”；我的作文混在一堆作文中装订起来，老师会知道那是我；我在网上发些文章，评论里会有很多说我写的东西有风格。</span></p>
+
+<p><span>到这时我就知道，这是我写作的第二个阶段了，我在<b>从模仿走向创作</b>。</span></p>
+
+<p><b><span>-</span></b><b><span>》</span></b><b><u><span><mdmark mdm-id="2dccb25b-87ea-4be6-95d4-c194782dcf34" class="mdm-mantianxingzi">写东西写得好，与其说是天赋，倒不如说是熟能生巧，就像做饭、洗衣服、开车一样</mdmark>。</span></u></b><span>我现在写文章很少构思或查证，笔到文来，半小时之内在电脑上完成千来字的短文对今天的我来说根本不叫事。但这背后呢，是我从初中起每天不间断的练笔。初一是每天当作业似的逼出三五百字，到后来越来越喜欢，课间也写、午休也写、回宿舍也写、上课都趁老师不注意偷偷写，每天能写一两千字，假期还能翻好几倍。这些练笔大多没有特定内容，写完了我也不回看，大部分都直接进了垃圾桶，就是为了保持一个手感。越来越多的人找我写东西，给网站啊、给学生办的杂志啊、给校刊啊，我很少拒绝，因为反正写什么我都喜欢。</span></p>
+</div>
+    </article>
+</body>
+</html>

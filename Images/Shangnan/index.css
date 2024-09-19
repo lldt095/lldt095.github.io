@@ -1,0 +1,65 @@
+﻿body {
+  color: #555555;
+}
+
+table.index_table
+{
+  border-collapse: collapse;
+  width: 888px;
+}
+
+td.index_table_cell
+{
+  width: 34%;
+  vertical-align: top;
+  padding: 3px;
+}
+
+td.index_subcat_table_cell
+{
+  vertical-align: top;
+  padding: 3px;
+}
+
+a:link {color: #555555;}
+
+a:visited {color: #555555;}
+
+a:active {color: #FFCE59;}
+
+.gallerytitle {
+  font-family: Arial;
+  font-size: 18pt;
+}
+
+.thumbnailtitle {
+  font-family: Arial;
+  font-size: 8pt;
+}
+
+.thumbnail {
+  margin-bottom: 0px;
+  text-align: center;
+}
+
+.thumbnail_title {
+
+  text-align: center;
+}
+
+.navigationtext {
+  font-family: Arial;
+  font-size: 8pt;
+  font-weight: bold;
+}
+
+.navigationdisabledtext {
+  font-family: Arial;
+  font-size: 8pt;
+  font-weight: bold;
+  color: #CCCCCC;
+}
+
+.indexquicklist {
+  font-size: 8pt;
+}

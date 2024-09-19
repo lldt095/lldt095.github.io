@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>一页纸唤醒学习力</title>
+    <style>
+    :root {
+        --text-color:#333;
+        --summary-color: #000;
+        --bg-color: white;
+        --block-bg-color: #c3c3c3;
+        --block-left-border-color: #868686;
+        --block-border-radius: 5px;
+        --outter-padding: 1em;
+    }
+
+    @media (max-width: 1920px) {
+        :root { --outter-padding: 4em; }
+    }
+    @media (max-width: 1200px) {
+        :root { --outter-padding: 3em; }
+    }
+    @media (max-width: 900px) {
+        :root { --outter-padding: 2em; }
+    }
+    @media (max-width: 600px) {
+        :root { --outter-padding: 1em; }
+    }
+
+    body {
+        margin: 0;
+        padding: 0;
+        background-color: var(--bg-color);
+        line-height: 28px;
+        font-size: 16px;
+        font-family: 'PingFang SC', 'Source Han Serif SC', 'Microsoft YaHei', 'Noto Sans CJK SC', 'Source Han Sans CN', 'Noto Sans SC', 'sans-serif';
+        text-align: justify;
+    }
+
+    h1 { font-size: 2em; line-height: 1.15em; }
+    h2 { font-size: 1.5em; line-height: 1.1em; }
+    h3 { font-size: 1.5em; line-height: 1.15em; }
+    h4 { line-height: 1em; }
+    h5 { font-size: 0.83em; line-height: 1.4em; }
+    h6 { font-size: 0.67em; line-height: 1.4em; }
+
+    p {
+        margin: 1em 0;
+        padding: 0;
+        overflow-x: auto;
+        /* 在 line-height 小于 1.4x 的时候，p 标签的高度比起内部文本的高度小几个像素，
+        * 导致出现细微滚动，此时按对应的段落滚动时，会阻碍整个页面的滚动。
+        * DIV 标签似乎不会有此问题
+        */
+        overflow-y: hidden; 
+    }
+
+    pre {
+        overflow-x: auto;
+        border-radius: var(--block-border-radius);
+        padding: 18px;
+        letter-spacing: 0;
+    }
+
+    code {
+        border-radius: var(--block-border-radius);
+        padding: 1px 5px;
+        letter-spacing: 0;
+        word-break: break-all;
+    }
+
+    /* 代码 */
+    pre code {
+        background: none!important;
+    }
+
+    pre, code, blockquote {
+        background-color: var(--block-bg-color);
+    }
+
+    blockquote {
+        border-left: 10px solid var(--block-left-border-color);
+
+        border-radius: var(--block-border-radius);
+        background-color: var(--block-bg-color);
+        padding: 0.5em 10px;
+        quotes: "\201C""\201D""\2018""\2019";
+        margin: 10px 0;
+    }
+    blockquote:before {
+        color: var(--block-left-border-color);
+
+        content: open-quote;
+        font-size: 4em;
+        line-height: 0.1em;
+        margin-right: 0.1em;
+        margin-left: -0.3em;
+        vertical-align: -0.4em;
+    }
+
+    figcaption {
+        margin-top: 8px;
+    }
+
+    blockquote, figcaption, li, h1, h2, h3, h4, h5, h6 {
+        text-indent: 0px;
+    }
+
+    table {
+        overflow-x: auto;
+        border-collapse: collapse;
+    }
+    table, table tr th, table tr td {
+        border: 1px solid #bbbbbb;
+    }
+    td {
+        padding: 0 3px;
+    }
+    td p {
+        margin: 0;
+        padding: 0;
+    }
+
+    mdmark { padding: 0 1px; border-radius: 3px; color: #fff; }mdmark.mdm-yellow {
+  background-color: #7a6d0aff;
+}mdmark.mdm-red {
+  background-color: #c9210eff;
+}mdmark.mdm-qianniuzi {
+  background-color: #8b2b72ff;
+}mdmark.mdm-mantianxingzi {
+  background-color: #464aa6ff;
+}
+
+    #mandu-title {
+        padding: 0.5em var(--outter-padding);
+    }
+    #mandu-summary {
+        color: var(--summary-color);
+        font-weight: bold;
+        background-color: #f3f3f3;
+        padding: 1em var(--outter-padding);
+    }
+
+    #mandu-content {
+        padding: 1em var(--outter-padding);
+        font-size: 16px;
+        letter-spacing: 1px;;
+    }
+
+    a {
+        color: #59a4d0;
+        text-decoration: none;
+    }
+
+    img.mandu-emoji {
+        display: inline;
+        line-height: 1rem;
+        height: 1rem;
+        margin: 0;
+    }
+
+    img, video {
+        width: 100%;
+        height: 100%;
+        border: none;
+        padding: 0;
+        margin: 0;
+        max-width: 100%;
+        margin: 15px auto;
+        display: block;
+    }
+
+    figure img {
+        margin: 0 auto;
+    }
+
+    figure {
+        margin: 40px 0;
+        display: block;
+        max-width: 100%;
+        overflow-x: auto;
+    }
+
+    .clearfix:after {
+        content: "";
+        display: block;
+        clear: both;
+    }
+    </style>
+</head>
+<body>
+    <h2 id="mandu-title">一页纸唤醒学习力</h2>
+    <summary id="mandu-summary" style="display: none;">
+        <div>本文摘要：</div>
+        
+    </summary>
+    <article id="mandu-content">
+        <p class="MsoNormal"><a name="43-1720622381494"></a><b><span>第一节 开启思维可视化的新视角</span></b><a name="90-1720622381594"></a><a name="04-1720622381495"></a><span lang="EN-US"><o:p></o:p></span></p>
+
+<p class="MsoNormal"><span lang="EN-US">&nbsp;¶</span><span>可以承载意义且能被人所感知的一切信息载体<a name="02-1720622381595"></a><a name="50-1720622381496"></a><a name="85-1720622381595"></a><a name="29-1720622381498"></a><span lang="EN-US"><o:p></o:p></span></span></p>
+
+<p class="MsoNormal"><span lang="EN-US">&nbsp;¶</span><span>符号必须能被我们的感受器所感知，如果感知不到，符号也就无法被解读。<a name="03-1720622381595"></a><a name="83-1720622381498"></a><a name="74-1720622381595"></a><a name="58-1720622381499"></a><span lang="EN-US"><o:p></o:p></span></span></p>
+
+<p class="MsoNormal"><span lang="EN-US">&nbsp;¶</span><span>每构建一个符号，就要让它尽可能精准地表达我们的想法。<a name="92-1720622381595"></a><a name="71-1720622381500"></a><a name="12-1720622381595"></a><a name="49-1720622381500"></a><span lang="EN-US"><o:p></o:p></span></span></p>
+
+<p class="MsoNormal"><b><span>第二节
+笔记的构建过程</span></b><a name="17-1720622381595"></a><a name="71-1720622381501"></a><span lang="EN-US"><o:p></o:p></span></p>
+
+<p class="MsoNormal"><span lang="EN-US">&nbsp;¶</span><span>表象不只是<span lang="EN-US">“</span>图像感<span lang="EN-US">”</span>。表象主要是我们的五种感官感受（简称<span lang="EN-US">“</span>五感<span lang="EN-US">”</span>）在头脑中的反映，它可以是视觉、听觉、嗅觉、触觉、味觉，也可能是这些感觉综合而成的认知感受。<a name="13-1720622381595"></a><a name="58-1720622381502"></a><a name="68-1720622381595"></a><a name="28-1720622381502"></a><span lang="EN-US"><o:p></o:p></span></span></p>
+
+<p class="MsoNormal"><span lang="EN-US">&nbsp;¶</span><span>有一些符号不能让我们产生表象<a name="05-1720622381595"></a><a name="66-1720622381503"></a><a name="86-1720622381595"></a><a name="00-1720622381505"></a><span lang="EN-US"><o:p></o:p></span></span></p>
+
+<p class="MsoNormal"><span lang="EN-US">&nbsp;¶</span><span>暗喻成物品，与情景关联，让头脑产生大量表象<a name="00-1720622381595"></a><a name="02-1720622381505"></a><a name="88-1720622381595"></a><a name="70-1720622381506"></a><span lang="EN-US"><o:p></o:p></span></span></p>
+
+<p class="MsoNormal"><span lang="EN-US">&nbsp;¶</span><span>不管如何抽象，它们都是我们对世界万物的认知。它们的本质都离不开由<span lang="EN-US">“</span>五感<span lang="EN-US">”</span>组合而成的表象。<a name="64-1720622381596"></a><a name="96-1720622381506"></a><a name="90-1720622381596"></a><a name="99-1720622381508"></a><span lang="EN-US"><o:p></o:p></span></span></p>
+
+<p class="MsoNormal"><span lang="EN-US">&nbsp;¶</span><span>希望尽量用更少的内容把意义表达清楚。<a name="74-1720622381596"></a><a name="35-1720622381508"></a><a name="42-1720622381596"></a><a name="61-1720622381508"></a><span lang="EN-US"><o:p></o:p></span></span></p>
+
+<p class="MsoNormal"><span lang="EN-US">&nbsp;¶</span><span>面对不同的人群或环境，构建笔记的形式也就不一样。<a name="29-1720622381596"></a><a name="34-1720622381509"></a><a name="77-1720622381510"></a><span lang="EN-US"><o:p></o:p></span></span></p>
+
+<p class="MsoNormal"><span lang="EN-US">&nbsp;¶</span><span>组块、顺序、关系。<a name="99-1720622381596"></a><a name="41-1720622381511"></a><a name="86-1720622381596"></a><a name="60-1720622381511"></a><span lang="EN-US"><o:p></o:p></span></span></p>
+
+<p class="MsoNormal"><span lang="EN-US">&nbsp;¶</span><span>任何笔记阅读的方法：找组块，找阅读顺序，找关系<a name="22-1720622381596"></a><a name="69-1720622381513"></a><a name="71-1720622381596"></a><a name="49-1720622381513"></a><span lang="EN-US"><o:p></o:p></span></span></p>
+
+<p class="MsoNormal"><b><span>第三节
+视觉符号的解读</span></b><a name="19-1720622381596"></a><a name="82-1720622381513"></a><span lang="EN-US"><o:p></o:p></span></p>
+
+<p class="MsoNormal"><span lang="EN-US">&nbsp;¶</span><span>掌握了用筷子吃饭，吃饭的时候根本不再需要考虑筷子怎样用；熟练开车之后，根本不再需要考虑方向盘、离合、刹车、油门如何配合使用。<a name="09-1720622381596"></a><a name="37-1720622381514"></a><a name="87-1720622381596"></a><a name="46-1720622381515"></a><span lang="EN-US"><o:p></o:p></span></span></p>
+
+<p class="MsoNormal"><span lang="EN-US">&nbsp;¶“</span><span>脑补<span lang="EN-US">”</span>现象常常被我们所运用。我们会根据已有的经验将看到的符号意义<span lang="EN-US">“</span>脑补<span lang="EN-US">”</span>完整（即使符号并没有完整论述经验）。<a name="46-1720622381597"></a><a name="28-1720622381515"></a><a name="89-1720622381515"></a><span lang="EN-US"><o:p></o:p></span></span></p>
+
+<p class="MsoNormal"><span lang="EN-US">&nbsp;¶</span><span>真正阅读快而高效的人，是通过<span lang="EN-US">“</span>脑补<span lang="EN-US">”</span>阅读。<a name="20-1720622381597"></a><a name="22-1720622381516"></a><a name="83-1720622381597"></a><a name="16-1720622381516"></a><span lang="EN-US"><o:p></o:p></span></span></p>
+
+<p class="MsoNormal"><span lang="EN-US">&nbsp;¶</span><span>阅读者已有的认知程度对阅读速度才是最大的影响因素，因为那些看几句话就可以理解几页纸的意思的人靠的不是眼部肌肉发达。<a name="89-1720622381517"></a><a name="67-1720622381597"></a><a name="71-1720622381517"></a><span lang="EN-US"><o:p></o:p></span></span></p>
+
+<p class="MsoNormal"><span lang="EN-US">&nbsp;¶</span><span>能让我们在具有同等经验的条件下进行高效的沟通交流<a name="90-1720622381597"></a><a name="96-1720622381517"></a><a name="76-1720622381597"></a><a name="21-1720622381518"></a><span lang="EN-US"><o:p></o:p></span></span></p>
+
+<p class="MsoNormal"><span lang="EN-US">&nbsp;¶</span><span>脑补<span lang="EN-US">”</span>的前提是你已经有这样的经验，否则也不能还原出视觉符号本来的意义。这就是为什么我们在对不同人表达的时候需要考虑到内容难易和详略的原因了。<a name="09-1720622381597"></a><a name="04-1720622381518"></a><a name="12-1720622381597"></a><span lang="EN-US"><o:p></o:p></span></span></p>
+
+<p class="MsoNormal"><span lang="EN-US">&nbsp;¶</span><span>用<span lang="EN-US">“</span>脑补<span lang="EN-US">”</span>解读视觉符号比起完整的信息阅读会让解读者感觉更加轻松、舒适。这就是为什么我们在理解的前提下，更喜欢阅读关键词而不喜欢读一段长文字的原因了。<a name="65-1720622381597"></a><a name="00-1720622381520"></a><a name="04-1720622381597"></a><a name="08-1720622381520"></a><span lang="EN-US"><o:p></o:p></span></span></p>
+
+<p class="MsoNormal"><b><span>第一节
+颜色的意义</span></b><a name="95-1720622381521"></a><span lang="EN-US"><o:p></o:p></span></p>
+
+<p class="MsoNormal"><span lang="EN-US">&nbsp;¶</span><span>颜色可以传达<span lang="EN-US">“</span>分离<span lang="EN-US">”</span>与<span lang="EN-US">“</span>一体<span lang="EN-US">”</span>的意义，什么颜色、颜色深浅等可以表达差异的程度。<a name="82-1720622381597"></a><a name="70-1720622381521"></a><a name="26-1720622381597"></a><a name="52-1720622381521"></a><span lang="EN-US"><o:p></o:p></span></span></p>
+
+<p class="MsoNormal"><span lang="EN-US">&nbsp;¶</span><span>生物通过控制颜色的不同或相同（相近），让物品与背景产生异同，表达出<span lang="EN-US">“</span>分离<span lang="EN-US">”</span>与<span lang="EN-US">“</span>一体<span lang="EN-US">”</span>的意义。人的大脑对这种意义的理解是直接的，是人类多年进化的结果，完全不需要思考就可以理解。<a name="01-1720622381597"></a><a name="60-1720622381522"></a><a name="48-1720622381597"></a><a name="76-1720622381522"></a><span lang="EN-US"><o:p></o:p></span></span></p>
+
+<p class="MsoNormal"><b><span>第二节
+文字和图像的意义</span></b><a name="95-1720622381597"></a><a name="29-1720622381523"></a><span lang="EN-US"><o:p></o:p></span></p>
+
+<p class="MsoNormal"><span lang="EN-US">&nbsp;¶</span><span>首先解读者用视觉感知到文字，然后通过原有的学习经验，找到文字相应的意义，之后再形成表象</span><a name="05-1720622381597"></a><a name="71-1720622381523"></a><span lang="EN-US">2024-07-07</span><a name="77-1720622381597"></a><a name="52-1720622381524"></a><span lang="EN-US"><o:p></o:p></span></p>
+
+<p class="MsoNormal"><span lang="EN-US">&nbsp;¶</span><span>表象的形成来源于我们视觉为主的<span lang="EN-US">“</span>五感<span lang="EN-US">”</span>的综合感受。而文字给我们带来的<span lang="EN-US">“</span>五感<span lang="EN-US">”</span>与文字意义带来的<span lang="EN-US">“</span>五感<span lang="EN-US">”</span>相差甚远。而且这个是线性解码的过程，需要花更多的时间并消耗大脑能量去思考，甚至还需要有足够的文字理解能力（知识经验）。</span><a name="77-1720622381598"></a><a name="27-1720622381525"></a><span lang="EN-US">2024-07-07<a name="01-1720622381598"></a><a name="23-1720622381525"></a><o:p></o:p></span></p>
+
+<p class="MsoNormal"><b><span>第三章
+系统思维与系统模型构建</span></b><a name="70-1720622381598"></a><a name="83-1720622381525"></a><span lang="EN-US"><o:p></o:p></span></p>
+
+<p class="MsoNormal"><span lang="EN-US">&nbsp;¶</span><span>能被我们所感知到的事物少之又少<a name="64-1720622381598"></a><a name="30-1720622381525"></a><a name="24-1720622381598"></a><a name="67-1720622381526"></a><span lang="EN-US"><o:p></o:p></span></span></p>
+
+<p class="MsoNormal"><b><span>第一节
+系统的本质</span></b><a name="94-1720622381598"></a><a name="37-1720622381526"></a><span lang="EN-US"><o:p></o:p></span></p>
+
+<p class="MsoNormal"><span lang="EN-US">&nbsp;¶“</span><span>归纳<span lang="EN-US">”“</span>概括<span lang="EN-US">”“</span>总结<span lang="EN-US">”“</span>结构化<span lang="EN-US">”“</span>合并同类项<span lang="EN-US">”“</span>总分<span lang="EN-US">”</span>等（强调的是分类方式和过程）<a name="91-1720622381598"></a><a name="47-1720622381527"></a><a name="72-1720622381598"></a><a name="30-1720622381527"></a><span lang="EN-US"><o:p></o:p></span></span></p>
+
+<p class="MsoNormal"><span lang="EN-US">&nbsp;¶</span><span>我们依靠分类和分层的方式感知宇宙<a name="33-1720622381598"></a><a name="49-1720622381527"></a><a name="39-1720622381598"></a><a name="38-1720622381527"></a><span lang="EN-US"><o:p></o:p></span></span></p>
+
+<p class="MsoNormal"><b><span>第二节
+系统模型的构建与简化</span></b><a name="44-1720622381598"></a><a name="87-1720622381528"></a><span lang="EN-US"><o:p></o:p></span></p>
+
+<p class="MsoNormal"><span lang="EN-US">&nbsp;¶</span><span>只有分类达到相互独立、完全穷尽这两个要求，逐层分类才能为有效还原、简化复杂系统<a name="25-1720622381598"></a><a name="23-1720622381528"></a><a name="88-1720622381598"></a><a name="76-1720622381528"></a><span lang="EN-US"><o:p></o:p></span></span></p>
+
+<p class="MsoNormal"><span lang="EN-US">&nbsp;¶</span><span>要用笔记表达正确的意义，前提是我们有正确的思维，否则笔记就会出现只是自己觉得正确，别人却看不懂的尴尬局面了。<a name="90-1720622381598"></a><a name="27-1720622381529"></a><a name="78-1720622381598"></a><a name="18-1720622381529"></a><span lang="EN-US"><o:p></o:p></span></span></p>
+
+<p class="MsoNormal"><b><span>第三节
+系统思维</span></b><a name="67-1720622381598"></a><a name="01-1720622381529"></a><span lang="EN-US"><o:p></o:p></span></p>
+
+<p class="MsoNormal"><span lang="EN-US">&nbsp;¶</span><span>我们做的每一件事，都可以看作是在与系统打交道。<a name="29-1720622381598"></a><a name="32-1720622381530"></a><a name="38-1720622381598"></a><a name="96-1720622381530"></a><span lang="EN-US"><o:p></o:p></span></span></p>
+
+<p class="MsoNormal"><span lang="EN-US">&nbsp;¶</span><span>我们往往对那些极其熟悉的事物会用系统思维的方式思考，而当面对新问题的时候，我们却忘记系统思维这一回事了<a name="51-1720622381599"></a><a name="03-1720622381530"></a><a name="38-1720622381599"></a><a name="68-1720622381531"></a><span lang="EN-US"><o:p></o:p></span></span></p>
+
+<p class="MsoNormal"><span lang="EN-US">&nbsp;¶</span><span>系统思维不仅是思考的方式，更是一种信念。<a name="72-1720622381531"></a><a name="94-1720622381599"></a><a name="91-1720622381531"></a><span lang="EN-US"><o:p></o:p></span></span></p>
+
+<p class="MsoNormal"><span lang="EN-US">&nbsp;¶</span><span>你必须坚信面对复杂的系统，我们应该通过分类解决，于是在困难面前要学会分类思考；你必须坚信系统是极其复杂的，蕴含着未知的可能，于是有了创新；你必须坚信系统的复杂性，你面前遇到的困难一定可以在复杂系统中找到答案；你必须坚信系统只是一个人为的分类，跳出这个分类依然可能解决问题，于是跨界成为可能。<a name="32-1720622381599"></a><a name="87-1720622381532"></a><a name="01-1720622381599"></a><a name="73-1720622381532"></a><span lang="EN-US"><o:p></o:p></span></span></p>
+
+<p class="MsoNormal"><span lang="EN-US">&nbsp;¶</span><span>凡事往好的方面想，相信任何问题都是可以解决的。只有你觉得可能解决问题才有行动的可能，才有探索系统规律的可能。<a name="71-1720622381532"></a><a name="89-1720622381599"></a><a name="65-1720622381533"></a><span lang="EN-US"><o:p></o:p></span></span></p>
+
+<p class="MsoNormal"><span lang="EN-US">&nbsp;¶</span><span>当问题出现时很多人一下子就放弃了，实际上，问题不是不能解决，而是暂时找不到方法解决。<a name="61-1720622381533"></a><a name="92-1720622381533"></a><span lang="EN-US"><o:p></o:p></span></span></p>
+
+<p class="MsoNormal"><b><span>第二节
+思维导图逻辑原则</span></b><a name="26-1720622381599"></a><a name="86-1720622381534"></a><span lang="EN-US"><o:p></o:p></span></p>
+
+<p class="MsoNormal"><span lang="EN-US">&nbsp;¶</span><span>思维导图是系统的简化形式，如果我们关注的复杂部分正是我们需要的，那我们还是需要保留其复杂关系，以便更好地分析系统。<a name="67-1720622381599"></a><a name="46-1720622381534"></a><a name="03-1720622381599"></a><a name="17-1720622381535"></a><span lang="EN-US"><o:p></o:p></span></span></p>
+
+<p class="MsoNormal"><span lang="EN-US">&nbsp;¶</span><span>不同的需求有不同的表达方式，并不是说必须要用某种形式的笔记表达，而是理解视觉符号的原理，构建最清晰、最合适的笔记形式。<a name="27-1720622381599"></a><a name="05-1720622381535"></a><a name="30-1720622381599"></a><a name="00-1720622381535"></a><span lang="EN-US"><o:p></o:p></span></span></p>
+
+<p class="MsoNormal"><span lang="EN-US">&nbsp;¶</span><span>当你逻辑清晰的时候，基本可以做到独立与穷尽。如果不能穷尽，那很可能是你对内容的理解有所缺失。<a name="08-1720622381599"></a><a name="76-1720622381535"></a><a name="74-1720622381599"></a><a name="98-1720622381536"></a><span lang="EN-US"><o:p></o:p></span></span></p>
+
+<p class="MsoNormal"><span lang="EN-US">&nbsp;¶</span><span>很多时候不是我们不想做到独立与穷尽，而是我们没有足够的经验去做到独立与穷尽。这时，花再多的时间去研究独立与穷尽只会徒劳，只有了解系统才是解决问题的根本。<a name="83-1720622381599"></a><a name="49-1720622381536"></a><a name="62-1720622381599"></a><a name="59-1720622381537"></a><span lang="EN-US"><o:p></o:p></span></span></p>
+
+<p class="MsoNormal"><span lang="EN-US">&nbsp;¶</span><span>但是导图的规则是保证简化结果有效的重要前提，不是随便把内容写在分支上就完成了思维导图。所以在使用思维导图的时候，必须按照上面的原则执行。<a name="19-1720622381599"></a><a name="17-1720622381537"></a><a name="48-1720622381599"></a><a name="12-1720622381537"></a><span lang="EN-US"><o:p></o:p></span></span></p>
+
+<p class="MsoNormal"><span lang="EN-US">&nbsp;¶</span><span>为什么思维导图对原信息大量删减简化，我们还能读懂它们的意思呢？为什么我们阅读思维导图的时候，会有清晰、好懂体验呢？因为我们是通过<span lang="EN-US">“</span>脑补<span lang="EN-US">”</span>理解那些被简化掉的信息的，它是大脑自动进行的过程。<a name="25-1720622381600"></a><a name="99-1720622381538"></a><a name="02-1720622381600"></a><a name="88-1720622381538"></a><span lang="EN-US"><o:p></o:p></span></span></p>
+
+<p class="MsoNormal"><span lang="EN-US">&nbsp;¶</span><span>用最少的信息理解最多的意义，是十分高效的思考过程，也是大脑喜欢的信息处理方式。<a name="89-1720622381600"></a><a name="05-1720622381538"></a><a name="96-1720622381600"></a><a name="37-1720622381539"></a><span lang="EN-US"><o:p></o:p></span></span></p>
+
+<p class="MsoNormal"><span lang="EN-US">&nbsp;¶</span><span>对于思维导图的构建者而言，简化复杂的信息能够帮助他深入理解信息的意义。凌乱无规则的信息通过大脑思考之后，形成有序、有规则的思维导图。大脑在这个过程中必须不断理解、重构信息，进行深入思考。所以自己整理出来的思维导图，永远比看其他人的导图理解要深刻，记忆要持久。<a name="92-1720622381539"></a><a name="79-1720622381540"></a><span lang="EN-US"><o:p></o:p></span></span></p>
+
+<p class="MsoNormal"><span lang="EN-US">&nbsp;¶</span><span>当大脑缺乏相应经验的时候，<span lang="EN-US">“</span>脑补<span lang="EN-US">”</span>可能就失效了，这时，可能只有思维导图的构建者才能读得懂了。<a name="51-1720622381600"></a><a name="34-1720622381540"></a><a name="94-1720622381540"></a><span lang="EN-US"><o:p></o:p></span></span></p>
+
+<p class="MsoNormal"><span lang="EN-US">&nbsp;¶</span><span>不同场景、不同读者面前，需要调整思维导图详细程度，或者添加文字（下图）、注释对导图内容补充，让读者能够更好地理解。<a name="76-1720622381600"></a><a name="45-1720622381541"></a><a name="55-1720622381600"></a><a name="24-1720622381541"></a><span lang="EN-US"><o:p></o:p></span></span></p>
+
+<p class="MsoNormal"><span lang="EN-US">&nbsp;¶</span><span>如果你追求精准性，那么用纯文字笔记来表述是最佳的选择。<a name="12-1720622381600"></a><a name="01-1720622381541"></a><a name="80-1720622381600"></a><a name="13-1720622381542"></a><span lang="EN-US"><o:p></o:p></span></span></p>
+
+<p class="MsoNormal"><b><span>第三节
+思维导图学习法</span></b><a name="24-1720622381600"></a><a name="65-1720622381542"></a><span lang="EN-US"><o:p></o:p></span></p>
+
+<p class="MsoNormal"><span lang="EN-US">&nbsp;¶</span><span>用思维导图把书中的知识梳理之后，你会有<span lang="EN-US">“</span>清晰了<span lang="EN-US">”“</span>好记了<span lang="EN-US">”</span>等学习体验。<a name="86-1720622381600"></a><a name="57-1720622381542"></a><a name="13-1720622381600"></a><a name="71-1720622381543"></a><span lang="EN-US"><o:p></o:p></span></span></p>
+
+<p class="MsoNormal"><span lang="EN-US">&nbsp;¶</span><span>整理思维导图的过程是不断调用认知模型，与旧认知模型发生关联的过程。思维导图反映的既是知识的结构，更是绘制者对知识的理解。<a name="67-1720622381600"></a><a name="75-1720622381543"></a><a name="77-1720622381600"></a><a name="82-1720622381543"></a><span lang="EN-US"><o:p></o:p></span></span></p>
+
+<p class="MsoNormal"><span lang="EN-US">&nbsp;¶</span><span>事实上我们真正的生活和工作，哪有什么标准答案。这也是系统思维告诉我们的，任何一个事只有角度和立场的不一样，没有什么标准答案。<a name="91-1720622381544"></a><a name="58-1720622381544"></a><span lang="EN-US"><o:p></o:p></span></span></p>
+
+<p class="MsoNormal"><span lang="EN-US">&nbsp;¶</span><span>画思维导图的时候，应该问自己为什么要画这张思维导图，哪些内容对自己更重要。<a name="74-1720622381600"></a><a name="52-1720622381544"></a><a name="26-1720622381600"></a><a name="76-1720622381545"></a><span lang="EN-US"><o:p></o:p></span></span></p>
+
+<p class="MsoNormal"><span lang="EN-US">&nbsp;¶</span><span>只是把关键词简单地断开拼接，没有取舍，没有层次，也没有逻辑重构，这对思考力培养作用就不大了（如下图）。<a name="82-1720622381600"></a><a name="46-1720622381545"></a><a name="54-1720622381600"></a><a name="44-1720622381545"></a><span lang="EN-US"><o:p></o:p></span></span></p>
+
+<p class="MsoNormal"><span lang="EN-US">&nbsp;¶</span><span>不是所有内容都要花大量时间精读理解，具体要看内容的重要性。<a name="56-1720622381600"></a><a name="88-1720622381546"></a><a name="87-1720622381600"></a><a name="91-1720622381546"></a><span lang="EN-US"><o:p></o:p></span></span></p>
+
+<p class="MsoNormal"><span lang="EN-US">&nbsp;¶</span><span>画完思维导图之后，通过<span lang="EN-US">“</span>脑补<span lang="EN-US">”</span>对内容进行回顾尝试把原文字内容复述出来。这个过程一是检验导图构建的逻辑是否清晰；二是帮助我们记忆原文字内容。<a name="62-1720622381600"></a><a name="58-1720622381546"></a><a name="34-1720622381600"></a><a name="33-1720622381547"></a><span lang="EN-US"><o:p></o:p></span></span></p>
+
+<p class="MsoNormal"><span lang="EN-US">&nbsp;¶</span><span>系统的搭建方法了，它分为四个步骤：收集、逐层分类、细化、回顾。<a name="71-1720622381601"></a><a name="22-1720622381548"></a><a name="87-1720622381601"></a><a name="61-1720622381548"></a><span lang="EN-US"><o:p></o:p></span></span></p>
+
+<p class="MsoNormal"><span lang="EN-US">&nbsp;¶</span><span>首先把你要构建的主题用一句话写在纸的上方，这里注意用一个句子而不要用词语。因为构建的时候，目标非常重要，很多时候我们很容易想着想着就偏离主题，忘了原来要做什么、要解决什么问题了。用词语表达过于宽泛，很容易偏离原意。所以用一句话表达，能让你的目标更加明确。例如中秋节当天比较忙，我希望用导图梳理一天的计划（如下图）。<a name="08-1720622381549"></a><a name="45-1720622381601"></a><a name="42-1720622381549"></a><span lang="EN-US"><o:p></o:p></span></span></p>
+
+<p class="MsoNormal"><span lang="EN-US">&nbsp;¶</span><span>接下来尽可能收集相关想法，至少<span lang="EN-US">10</span>点。<a name="28-1720622381601"></a><a name="78-1720622381549"></a><a name="90-1720622381601"></a><a name="51-1720622381550"></a><span lang="EN-US"><o:p></o:p></span></span></p>
+
+<p class="MsoNormal"><span lang="EN-US">&nbsp;¶</span><span>书写的时候，用词语、句子都可以。不需要刻意用关键词，因为收集想法的时候信息常常是模糊的，如果只写关键词，可能过一会儿就忘记关键词表达的具体意义是什么了。这一点对较复杂、需要较长时间构建的系统尤其重要。<a name="98-1720622381601"></a><a name="43-1720622381550"></a><a name="39-1720622381601"></a><a name="20-1720622381550"></a><span lang="EN-US"><o:p></o:p></span></span></p>
+
+<p class="MsoNormal"><span lang="EN-US">&nbsp;¶</span><span>收集想法的时候不要太在意用词语还是句子，最重要的是表达清楚你的想法，这些想法是构建系统的素材。<a name="86-1720622381601"></a><a name="89-1720622381550"></a><a name="42-1720622381601"></a><a name="13-1720622381551"></a><span lang="EN-US"><o:p></o:p></span></span></p>
+
+<p class="MsoNormal"><span lang="EN-US">&nbsp;¶</span><span>收集到素材之后，我们对素材进行简化，思路与上面做知识简化的步骤相类似。把想法分类分层，让它变成最简形式。<a name="14-1720622381601"></a><a name="37-1720622381551"></a><a name="73-1720622381601"></a><a name="49-1720622381552"></a><span lang="EN-US"><o:p></o:p></span></span></p>
+
+<p class="MsoNormal"><span lang="EN-US">&nbsp;¶</span><span>接下来分类分层，整理成思维导图。这个过程的目标是把想法简化，尽可能要遵守思维导图的逻辑原则。<a name="22-1720622381601"></a><a name="14-1720622381552"></a><a name="32-1720622381601"></a><a name="75-1720622381552"></a><span lang="EN-US"><o:p></o:p></span></span></p>
+
+<p class="MsoNormal"><span lang="EN-US">&nbsp;¶</span><span>我们可以对内容进行细化（绿色），甚至细化到行动步骤（红色）。<a name="52-1720622381601"></a><a name="77-1720622381553"></a><a name="10-1720622381601"></a><a name="25-1720622381553"></a><span lang="EN-US"><o:p></o:p></span></span></p>
+
+<p class="MsoNormal"><span lang="EN-US">&nbsp;¶</span><span>如果细化到具体行动，更加有利于降低我们的执行难度，增加执行力，也许它还可以治愈你的拖延症呢。<a name="77-1720622381601"></a><a name="34-1720622381553"></a><a name="88-1720622381601"></a><a name="92-1720622381554"></a><span lang="EN-US"><o:p></o:p></span></span></p>
+
+<p class="MsoNormal"><span lang="EN-US">&nbsp;¶</span><span>回顾绘制出来的思维导图，检查是否齐全与完整。这个时候也可以检查整体逻辑是否能再次优化。<a name="03-1720622381601"></a><a name="38-1720622381554"></a><a name="63-1720622381601"></a><a name="00-1720622381555"></a><span lang="EN-US"><o:p></o:p></span></span></p>
+
+<p class="MsoNormal"><span lang="EN-US">&nbsp;¶</span><span>可以用于知识学习、考试、书本阅读、演讲、工作总结、经验总结、项目管理等场合，来大大提高学习和工作效率。<a name="70-1720622381601"></a><a name="71-1720622381555"></a><a name="76-1720622381601"></a><a name="50-1720622381555"></a><span lang="EN-US"><o:p></o:p></span></span></p>
+
+<p class="MsoNormal"><b><span>第一节
+学习方法与认知模型</span></b><a name="96-1720622381601"></a><a name="90-1720622381556"></a><span lang="EN-US"><o:p></o:p></span></p>
+
+<p class="MsoNormal"><span lang="EN-US">&nbsp;¶</span><span>对于一个新鲜的事情，我们无法理解它们。于是，我们就尝试用旧的概念或者认知去解释它，于是，大脑就对这个新鲜事物形成新的概念。<a name="95-1720622381602"></a><a name="77-1720622381556"></a><a name="21-1720622381602"></a><a name="63-1720622381556"></a><span lang="EN-US"><o:p></o:p></span></span></p>
+
+<p class="MsoNormal"><span lang="EN-US">&nbsp;¶</span><span>当我们用<span lang="EN-US">“</span>五感<span lang="EN-US">”</span>接收到信息的时候，我们会以这些信息为线索，调取认知模型，并输出结果。<a name="58-1720622381602"></a><a name="60-1720622381557"></a><a name="73-1720622381602"></a><a name="53-1720622381557"></a><span lang="EN-US"><o:p></o:p></span></span></p>
+
+<p class="MsoNormal"><span lang="EN-US">&nbsp;¶</span><span>输出的结果，就是我们所理解的概念或对事实的判断（如下图）。<a name="46-1720622381558"></a><a name="32-1720622381602"></a><a name="73-1720622381558"></a><span lang="EN-US"><o:p></o:p></span></span></p>
+
+<p class="MsoNormal"><span lang="EN-US">&nbsp;¶</span><span>大脑会认为存在于认知模型中的才是<span lang="EN-US">“</span>对的<span lang="EN-US">”</span>，所以它屏蔽掉那些认知模型中<span lang="EN-US">“</span>不存在<span lang="EN-US">”</span>的事情，来降低认知负荷。这就是认知模型的作用。<a name="24-1720622381602"></a><a name="74-1720622381558"></a><a name="30-1720622381559"></a><span lang="EN-US"><o:p></o:p></span></span></p>
+
+<p class="MsoNormal"><span lang="EN-US">&nbsp;¶</span><span>有些人，即使你告诉他全部的事实就在面前了，但是他依然看不到全部的事实。<a name="87-1720622381602"></a><a name="97-1720622381559"></a><a name="79-1720622381602"></a><a name="63-1720622381559"></a><span lang="EN-US"><o:p></o:p></span></span></p>
+
+<p class="MsoNormal"><span lang="EN-US">&nbsp;¶</span><span>他的认知模型决定着他能看到什么。如果缺失相应的认知模型，那么不管多么明显他都无法看见。<a name="17-1720622381602"></a><a name="40-1720622381560"></a><a name="41-1720622381602"></a><a name="53-1720622381560"></a><span lang="EN-US"><o:p></o:p></span></span></p>
+
+<p class="MsoNormal"><span lang="EN-US">&nbsp;¶</span><span>这些思考过程调用的认知模型为底层的认知模型，我们前面说到的<span lang="EN-US">“</span>脑补<span lang="EN-US">”</span>现象，调用的就是在这个层次上的认知模型（如下图）。处于底层的认知模型就是那些我们非常熟悉的认知，这种认知来源于我们不断重复的练习。<a name="93-1720622381602"></a><a name="77-1720622381560"></a><a name="74-1720622381561"></a><span lang="EN-US"><o:p></o:p></span></span></p>
+
+<p class="MsoNormal"><span lang="EN-US">&nbsp;¶</span><span>学习就是从底层认知模型上不断叠加形成高层认知模型的过程。<a name="62-1720622381561"></a><a name="82-1720622381602"></a><a name="88-1720622381561"></a><span lang="EN-US"><o:p></o:p></span></span></p>
+
+<p class="MsoNormal"><span lang="EN-US">&nbsp;¶</span><span>不管认知模型是高层还是底层，我们通过学习对它不断重描，增加该模型的正确性，让它的可复用性加大。<a name="76-1720622381602"></a><a name="11-1720622381562"></a><a name="65-1720622381602"></a><a name="59-1720622381562"></a><span lang="EN-US"><o:p></o:p></span></span></p>
+
+<p class="MsoNormal"><span lang="EN-US">&nbsp;¶</span><span>某个认知模型被调用次数越多，大脑会认为这个模型越重要，它会慢慢变成底层认知模型（改变权重），更容易被调用，甚至自动化执行。<a name="77-1720622381602"></a><a name="02-1720622381562"></a><a name="30-1720622381602"></a><a name="80-1720622381563"></a><span lang="EN-US"><o:p></o:p></span></span></p>
+
+<p class="MsoNormal"><span lang="EN-US">&nbsp;¶</span><span>还记得小时候学习认字的痛苦经历吗？逐个逐个地抄写，每一个笔画的写法、笔顺，都得记得清清楚楚，常常还会写错字。后来我们学习了词语、句子、段落、语法、写作等，几年之后，字如何写、如何辨认好像不太重要了，在看书写字的时候，也不会关注到这个字的笔画如何，与认字相关的工作，大脑自动就会执行。<a name="33-1720622381603"></a><a name="14-1720622381563"></a><a name="59-1720622381564"></a><span lang="EN-US"><o:p></o:p></span></span></p>
+
+<p class="MsoNormal"><span lang="EN-US">&nbsp;¶</span><span>这是因为，文章的理解是高层的认知模型，而每次理解文章，都会调用文字辨认的认知模型。文字辨认的认知模型可复用性很高，该认知模型就会进入底层，甚至进入<span lang="EN-US">“</span>思考自动化<span lang="EN-US">”</span>的状态。<a name="45-1720622381564"></a><a name="59-1720622381603"></a><a name="92-1720622381564"></a><span lang="EN-US"><o:p></o:p></span></span></p>
+
+<p class="MsoNormal"><span lang="EN-US">&nbsp;¶</span><span>学习就是构建新认知模型的过程，是把知识转化为认知模型的过程（如下图）。认知模型既可以通过大量案例归纳而成，也可以直接通过知识学习辅助构建。<a name="19-1720622381603"></a><a name="86-1720622381565"></a><a name="00-1720622381603"></a><a name="89-1720622381565"></a><span lang="EN-US"><o:p></o:p></span></span></p>
+
+<p class="MsoNormal"><span lang="EN-US">&nbsp;¶</span><span>理解： 用旧的认知模型解释新事物的过程。<span lang="EN-US">“</span>是什么<span lang="EN-US">”“</span>为什么<span lang="EN-US">”</span>就是我们找到旧认知模型常用的方式。<a name="42-1720622381603"></a><a name="92-1720622381565"></a><a name="29-1720622381566"></a><span lang="EN-US"><o:p></o:p></span></span></p>
+
+<p class="MsoNormal"><span lang="EN-US">&nbsp;¶</span><span>记忆： 让认知模型不被遗忘的过程。如果在理解某些信息的时候，需要调用底层的认知模型，大脑会认为这些信息非常重要，表现出来的就是对该信息记忆特别深刻。重复是持久记忆唯一的方式，提高复用率是最高效的持久记忆方式。<a name="34-1720622381566"></a><a name="53-1720622381603"></a><a name="02-1720622381566"></a><span lang="EN-US"><o:p></o:p></span></span></p>
+
+<p class="MsoNormal"><span lang="EN-US">&nbsp;¶</span><span>但是很多人只是记住了所学知识，却没有把知识转化成能泛化的认知模型。这是学不好、用不好的根本原因。<a name="71-1720622381603"></a><a name="12-1720622381567"></a><a name="94-1720622381567"></a><span lang="EN-US"><o:p></o:p></span></span></p>
+
+<p class="MsoNormal"><b><span>第二节
+认知模型分析法</span></b><a name="80-1720622381603"></a><a name="14-1720622381567"></a><span lang="EN-US"><o:p></o:p></span></p>
+
+<p class="MsoNormal"><span lang="EN-US">&nbsp;¶</span><span>思考自动化给大脑节省了非常多的能量。这些底层的认知模型决定输出结果，有时候也会导致我们不能全面看到信息，产生错误的判断和决策。<a name="30-1720622381603"></a><a name="00-1720622381568"></a><a name="72-1720622381603"></a><a name="54-1720622381568"></a><span lang="EN-US"><o:p></o:p></span></span></p>
+
+<p class="MsoNormal"><span lang="EN-US">&nbsp;¶</span><span>有些时候这些底层的认知模型比较<span lang="EN-US">“</span>死板<span lang="EN-US">”</span>，明明不对依然固执地执行。这个时候它们都有一个特征：不严谨地、<span lang="EN-US">“</span>死板<span lang="EN-US">”</span>地接受信息，并输出绝对化的结果。最严重的问题是，<span lang="EN-US">“</span>思考自动化<span lang="EN-US">”</span>让我们对它毫无觉察，以为结果就是正确的。<a name="25-1720622381603"></a><a name="17-1720622381568"></a><a name="69-1720622381603"></a><a name="23-1720622381569"></a><span lang="EN-US"><o:p></o:p></span></span></p>
+
+<p class="MsoNormal"><span lang="EN-US">&nbsp;¶</span><span>找出一页纸，画三个方框，完成下面三个步骤： （<span lang="EN-US">1</span>）先找输入或者输出，用关键词表示即可，内容过多、过于精准，不利于思想发散，会增加分析难度。
+（<span lang="EN-US">2</span>）根据输入和输出，代入<span lang="EN-US">“</span>看（听）到【输入】马上认为【输出】<span lang="EN-US">”</span>句式总结认知模型。 （<span lang="EN-US">3</span>）审视认知模型句式逻辑是否严谨，对认知模型做出批判思考，并写出调整思路。<a name="75-1720622381603"></a><a name="14-1720622381569"></a><a name="78-1720622381603"></a><a name="02-1720622381570"></a><span lang="EN-US"><o:p></o:p></span></span></p>
+
+<p class="MsoNormal"><span lang="EN-US">&nbsp;¶</span><span>可以用于你<span lang="EN-US">“</span>感觉有点不对<span lang="EN-US">”</span>或者做出错误决策的时候，进行反思的时候，情绪变化的时候。<a name="73-1720622381603"></a><a name="74-1720622381570"></a><a name="22-1720622381603"></a><a name="13-1720622381571"></a><span lang="EN-US"><o:p></o:p></span></span></p>
+
+<p class="MsoNormal"><span lang="EN-US">&nbsp;¶</span><span>不断使用，让它成为决策前的思考习惯，可以大大提高决策的理性和严谨性。<a name="48-1720622381603"></a><a name="81-1720622381571"></a><a name="08-1720622381603"></a><a name="68-1720622381571"></a><span lang="EN-US"><o:p></o:p></span></span></p>
+
+<p class="MsoNormal"><span lang="EN-US">&nbsp;¶</span><span>从左到右连贯地看，你认为里面的人物是顺时针转动还是逆时针转动？<a name="99-1720622381604"></a><a name="14-1720622381571"></a><a name="50-1720622381604"></a><a name="23-1720622381572"></a><span lang="EN-US"><o:p></o:p></span></span></p>
+
+<p class="MsoNormal"><span lang="EN-US">&nbsp;¶</span><span>如果你对这个测试如果从头到尾未产生怀疑，那么说明你的某个认知模型正在起作用，让你坚定相信这是一个科学的测试。<a name="89-1720622381604"></a><a name="71-1720622381572"></a><a name="74-1720622381604"></a><a name="02-1720622381573"></a><span lang="EN-US"><o:p></o:p></span></span></p>
+
+<p class="MsoNormal"><span lang="EN-US">&nbsp;¶</span><span>事实上不管你看到的是顺时针还是逆时针都是正常的，案例中<span lang="EN-US">“</span>耶鲁大学的研究成果<span lang="EN-US">”</span>等信息是假的。<a name="53-1720622381604"></a><a name="88-1720622381573"></a><a name="68-1720622381604"></a><a name="67-1720622381573"></a><span lang="EN-US"><o:p></o:p></span></span></p>
+
+<p class="MsoNormal"><span lang="EN-US">&nbsp;¶</span><span>（<span lang="EN-US">1</span>）找输出。 本案例输出结果是：相信（如下图）。 （<span lang="EN-US">2</span>）找输入。你看到的这些文字，哪些让你觉得他们可信了？<span lang="EN-US">“</span>耶鲁大学<span lang="EN-US">”“</span>五年<span lang="EN-US">”“</span>研究成果<span lang="EN-US">”“14%”</span>等（如下图）。
+（<span lang="EN-US">3</span>）根据输入输出，代入<span lang="EN-US">“</span>看（听）到【输入】马上认为【输出】<span lang="EN-US">”</span>句式总结认知模型。 （<span lang="EN-US">4</span>）理性判断认知模型句式逻辑是否严谨，写出调整方案。
+本例中的这个逻辑明显不够严谨。虽然<span lang="EN-US">“</span>耶鲁大学<span lang="EN-US">”“</span>五年<span lang="EN-US">”“</span>研究成果<span lang="EN-US">”“14%”</span>等词语看上去很专业，我们的认知模型也相信了，认为它们是真的，但是并没有考虑它们的出处和可靠性。
+（<span lang="EN-US">5</span>）反思结果：以后看到这些数据，要做更严谨的考究。 通过对问题的分析，我们可以觉察到那些导致我们犯错的认知模型，并且用<span lang="EN-US">“</span>批判认知模型<span lang="EN-US">”</span>对它进行监控，养成批判的习惯。<a name="26-1720622381604"></a><a name="89-1720622381574"></a><a name="42-1720622381604"></a><a name="12-1720622381574"></a><span lang="EN-US"><o:p></o:p></span></span></p>
+
+<p class="MsoNormal"><span lang="EN-US">&nbsp;¶</span><span>认知模型自动化会让我们毫无思考便得出结论，我们莫名其妙的情绪便来源于此。<a name="83-1720622381604"></a><a name="81-1720622381575"></a><a name="60-1720622381604"></a><a name="46-1720622381575"></a><span lang="EN-US"><o:p></o:p></span></span></p>
+
+<p class="MsoNormal"><span lang="EN-US">&nbsp;¶</span><span>同事今天打招呼没那么热情，一定是不希望常常见到我了；如果我这次失败了，大家一定会看不起我的；我必须挣到钱，否则人生就没有意义了<span lang="EN-US">……</span>类似的思考都是我们的认知模型自己的判断，这些判断是不是真理在这里暂不考究，反正会给我们带来很多苦恼。<a name="58-1720622381604"></a><a name="10-1720622381575"></a><a name="37-1720622381604"></a><a name="30-1720622381576"></a><span lang="EN-US"><o:p></o:p></span></span></p>
+
+<p class="MsoNormal"><b><span>第三节
+多角度思考法</span></b><a name="96-1720622381604"></a><a name="16-1720622381576"></a><span lang="EN-US"><o:p></o:p></span></p>
+
+<p class="MsoNormal"><span lang="EN-US">&nbsp;¶</span><span>这六个要素会同时出现在我们每次的文字表达当中，不过并不是每次每个要素都可以看得见。作为笔记构建者，要用最少的符号表达出最多的意义。所以，<span lang="EN-US">5W1H</span>六个要素在实际表达当中，有些要素会被<span lang="EN-US">“</span>隐藏<span lang="EN-US">”</span>起来。<a name="52-1720622381604"></a><a name="53-1720622381576"></a><a name="79-1720622381604"></a><a name="47-1720622381577"></a><span lang="EN-US"><o:p></o:p></span></span></p>
+
+<p class="MsoNormal"><span lang="EN-US">&nbsp;¶</span><span>能<span lang="EN-US">“</span>脑补<span lang="EN-US">”</span>的前提是具有足够的经验。大部分时候，不同的解读者对笔记会产生共识（共有的经验），即使隐藏<span lang="EN-US">5W1H</span>中的一些要素，解读者也能把它补全。如果解读者无法补全，就觉得特别别扭，于是产生好奇心，继续追问，直到<span lang="EN-US">5W1H</span>每一要素都补上为止。<a name="51-1720622381604"></a><a name="49-1720622381577"></a><a name="87-1720622381604"></a><a name="40-1720622381578"></a><span lang="EN-US"><o:p></o:p></span></span></p>
+
+<p class="MsoNormal"><span lang="EN-US">&nbsp;¶</span><span>笔记构建者与解读者可能因为知识背景、情景角色等生活经验的不同，导致对隐藏要素内容<span lang="EN-US">“</span>脑补<span lang="EN-US">”</span>出错，造成解读者<span lang="EN-US">“</span>我以为<span lang="EN-US">”</span>的局面。<a name="73-1720622381605"></a><a name="94-1720622381578"></a><a name="40-1720622381605"></a><a name="98-1720622381578"></a><span lang="EN-US"><o:p></o:p></span></span></p>
+
+<p class="MsoNormal"><span lang="EN-US">&nbsp;¶</span><span>可以用思维导图来表达建立在<span lang="EN-US">5W1H</span>基础上的思考维度，如下图，每次思考问题都从<span lang="EN-US">5W1H</span>出发，不断延伸循环，构成认知维度网络。<a name="87-1720622381605"></a><a name="69-1720622381579"></a><a name="70-1720622381605"></a><a name="97-1720622381579"></a><span lang="EN-US"><o:p></o:p></span></span></p>
+
+<p class="MsoNormal"><span lang="EN-US">&nbsp;¶5W1H</span><span>是认知的必需品 我们来看看<span lang="EN-US">5W1H</span>为什么是认知的<span lang="EN-US">“</span>必需品<span lang="EN-US">”</span>。<span lang="EN-US"> 1.What</span>（是什么）<span lang="EN-US">&amp;Why</span>（为什么）<span lang="EN-US"> What</span>和<span lang="EN-US">Why</span>是新事物与已有的认知模型做关联的需要。<span lang="EN-US">What</span>是为了解释并了解新事物。<span lang="EN-US">Why</span>则是找到与已知认知之间的逻辑关系，保证新事物的正确性和可控性。<span lang="EN-US"> 2.Who</span>（主体）<span lang="EN-US">&amp;When</span>（时间）<span lang="EN-US">&amp;Where</span>（空间）<span lang="EN-US"> Who</span>、<span lang="EN-US">When</span>和<span lang="EN-US">Where</span>形成认知主要构成要素的需要。只要生活在宇宙中，时间、空间，以及那些可以被我们感知的主体都是在认知过程中必不可少的组成部分，我们可以时刻觉察到它们的存在。认知也就是找到它们的联系和规律。<span lang="EN-US"> 3.How</span>（怎么样）<span lang="EN-US"> How</span>是了解事物细节及之后行动的需要。其延伸还有<span lang="EN-US">How many</span>和<span lang="EN-US">How much</span>。<a name="33-1720622381605"></a><a name="01-1720622381580"></a><a name="10-1720622381605"></a><a name="33-1720622381580"></a><span lang="EN-US"><o:p></o:p></span></span></p>
+
+<p class="MsoNormal"><span lang="EN-US">&nbsp;¶</span><span>我们把问题代入<span lang="EN-US">5W1H</span>，寻找不同的角度（见下表）。<span lang="EN-US"> 1</span>）<span lang="EN-US">What</span>（是什么） 把苹果换成其他水果，是否也有同样的效果？这个方法是不是对所有水果有效？横切都可以有美丽的图案？<span lang="EN-US"> 2</span>）<span lang="EN-US">Why</span>（为什么） 孩子为什么会横切苹果？是爸爸给他递刀的时候故意把方向摆好的吗？<span lang="EN-US"> 3</span>）<span lang="EN-US">Who</span>（主体） 爸爸是一个非常会教育孩子的家长吗？<span lang="EN-US"> 4</span>）<span lang="EN-US">When</span>（时间） 在切完之后发生什么事情？爸爸会说些什么？孩子又会说些什么？<span lang="EN-US"> 5</span>）<span lang="EN-US">Where</span>（空间） 如果不横切，斜切呢？换其他位置切呢？<span lang="EN-US"> 6</span>）<span lang="EN-US">How</span>（怎么样） 孩子是怎么切水果的？他会握刀吗？爸爸帮助他了吗？ 通过<span lang="EN-US">5W1H</span>要素思考，你可以有更多的角度去思考问题。<a name="27-1720622381605"></a><a name="67-1720622381581"></a><a name="67-1720622381605"></a><a name="90-1720622381581"></a><span lang="EN-US"><o:p></o:p></span></span></p>
+
+<p class="MsoNormal"><span lang="EN-US">&nbsp;¶</span><span>美国首都华盛顿广场的杰弗逊纪念馆大楼在<span lang="EN-US">1938</span>年开工，至<span lang="EN-US">1943</span>年落成。 多年过去了，这座大厦表面斑驳陈旧，比周围其他同期建筑损坏严重得多。政府非常担心，派专家调查原因。 因为冲洗墙壁所含的清洁剂对建筑物有强烈的腐蚀作用，而该大厦墙壁每日冲洗，冲洗次数大大多于其他建筑，因此腐蚀就比较严重。
+对此，专家们用不断提问的方式，希望找到问题的根本原因。<span lang="EN-US"> 1</span>）为什么每日都要冲洗？ 因为大厦被大量的鸟粪弄得很脏。<span lang="EN-US"> 2</span>）为什么这么多鸟粪？ 因为大厦周围聚集了很多小鸟。<span lang="EN-US"> 3</span>）为什么小鸟专爱聚集在这里？
+因为建筑物上有小鸟爱吃的蜘蛛。<span lang="EN-US"> 4</span>）为什么这里的蜘蛛特别多？ 因为墙上有蜘蛛最喜欢吃的虫子。<span lang="EN-US"> 5</span>）为什么这里有虫子？ 因为西面的墙有很多窗户，窗户晚上开着灯，很多虫子会聚集过来（趋光性）。 最后有了一个解决方案：给窗子加上窗帘即可以彻底解决问题。<a name="68-1720622381605"></a><a name="47-1720622381582"></a><a name="96-1720622381605"></a><a name="49-1720622381583"></a><span lang="EN-US"><o:p></o:p></span></span></p>
+
+<p class="MsoNormal"><span lang="EN-US">&nbsp;¶</span><span>看案例会觉得很简单，等真正使用这一方法时，会发现提问的角度很多，根本无从下手，很难用好。原因可能有两点，一是背景知识，二是立场。<a name="50-1720622381605"></a><a name="69-1720622381583"></a><a name="42-1720622381605"></a><a name="01-1720622381583"></a><span lang="EN-US"><o:p></o:p></span></span></p>
+
+<p class="MsoNormal"><span lang="EN-US">&nbsp;¶</span><span>在解决不同问题时，强调<span lang="EN-US">5W1H</span>的不同要素可以帮助我们更好找到解决问题的方案。例如用<span lang="EN-US">Why+How</span>说服他人；用<span lang="EN-US">When+How</span>快速执行；用<span lang="EN-US">What</span>、<span lang="EN-US">When</span>、<span lang="EN-US">How</span>进行学习与实践。<a name="77-1720622381605"></a><a name="35-1720622381584"></a><a name="13-1720622381584"></a><span lang="EN-US"><o:p></o:p></span></span></p>
+
+<p class="MsoNormal"><b><span>第一节
+与生俱来的记忆能力</span></b><a name="11-1720622381606"></a><a name="73-1720622381584"></a><span lang="EN-US"><o:p></o:p></span></p>
+
+<p class="MsoNormal"><span lang="EN-US">&nbsp;¶</span><span>高效记忆的方法很多，谐音记忆法、联想记忆法、记忆宫殿学习法、定位法、情景记忆法<span lang="EN-US">……</span>这些方法中有的其实是同一种方法，在不同场景中的演变。<a name="07-1720622381585"></a><a name="84-1720622381585"></a><span lang="EN-US"><o:p></o:p></span></span></p>
+
+<p class="MsoNormal"><span lang="EN-US">&nbsp;¶</span><span>左右脑、艾宾浩斯曲线，神经元电化学反应，身体激素变化等。但是你会发现这些的方法和理论很难在实践中应用，甚至学习记忆方法比学习我们想学的内容还难。<a name="00-1720622381606"></a><a name="51-1720622381586"></a><span lang="EN-US"><o:p></o:p></span></span></p>
+
+<p class="MsoNormal"><span lang="EN-US">&nbsp;¶</span><span>个人的认知模型越丰富，自然能识别更多线索，也可能解决更多问题，应对更加复杂的系统。<a name="94-1720622381606"></a><a name="23-1720622381586"></a><a name="65-1720622381606"></a><a name="90-1720622381587"></a><span lang="EN-US"><o:p></o:p></span></span></p>
+
+<p class="MsoNormal"><span lang="EN-US">&nbsp;¶</span><span>用<span lang="EN-US">81</span>条乘法的记忆，换取无数个乘法运算结果，而且能用一辈子，这是多么划算的事情。这也是学习知识的原因。<a name="41-1720622381606"></a><a name="35-1720622381587"></a><a name="69-1720622381606"></a><a name="25-1720622381588"></a><span lang="EN-US"><o:p></o:p></span></span></p>
+
+<p class="MsoNormal"><span lang="EN-US">&nbsp;¶</span><span>从艾宾浩斯的实验结果，我们可以得到两个结论，一是理解材料意义可以加快记忆效率；二是重复可以强化记忆。这两个结论也是帮助大家快速学习、记忆的底层原理。<a name="27-1720622381606"></a><a name="40-1720622381588"></a><a name="90-1720622381606"></a><a name="18-1720622381589"></a><span lang="EN-US"><o:p></o:p></span></span></p>
+
+<p class="MsoNormal"><span lang="EN-US">&nbsp;¶</span><span>日常所见所闻（<span lang="EN-US">“</span>五感<span lang="EN-US">”</span>）、简单逻辑、简单的道理都属于底层认知。<a name="25-1720622381606"></a><a name="38-1720622381589"></a><a name="17-1720622381606"></a><a name="46-1720622381590"></a><span lang="EN-US"><o:p></o:p></span></span></p>
+
+<p class="MsoNormal"><span lang="EN-US">&nbsp;¶</span><span>在推铅球时，如果一个人能推到<span lang="EN-US">9</span>米，那么他必须要有推过<span lang="EN-US">8</span>米的能力。推过<span lang="EN-US">7</span>米、<span lang="EN-US">8</span>米，是推过<span lang="EN-US">9</span>米的必要条件。 另外一种情况是，一个人如果能推过<span lang="EN-US">9.1</span>米，他一定能推过<span lang="EN-US">9</span>米。推过<span lang="EN-US">10</span>米、<span lang="EN-US">11</span>米都是推过<span lang="EN-US">9</span>米的充分条件。<a name="78-1720622381606"></a><a name="20-1720622381590"></a><a name="81-1720622381606"></a><a name="25-1720622381590"></a><span lang="EN-US"><o:p></o:p></span></span></p>
+
+<p class="MsoNormal"><span lang="EN-US">&nbsp;¶</span><span>相对于第一种解释方式，你可能不需要数学知识就可以听明白。因为底层认知模型都是那些我们非常熟悉、与生活贴近的认知。这就是为什么我们更喜欢听故事，听案例的原因了。<a name="97-1720622381606"></a><a name="84-1720622381591"></a><a name="52-1720622381606"></a><a name="43-1720622381591"></a><span lang="EN-US"><o:p></o:p></span></span></p>
+
+<p class="MsoNormal"><span lang="EN-US">&nbsp;¶</span><span>如果你能把学到的知识解释给一位小学生听，那么说明你学会了。因为一般来说小学生拥有的认知模型，对于成人来说，都是非常底层的认知模型。<a name="84-1720622381606"></a><a name="19-1720622381591"></a><a name="18-1720622381606"></a><a name="69-1720622381592"></a><span lang="EN-US"><o:p></o:p></span></span></p>
+
+<p class="MsoNormal"><span lang="EN-US">&nbsp;¶</span><span>乘法口诀的可复用性极高，我们在学习比它更深的知识，如竖式、应用题时都会用到它。在不断学习的过程中它被不断调用，不断重复，于是也就牢牢记下了。<a name="77-1720622381606"></a><a name="82-1720622381592"></a><a name="31-1720622381606"></a><a name="70-1720622381593"></a><span lang="EN-US"><o:p></o:p></span></span></p>
+
+<p class="MsoNormal"><span lang="EN-US">&nbsp;¶</span><span>决定孩子是否能记下来的主要因素是处理信息的专注度，是累积的认知基础，是投入的时间（重复）如何。<a name="81-1720622381607"></a><a name="64-1720622381593"></a><a name="02-1720622381607"></a><a name="85-1720622381593"></a><span lang="EN-US"><o:p></o:p></span></span></p>
+
+<p class="MsoNormal"><span lang="EN-US">&nbsp;¶</span><span>实际上，不管感兴趣还是不感兴趣的信息，记忆的过程都是一样的，但是为什么效果上却有区别呢？</span><a name="40-1720622381607"></a><a name="59-1720622381594"></a><a name="22-1720622381607"></a><a name="63-1720622381594"></a></p>
+    </article>
+</body>
+</html>

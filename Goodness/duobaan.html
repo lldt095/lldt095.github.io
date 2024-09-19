@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <style>
+    :root {
+        --text-color:#333;
+        --summary-color: #000;
+        --bg-color: white;
+        --block-bg-color: #c3c3c3;
+        --block-left-border-color: #868686;
+        --block-border-radius: 5px;
+        --outter-padding: 1em;
+    }
+
+    @media (max-width: 1920px) {
+        :root { --outter-padding: 4em; }
+    }
+    @media (max-width: 1200px) {
+        :root { --outter-padding: 3em; }
+    }
+    @media (max-width: 900px) {
+        :root { --outter-padding: 2em; }
+    }
+    @media (max-width: 600px) {
+        :root { --outter-padding: 1em; }
+    }
+
+    body {
+        margin: 0;
+        padding: 0;
+        background-color: var(--bg-color);
+        line-height: 28px;
+        font-size: 16px;
+        font-family: 'PingFang SC', 'Source Han Serif SC', 'Microsoft YaHei', 'Noto Sans CJK SC', 'Source Han Sans CN', 'Noto Sans SC', 'sans-serif';
+        text-align: justify;
+    }
+
+    h1 { font-size: 2em; line-height: 1.15em; }
+    h2 { font-size: 1.5em; line-height: 1.1em; }
+    h3 { font-size: 1.5em; line-height: 1.15em; }
+    h4 { line-height: 1em; }
+    h5 { font-size: 0.83em; line-height: 1.4em; }
+    h6 { font-size: 0.67em; line-height: 1.4em; }
+
+    p {
+        margin: 1em 0;
+        padding: 0;
+        overflow-x: auto;
+        /* 在 line-height 小于 1.4x 的时候，p 标签的高度比起内部文本的高度小几个像素，
+        * 导致出现细微滚动，此时按对应的段落滚动时，会阻碍整个页面的滚动。
+        * DIV 标签似乎不会有此问题
+        */
+        overflow-y: hidden; 
+    }
+
+    pre {
+        overflow-x: auto;
+        border-radius: var(--block-border-radius);
+        padding: 18px;
+        letter-spacing: 0;
+    }
+
+    code {
+        border-radius: var(--block-border-radius);
+        padding: 1px 5px;
+        letter-spacing: 0;
+        word-break: break-all;
+    }
+
+    /* 代码 */
+    pre code {
+        background: none!important;
+    }
+
+    pre, code, blockquote {
+        background-color: var(--block-bg-color);
+    }
+
+    blockquote {
+        border-left: 10px solid var(--block-left-border-color);
+
+        border-radius: var(--block-border-radius);
+        background-color: var(--block-bg-color);
+        padding: 0.5em 10px;
+        quotes: "\201C""\201D""\2018""\2019";
+        margin: 10px 0;
+    }
+    blockquote:before {
+        color: var(--block-left-border-color);
+
+        content: open-quote;
+        font-size: 4em;
+        line-height: 0.1em;
+        margin-right: 0.1em;
+        margin-left: -0.3em;
+        vertical-align: -0.4em;
+    }
+
+    figcaption {
+        margin-top: 8px;
+    }
+
+    blockquote, figcaption, li, h1, h2, h3, h4, h5, h6 {
+        text-indent: 0px;
+    }
+
+    table {
+        overflow-x: auto;
+        border-collapse: collapse;
+    }
+    table, table tr th, table tr td {
+        border: 1px solid #bbbbbb;
+    }
+    td {
+        padding: 0 3px;
+    }
+    td p {
+        margin: 0;
+        padding: 0;
+    }
+
+    mdmark { padding: 0 1px; border-radius: 3px; color: #fff; }mdmark.mdm-yellow {
+  background-color: #7a6d0aff;
+}mdmark.mdm-red {
+  background-color: #c9210eff;
+}mdmark.mdm-qianniuzi {
+  background-color: #8b2b72ff;
+}mdmark.mdm-mantianxingzi {
+  background-color: #464aa6ff;
+}
+
+    #mandu-title {
+        padding: 0.5em var(--outter-padding);
+    }
+    #mandu-summary {
+        color: var(--summary-color);
+        font-weight: bold;
+        background-color: #f3f3f3;
+        padding: 1em var(--outter-padding);
+    }
+
+    #mandu-content {
+        padding: 1em var(--outter-padding);
+        font-size: 16px;
+        letter-spacing: 1px;;
+    }
+
+    a {
+        color: #59a4d0;
+        text-decoration: none;
+    }
+
+    img.mandu-emoji {
+        display: inline;
+        line-height: 1rem;
+        height: 1rem;
+        margin: 0;
+    }
+
+    img, video {
+        width: 100%;
+        height: 100%;
+        border: none;
+        padding: 0;
+        margin: 0;
+        max-width: 100%;
+        margin: 15px auto;
+        display: block;
+    }
+
+    figure img {
+        margin: 0 auto;
+    }
+
+    figure {
+        margin: 40px 0;
+        display: block;
+        max-width: 100%;
+        overflow-x: auto;
+    }
+
+    .clearfix:after {
+        content: "";
+        display: block;
+        clear: both;
+    }
+    </style>
+</head>
+<body>
+    <h2 id="mandu-title"></h2>
+    <summary id="mandu-summary" style="display: none;">
+        <div>本文摘要：</div>
+        
+    </summary>
+    <article id="mandu-content">
+        <div><span>
+</span><div><span>
+</span><h3>内啡肽和多巴胺</h3></div></div><div><br></div><div><br></div><div>内啡肽与多巴胺。都可以让我们产生愉悦感，多巴胺（明亮的多巴胺音乐Ω <a href="http://km2000.us/myshoots/%E5%A4%9A%E5%B7%B4%E8%83%BA.mp3">多巴胺.mp3</a> Ω）偏重于感官与物质，<mdmark mdm-id="0b407fb1-52bc-496a-ab1f-8b7976b4ab57" class="mdm-mantianxingzi">促进多巴胺的是美食美器</mdmark>；内啡肽偏重于自律与精神，<mdmark mdm-id="ddaf546c-6433-4ebd-9e5c-8d87479e5fb2" class="mdm-mantianxingzi">促使内啡肽的是身体的疼痛</mdmark>，用痛并快乐着来形容内啡肽再适合不过。 内啡肽与多巴胺的关系是乐与幸福 的关系，一个是短暂的、初级的快乐，一个是长期的、奋斗的快乐。</div><div><br></div><div>内啡肽与人生的本质。甜的东西对我们都是不好的，<mdmark mdm-id="463c5af1-6ea2-4b01-ac8a-0bb7034b2ffe" class="mdm-mantianxingzi">逆境挑战都是历练我们品质的机会，对我们都是好的，这就是内啡肽</mdmark>。有两种人生，快乐人生和幸福人生，快乐人生追求短暂的多巴胺，幸福人生是先苦而后甜。生命中就有两种人，其中一种人认为并且深信，<mdmark mdm-id="9f913d8b-d454-40fe-9d6b-0df01a8b25ce" class="mdm-mantianxingzi">人生是生命长河一种短暂的形态</mdmark>，对于第2种人来说，他们以为所谓的苦就是对灵魂的历练，他们会善用这一种苦，把它转为一种正能量来提升自己，这是一种<mdmark mdm-id="caaa2724-d9ec-4283-a12b-63f75b609b2c" class="mdm-mantianxingzi">开悟的人生</mdmark>。即便这些苦是好的，<mdmark mdm-id="5c6adc87-92ec-4377-8c88-ad3b84284057" class="mdm-mantianxingzi">大部分人也不会去自讨苦吃，但是这些苦来了、便是生活的机遇，危机危机，危险就是机遇，这是一种人生的观念</mdmark>，有的人天生就有，有的人永远都不会有，他们就是享乐，<mdmark mdm-id="ca71f343-71a0-4007-b818-df72f9959605" class="mdm-mantianxingzi">如果能够心安理得的享乐，那是因为有福报，但是福报用完了就没有了；没有这个命还在享乐，那是他福报不够</mdmark>，比如腐败分子，抓不到就逃到外国隐姓埋名委屈此生，抓到了就在监狱里“享受人生”。这两种人的人生观都差不多，及时行乐，永远都会喜欢短暂的多巴胺，他们不知道内啡肽是干啥的？</div><div><br></div><div>保尔柯察金也算是第2种人，他这样说，“<mdmark mdm-id="4b74909a-1a3b-41bc-8de4-3de9d58c63d6" class="mdm-qianniuzi">人的一生应当这样度过：当他回忆往事的时候，他不会因为虚度年华而悔恨；也不会因为碌碌无为而羞愧。</mdmark>”</div><div><br></div><div>中国的孟子也算是第2种人，他说，“<mdmark mdm-id="2e278c10-da66-4f1c-936d-57265de4d55e" class="mdm-qianniuzi">生于忧患，死于安乐</mdmark>”。听起来挺不吉利的，不过懂事的人都知道他说啥。</div><div><br></div><div>喜欢内啡肽的人是奋斗的一生，以苦为乐，苦并快乐的活着，<mdmark mdm-id="251684fd-67b4-43c5-a3cf-f3fd5731a0d4" class="mdm-yellow">虽然喜欢奋斗，也离不开短暂的多巴胺，多巴胺是偶尔的调剂品</mdmark>，团结又紧张，严肃也活泼，生活也要中庸，喜欢自律的人也离不开短暂的放松调剂。</div><div><br></div><div>自律要靠内啡肽。那些自律的人，因为<mdmark mdm-id="8f61c761-3f80-4c08-b8fc-61fdb417f4e6" class="mdm-yellow">持之以恒地运动或做某件事，就会产生持续激荡的快乐</mdmark>，所以，越自律越快乐越幸福。自律的人<mdmark mdm-id="33718826-bae8-4467-818a-fa51ab1d67d9" class="mdm-yellow">对生活的自主性和掌控感</mdmark>比一般人更强，对他人的影响力也更强，毕竟大家对于自律的人多少有些敬佩，相应的血清素也会更高。<mdmark mdm-id="069b34e6-34f6-4251-8bf3-b2309541eae4" class="mdm-mantianxingzi">自律的开始是兴奋，有多巴胺的作用，最难的是在过程中要有耐心和意志力，这就用到了内啡肽。</mdmark></div><div><br></div><div>从生理功能来讲，内啡肽是一种补偿机制，可以帮你隐藏身体的痛苦，让你坚持完成某个任务。如果你经常锻炼或跑步，在不断推动自己超越自我极限，咬牙坚持再多做10个动作，多跑一百米后得到的快感就是内啡肽带来的。奋斗之后的快乐，自律后的愉悦，很多都是源自内啡肽的作用。保持定期的、有规律的运动，可以促进内啡肽的分泌运动。如果没有成为习惯，只是偶尔动一下，对促进内啡肽分泌的作用不大，只有不断重复这种行为，让它内化成为我自愿的一种习惯时，内啡肽才会分泌。内啡肽是人类的一种自然机制。当机体有伤痛刺激时，内源性阿片肽被释放出来以对抗疼痛。在内啡肽的激发下，人的身心处于轻松愉悦的状态中，免疫系统实力得以强化，并能顺利入梦，消除失眠症。内啡肽也被称之为“快感荷尔蒙”或者“年轻荷尔蒙”，意味这种荷尔蒙可以帮助人保持年轻快乐的状态。吃辣的快感，辣味会在舌头上制造痛苦的感觉，为了平衡这种痛苦，人体会分泌内啡肽，消除舌上痛苦的同时，在人体内制造了类似于快乐的感觉，而<mdmark mdm-id="20831e15-9fdd-4b48-a724-047a4d714cd8" class="mdm-red">我们把这种感觉误认为来自辣味本身</mdmark>，所以，很多人喜欢辣味食物。</div><div><br></div><div>参考书：清华大学心理系主任彭教授在《活出心花怒放的人生》</div><div></div>
+    </article>
+</body>
+</html>
